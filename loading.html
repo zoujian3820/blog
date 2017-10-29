@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta name="author" content="m.jd.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <style>
+        *{margin:0;padding: 0;}
+        .progress {
+            stroke-dasharray: 144px; /*虚线的长度 ,这里通过数学公式,算出的圆周长 (2 * r * PI) 【2倍半径 or（直径）乘以 π（3.14159265...） 】  */
+            stroke-dashoffset: 144px;/*(虚线之间的间隔)虚线从哪开始描,表示第一根虚线从距离开始位置多远开始描*/
+            animation: progressAnimation 600ms linear infinite;
+            -webkit-animation: progressAnimation 600ms linear infinite;
+            animation-fill-mode: forwards;
+            -webkit-animation-fill-mode: forwards;
+        }
+
+        @keyframes progressAnimation {
+            from {
+                stroke-dashoffset: 144px;
+            }
+            to {
+                stroke-dashoffset: 0px;
+            }
+        }
+
+        svg {
+            -webkit-transform: scaleX(-1) rotate(-110deg);
+            transform: scaleX(-1) rotate(-110deg);
+        }
+
+        .circle {
+            width: 52px;
+            height: 52px;
+            text-align: center;
+            position: relative;
+        }
+
+        .circle .progress-text {
+            margin: 0;
+            line-height: 15px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            height: auto;
+            color: #f5213e;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            width: 100%;
+        }
+
+        .triangle-border-right i {
+            border-right: 3px solid #f3f5f7;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="circle">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+                                     width="52" height="52" viewbox="0 0 52 52">
+       <circle r="23" cy="26" cx="26" stroke-width="3" stroke="#feb6ba" fill="none"/>
+       <circle class="progress" r="23" cy="26" cx="26" stroke-width="4" stroke="#f12353" fill="none"/>
+    </svg>
+    <span class="progress-text">已抢<p>19%</p></span>
+</div>
+</body>
+
+</html>
