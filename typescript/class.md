@@ -18,7 +18,7 @@ TypeScript 除了实现了所有 ES6 中的类的功能以外，还添加了一�
 - 接口（Interfaces）：不同类之间公有的属性或方法，可以抽象成一个接口。接口可以被类实现（implements）。一个类只能继承自另一个类，但是可以实现多个接口
  
 ### ES6 中类的用法
-下面我们先回顾一下 ES6 中类的用法，更详细的介绍可以参考 ECMAScript 6 入门 - Class。
+下面我们先回顾一下 ES6 中类的用法，更详细的介绍可以参考 [ECMAScript 6 入门](http://es6.ruanyifeng.com/#docs/class) - Class。
 
 #### 属性和方法
 使用 ***class*** 定义类，使用 ***constructor*** 定义构造函数。
