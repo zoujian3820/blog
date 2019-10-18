@@ -129,9 +129,10 @@ console.log(Animal.num); // 42
 #### public private 和 protected
 TypeScript 可以使用三种访问修饰符（Access Modifiers），分别是 public、private 和 protected。
 
-- public 修饰的属性或方法是公有的，可以在任何地方被访问到，默认所有的属性和方法都是 public 的
-- private 修饰的属性或方法是私有的，不能在声明它的类的外部访问
-- protected 修饰的属性或方法是受保护的，它和 private 类似，区别是它在子类中也是允许被访问的
+- public 修饰的属性或方法是公有的，可以在任何地方被访问到，默认所有的属性和方法都是 public 的，**所有子类内部  及实例外部 及自身类内部都可直接调用**
+- protected 修饰的属性或方法是受保护的，它和 private 类似，区别是它在子类中也是允许被访问的，**所有子类 及自身 内部可直接调用**
+- private 修饰的属性或方法是私有的，不能在声明它的类的外部访问，**仅可在自身内部调用**
+
 下面举一些例子：
 
 ``` ts
