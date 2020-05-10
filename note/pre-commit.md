@@ -18,7 +18,33 @@ module.exports = {
 ```
 ## 二 创建 .huskyrc
 ```
+当前项目 package.json
+npm run lint 运行eslint检查代码
+npm run lintfix 运行eslint检查代码并格式化
+
+{
+  "name": "xxxxxxx",
+  "version": "1.0.0",
+  "description": "My lovely Nuxt.js project",
+  "author": "mrzou",
+  "private": true,
+  "scripts": {
+    "precommit": "npm run lint",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "build": "nuxt build",
+    "start": "cross-env NODE_ENV=production node server/index.js",
+    "generate": "nuxt generate",
+    "test": "jest"
+  }
+}
+
+```
+
+```
 "hooks": {
+    "pre-commit": "npm run lintfix", // 每次 pre-commit 时自动检查并格式化代码:
     "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
 }
 ```
@@ -47,6 +73,7 @@ module.exports = {
 
     feat: 新特性 (feature)
     fix: bug 修复
+    opt: 优化处理
     style: 格式 (不影响代码运行的变动)
     docs: 文档
     test: 测试用例新增
