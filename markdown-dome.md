@@ -1,3 +1,28 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [欢迎使用马克飞象](#%E6%AC%A2%E8%BF%8E%E4%BD%BF%E7%94%A8%E9%A9%AC%E5%85%8B%E9%A3%9E%E8%B1%A1)
+  - [Markdown简介](#markdown%E7%AE%80%E4%BB%8B)
+    - [代码块](#%E4%BB%A3%E7%A0%81%E5%9D%97)
+    - [LaTeX 公式](#latex-%E5%85%AC%E5%BC%8F)
+    - [表格](#%E8%A1%A8%E6%A0%BC)
+    - [流程图](#%E6%B5%81%E7%A8%8B%E5%9B%BE)
+    - [复选框](#%E5%A4%8D%E9%80%89%E6%A1%86)
+  - [印象笔记相关](#%E5%8D%B0%E8%B1%A1%E7%AC%94%E8%AE%B0%E7%9B%B8%E5%85%B3)
+    - [笔记本和标签](#%E7%AC%94%E8%AE%B0%E6%9C%AC%E5%92%8C%E6%A0%87%E7%AD%BE)
+    - [笔记标题](#%E7%AC%94%E8%AE%B0%E6%A0%87%E9%A2%98)
+    - [快捷编辑](#%E5%BF%AB%E6%8D%B7%E7%BC%96%E8%BE%91)
+    - [数据同步](#%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5)
+    - [离线存储](#%E7%A6%BB%E7%BA%BF%E5%AD%98%E5%82%A8)
+  - [编辑器相关](#%E7%BC%96%E8%BE%91%E5%99%A8%E7%9B%B8%E5%85%B3)
+    - [设置](#%E8%AE%BE%E7%BD%AE)
+    - [快捷键](#%E5%BF%AB%E6%8D%B7%E9%94%AE)
+  - [关于收费](#%E5%85%B3%E4%BA%8E%E6%94%B6%E8%B4%B9)
+  - [反馈与建议](#%E5%8F%8D%E9%A6%88%E4%B8%8E%E5%BB%BA%E8%AE%AE)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 欢迎使用马克飞象
 
 @(示例笔记本)[马克飞象|帮助|Markdown]

@@ -1,0 +1,23 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "https://zoujian3820.github.io/blog/",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "doctoc": "^1.4.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zoujian3820/blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zoujian3820/blog/issues"
+  },
+  "homepage": "https://github.com/zoujian3820/blog#readme"
+}

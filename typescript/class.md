@@ -1,3 +1,23 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [类](#%E7%B1%BB)
+    - [类的概念](#%E7%B1%BB%E7%9A%84%E6%A6%82%E5%BF%B5)
+    - [ES6 中类的用法](#es6-%E4%B8%AD%E7%B1%BB%E7%9A%84%E7%94%A8%E6%B3%95)
+      - [属性和方法](#%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95)
+      - [类的继承](#%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF)
+      - [存取器](#%E5%AD%98%E5%8F%96%E5%99%A8)
+      - [静态方法](#%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95)
+    - [ES7 中类的用法](#es7-%E4%B8%AD%E7%B1%BB%E7%9A%84%E7%94%A8%E6%B3%95)
+      - [实例属性](#%E5%AE%9E%E4%BE%8B%E5%B1%9E%E6%80%A7)
+    - [静态属性](#%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7)
+    - [TypeScript 中类的用法](#typescript-%E4%B8%AD%E7%B1%BB%E7%9A%84%E7%94%A8%E6%B3%95)
+      - [public private 和 protected](#public-private-%E5%92%8C-protected)
+      - [抽象类](#%E6%8A%BD%E8%B1%A1%E7%B1%BB)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 类
 传统方法中，JavaScript 通过构造函数实现类的概念，通过原型链实现继承。而在 ES6 中，我们终于迎来了 class。
 TypeScript 除了实现了所有 ES6 中的类的功能以外，还添加了一些新的用法。

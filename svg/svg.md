@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [svg 学习笔记](#svg-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0)
+  - [学习svg画圆加loading找到的blogs链接](#%E5%AD%A6%E4%B9%A0svg%E7%94%BB%E5%9C%86%E5%8A%A0loading%E6%89%BE%E5%88%B0%E7%9A%84blogs%E9%93%BE%E6%8E%A5)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ##	 svg 学习笔记 
 ###  学习svg画圆加loading找到的blogs链接	
 <br> http://www.cnblogs.com/coco1s/p/6225973.html

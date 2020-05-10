@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [如何编写整洁代码？](#%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E6%95%B4%E6%B4%81%E4%BB%A3%E7%A0%81)
+  - [有意义的命名](#%E6%9C%89%E6%84%8F%E4%B9%89%E7%9A%84%E5%91%BD%E5%90%8D)
+  - [函数](#%E5%87%BD%E6%95%B0)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 如何编写整洁代码？
 
 1. 应该是优雅的 —— 整洁的代码读起来令人愉悦。读这种代码，就像见到手工精美的音乐盒或者设计精良的汽车一般，让你会心一笑。
