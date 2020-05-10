@@ -2,7 +2,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [欢迎来到我的博客](#%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2)
+- [欢迎来到我的博客](#%e6%ac%a2%e8%bf%8e%e6%9d%a5%e5%88%b0%e6%88%91%e7%9a%84%e5%8d%9a%e5%ae%a2)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -23,7 +23,7 @@ https://zoujian3820.github.io/blog/
 - [typescript/类的概念](typescript/class.md)
 - [如何编写整洁代码](note/daimazhenjie.md)
 - [填坑大集合](note/tiankenjihe.md)
-
+- [commitlint+husky规范git commit日志](note/pre-commit.md)
 
 **md目录生成脚本**
 ```
