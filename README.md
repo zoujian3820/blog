@@ -13,3 +13,4 @@ https://zoujian3820.github.io/blog/
 - [svg资料](svg/svg.md)
 - [typescript/数据类型](typescript/数据类型.md)
 - [typescript/类的概念](typescript/class.md)
+- [如何编写整洁代码](如何编写整洁代码.md)
