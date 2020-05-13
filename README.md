@@ -24,6 +24,7 @@ https://zoujian3820.github.io/blog/
 - [如何编写整洁代码](note/daimazhenjie.md)
 - [填坑大集合](note/tiankenjihe.md)
 - [commitlint+husky规范git commit日志](note/pre-commit.md)
+- [webstorm+Prettier+ESLint实现保存格式化代码](note/webstorm+Prettier+ESLint.md)
 
 **md目录生成脚本**
 ```
