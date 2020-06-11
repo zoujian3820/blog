@@ -38,8 +38,15 @@
     
 3. 关闭webstorm自动监听文件内容变化引发自动格式化保存的问题
 
-	-	File” >> "Settings" >> "Appearance & Behavior" >> "system settings"中，取消勾掉synchronization下面的四个选项
+	-	File” >> "Settings" >> "Appearance & Behavior" >> "system settings"中，取消勾掉synchronization下面的除第一个外三个选项
+	```
+    // 下面这行是要保留的第一个选项
+    // 用来监听文件变动（比如git pull | merge后的更新），并直接更新，取消后编辑器右上角将提示reload
+    // 需手动点击才会更新文件
+    Synchronize files on frame or editor tab activation
+    ```
     
+    - Prettier 与 ESlnt在webstorm中File Watchers的配置，关闭自动监听内容变化自动保存处理
     ```
     关闭的重点地方是这个
     File” >> "Settings" >> "Tools" >> "File Watchers" >> Prettier
@@ -94,4 +101,13 @@ module.exports = {
 
 ```
 
-###	[参考资料](https://juejin.im/post/5b5dd3715188251af2570f8e)
+## .editorconfig编辑器代码风格统一配置文件
+> Webstorm 2017.1 版本之后都是自动安装这个插件的。Vscode需安装 Editorconfig 插件
+
+###	webstorm+Prettier+ESLint参考资料
+- [简书：参考资料](https://juejin.im/post/5b5dd3715188251af2570f8e)
+
+### editorconfig参考资料
+- [alloyteam：参考资料](http://www.alloyteam.com/2014/12/editor-config/)
+- [简书：参考资料](https://www.jianshu.com/p/fac7dde906cc)
+
