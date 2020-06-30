@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [commitlint+husky规范commit 日志](#commitlinthusky%E8%A7%84%E8%8C%83commit-%E6%97%A5%E5%BF%97)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # commitlint+husky规范commit 日志
 
 > windows 系统下, commitlint/cli 和 commitlint/config-conventional 需要全局安装, 才能正常响应 commitlint.
