@@ -25,6 +25,7 @@ https://zoujian3820.github.io/blog/
 - [填坑大集合](note/tiankenjihe.md)
 - [commitlint+husky规范git commit日志](note/pre-commit.md)
 - [webstorm+Prettier+ESLint实现保存格式化代码](note/webstorm+Prettier+ESLint.md)
+- [js中偏门一些的知识点记录下](note/pianMengZhiShiDian.md)
 
 **md目录生成脚本**
 ```
