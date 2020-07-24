@@ -26,6 +26,7 @@ https://zoujian3820.github.io/blog/
 - [commitlint+husky规范git commit日志](note/pre-commit.md)
 - [webstorm+Prettier+ESLint实现保存格式化代码](note/webstorm+Prettier+ESLint.md)
 - [js中偏门一些的知识点记录下](note/pianMengZhiShiDian.md)
+- [centOs7.6云服务器上搭建项目](linux/centOsEnv.md)
 
 **md目录生成脚本**
 ```
