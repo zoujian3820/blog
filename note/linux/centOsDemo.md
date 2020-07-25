@@ -9,6 +9,9 @@
   - [4. 安装 mongodb](#4-%E5%AE%89%E8%A3%85-mongodb)
     - [找到搜索结果第一个mongo, 点开使用提示的命令拉取到mongo镜像](#%E6%89%BE%E5%88%B0%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C%E7%AC%AC%E4%B8%80%E4%B8%AAmongo-%E7%82%B9%E5%BC%80%E4%BD%BF%E7%94%A8%E6%8F%90%E7%A4%BA%E7%9A%84%E5%91%BD%E4%BB%A4%E6%8B%89%E5%8F%96%E5%88%B0mongo%E9%95%9C%E5%83%8F)
   - [5. 运行mongo](#5-%E8%BF%90%E8%A1%8Cmongo)
+  - [6. 下载远程登录mongo管理工具 Robo 3T](#6-%E4%B8%8B%E8%BD%BD%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95mongo%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-robo-3t)
+    - [1. Robo 3T 1.3.1 点击左上角电脑标识 -> create](#1-robo-3t-131-%E7%82%B9%E5%87%BB%E5%B7%A6%E4%B8%8A%E8%A7%92%E7%94%B5%E8%84%91%E6%A0%87%E8%AF%86---create)
+    - [2. Studio 3T 点击左上角圆柱Connect标识 -> New Connection](#2-studio-3t-%E7%82%B9%E5%87%BB%E5%B7%A6%E4%B8%8A%E8%A7%92%E5%9C%86%E6%9F%B1connect%E6%A0%87%E8%AF%86---new-connection)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
