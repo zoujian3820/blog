@@ -222,3 +222,40 @@ https://www.cnblogs.com/reasonzzy/p/11127359.html
             // 运行中提示running
             ```    
 
+
+## 6. 下载远程登录mongo管理工具 Robo 3T
+> https://robomongo.org/download 点击download下载
+>安装解压后的两个软件Robo 3T 1.3.1 和 Studio 3T
+
+### 1. Robo 3T 1.3.1 点击左上角电脑标识 -> create
+
+**conection选项**
+|name|address|address右侧端口|
+|:--:|:-----:|:------------:|
+|给连接的数据库取个名称|云服务器ip地址/localhost|服务器端口/27017|
+|DEV|119.XX.XXX.X|10050(主机上给docker mongodb放行的端口)|
+
+**SSH选项**
+> 选中打开 Use SSH tunnel
+
+|SSH Address|SSH Address右侧端口|SSH User Name|SSH Auth Method|User Password|
+|:---------:|:---:|:-----------:|:-------------:|:-----------:|
+|云服务器公网ip地址|云服务器公网ip端口|云主机用户名(linux默认root)|SSH授权方式/选Password|云主机登录密码|
+|119.xx.xxx.x|22|root|Password|xxxxxxx@xx.com|
+
+### 2. Studio 3T 点击左上角圆柱Connect标识 -> New Connection
+> 安装时会让添加软件打开的密码，输两次
+
+**Server选项**
+|Server|Port|
+|:--:|:-----:|
+|云服务器公网ip地址|10050(主机上给docker mongodb放行的端口)|
+|119.xx.xxx.x|10050|
+
+**SSH选项**
+> 选中打开 Use SSH tunnel
+
+|SSH Address|Port|SSH User Name|SSH Auth Method|User Password|
+|:---------:|:---:|:-----------:|:-------------:|:-----------:|
+|云服务器公网ip地址|云服务器公网ip端口|云主机用户名(linux默认root)|SSH授权方式/选Password|云主机登录密码|
+|119.xx.xxx.x|22|root|Password|xxxxxxx@xx.com|
