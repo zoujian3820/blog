@@ -1,0 +1,58 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [安装 Hyper-V](#%E5%AE%89%E8%A3%85-hyper-v)
+  - [1. 右击新建一个txt文本文档，然后复制粘贴以下内容](#1-%E5%8F%B3%E5%87%BB%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AAtxt%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3%E7%84%B6%E5%90%8E%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E4%BB%A5%E4%B8%8B%E5%86%85%E5%AE%B9)
+  - [2. 填写入以上内容后，点击左上角 文件 -> 另存为，并命名为 **Hyper-V.cmd** 编码选择uft-8](#2-%E5%A1%AB%E5%86%99%E5%85%A5%E4%BB%A5%E4%B8%8A%E5%86%85%E5%AE%B9%E5%90%8E%E7%82%B9%E5%87%BB%E5%B7%A6%E4%B8%8A%E8%A7%92-%E6%96%87%E4%BB%B6---%E5%8F%A6%E5%AD%98%E4%B8%BA%E5%B9%B6%E5%91%BD%E5%90%8D%E4%B8%BA-hyper-vcmd-%E7%BC%96%E7%A0%81%E9%80%89%E6%8B%A9uft-8)
+  - [3. 左下角搜索并打开控制面版 -> 程序 -> 程序和功能 -> 启用或关闭windows功能 -> Hyper-V 勾选上](#3-%E5%B7%A6%E4%B8%8B%E8%A7%92%E6%90%9C%E7%B4%A2%E5%B9%B6%E6%89%93%E5%BC%80%E6%8E%A7%E5%88%B6%E9%9D%A2%E7%89%88---%E7%A8%8B%E5%BA%8F---%E7%A8%8B%E5%BA%8F%E5%92%8C%E5%8A%9F%E8%83%BD---%E5%90%AF%E7%94%A8%E6%88%96%E5%85%B3%E9%97%ADwindows%E5%8A%9F%E8%83%BD---hyper-v-%E5%8B%BE%E9%80%89%E4%B8%8A)
+  - [4. 在windows管理工具或直接搜索 Hyper-V 再点击打开](#4-%E5%9C%A8windows%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E6%88%96%E7%9B%B4%E6%8E%A5%E6%90%9C%E7%B4%A2-hyper-v-%E5%86%8D%E7%82%B9%E5%87%BB%E6%89%93%E5%BC%80)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## 安装 Hyper-V
+
+### 1. 右击新建一个txt文本文档，然后复制粘贴以下内容
+
+    ```
+    pushd "%~dp0"
+
+    dir /b %SystemRoot%\servicing\Packages\*Hyper-V*.mum >hyper-v.txt
+
+    for /f %%i in ('findstr /i . hyper-v.txt 2^>nul') do dism /online /norestart /add-package:"%SystemRoot%\servicing\Packages\%%i"
+
+    del hyper-v.txt
+
+    Dism /online /enable-feature /featurename:Microsoft-Hyper-V-All /LimitAccess /ALL
+    ```
+### 2. 填写入以上内容后，点击左上角 文件 -> 另存为，并命名为 **Hyper-V.cmd** 编码选择uft-8
+    > 保存存后，右击 -> 以管理员身份运行 -> 跑命令过程中提示 输入 y 重启电脑
+
+### 3. 左下角搜索并打开控制面版 -> 程序 -> 程序和功能 -> 启用或关闭windows功能 -> Hyper-V 勾选上
+
+### 4. 在windows管理工具或直接搜索 Hyper-V 再点击打开
+
+    1. 点击打开右侧 **虚拟交换机管理器**
+
+    2. 点击 **新建虚拟网络交换机**，选 **外部** -> 点击 **创建虚拟交换机**
+
+    3. 填名称 -> 说明 -> 勾选 **外部网络** -> 选择网卡 -> 勾选 **允许管理操作系统共享此网络适配器(M)** -> 点击 **应用** -> 点击 **确定**
+
+    4. 更改新建的 Hyper-V 适配器 IP
+        ```
+        从
+            控制面板\网络和 Internet\网络和共享中心\更改适配器设置
+        打开，或从
+            控制面板\网络和 Internet\网络连接 
+        找到新建的 Hyper-V 适配器
+        右击 -> 属性 -> 网络 -> 勾选 Internet 协议版本 4 (TCP/IPv4) 并双击打开，可配置ip
+        ```
+
+    5. 新建虚拟机
+
+        ```
+        打开 Hyper-V 管理器
+        点击右侧 新建 -> 虚拟机
+        按提示 设置下一步 (选第一代) 到 配置网络 这一步时，选择刚新建的 Hyper-V适配器
+        配完了后，可以再去调整配置，及安装 镜像
+        ```

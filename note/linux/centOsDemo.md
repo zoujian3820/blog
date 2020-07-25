@@ -12,6 +12,8 @@
   - [6. 下载远程登录mongo管理工具 Robo 3T](#6-%E4%B8%8B%E8%BD%BD%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95mongo%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-robo-3t)
     - [1. Robo 3T 1.3.1 点击左上角电脑标识 -> create](#1-robo-3t-131-%E7%82%B9%E5%87%BB%E5%B7%A6%E4%B8%8A%E8%A7%92%E7%94%B5%E8%84%91%E6%A0%87%E8%AF%86---create)
     - [2. Studio 3T 点击左上角圆柱Connect标识 -> New Connection](#2-studio-3t-%E7%82%B9%E5%87%BB%E5%B7%A6%E4%B8%8A%E8%A7%92%E5%9C%86%E6%9F%B1connect%E6%A0%87%E8%AF%86---new-connection)
+  - [7. 虚拟机](#7-%E8%99%9A%E6%8B%9F%E6%9C%BA)
+    - [window10](#window10)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -264,3 +266,12 @@ https://www.cnblogs.com/reasonzzy/p/11127359.html
 |:---------:|:---:|:-----------:|:-------------:|:-----------:|
 |云服务器公网ip地址|云服务器公网ip端口|云主机用户名(linux默认root)|SSH授权方式/选Password|云主机登录密码|
 |119.xx.xxx.x|22|root|Password|xxxxxxx@xx.com|
+
+
+## 7. 虚拟机
+
+### window10
+> 电脑上无Hyper-V时[去安装](Hyper-V.md)
+
+> 有Hyper-V时 [去新建虚拟机 -> 在windows管理工具或直接搜索 Hyper-V 再点击打开](Hyper-V.md)
+
