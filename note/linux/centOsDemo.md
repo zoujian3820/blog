@@ -1,3 +1,17 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [centOs7.6云服务器上搭项目](#centos76%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E6%90%AD%E9%A1%B9%E7%9B%AE)
+  - [1. 在win/mac本地电脑上安装前端脚手架包vue/cli](#1-%E5%9C%A8winmac%E6%9C%AC%E5%9C%B0%E7%94%B5%E8%84%91%E4%B8%8A%E5%AE%89%E8%A3%85%E5%89%8D%E7%AB%AF%E8%84%9A%E6%89%8B%E6%9E%B6%E5%8C%85vuecli)
+  - [2. 登录云服务器](#2-%E7%99%BB%E5%BD%95%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8)
+  - [3. 安装docker](#3-%E5%AE%89%E8%A3%85docker)
+  - [4. 安装 mongodb](#4-%E5%AE%89%E8%A3%85-mongodb)
+    - [找到搜索结果第一个mongo, 点开使用提示的命令拉取到mongo镜像](#%E6%89%BE%E5%88%B0%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C%E7%AC%AC%E4%B8%80%E4%B8%AAmongo-%E7%82%B9%E5%BC%80%E4%BD%BF%E7%94%A8%E6%8F%90%E7%A4%BA%E7%9A%84%E5%91%BD%E4%BB%A4%E6%8B%89%E5%8F%96%E5%88%B0mongo%E9%95%9C%E5%83%8F)
+  - [5. 运行mongo](#5-%E8%BF%90%E8%A1%8Cmongo)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # centOs7.6云服务器上搭项目
 > 练习的全栈项目，实现开发的全套自动化管理
 
