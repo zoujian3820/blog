@@ -230,6 +230,7 @@ https://www.cnblogs.com/reasonzzy/p/11127359.html
 ### 1. Robo 3T 1.3.1 点击左上角电脑标识 -> create
 
 **conection选项**
+
 |name|address|address右侧端口|
 |:--:|:-----:|:------------:|
 |给连接的数据库取个名称|云服务器ip地址/localhost|服务器端口/27017|
@@ -247,6 +248,7 @@ https://www.cnblogs.com/reasonzzy/p/11127359.html
 > 安装时会让添加软件打开的密码，输两次
 
 **Server选项**
+
 |Server|Port|
 |:--:|:-----:|
 |云服务器公网ip地址|10050(主机上给docker mongodb放行的端口)|
