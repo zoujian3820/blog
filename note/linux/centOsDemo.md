@@ -3,11 +3,11 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [centOs7.6云服务器上搭项目](#centos76%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E6%90%AD%E9%A1%B9%E7%9B%AE)
+  - [linux命令文档](#linux%E5%91%BD%E4%BB%A4%E6%96%87%E6%A1%A3)
   - [1. 在win/mac本地电脑上安装前端脚手架包vue/cli](#1-%E5%9C%A8winmac%E6%9C%AC%E5%9C%B0%E7%94%B5%E8%84%91%E4%B8%8A%E5%AE%89%E8%A3%85%E5%89%8D%E7%AB%AF%E8%84%9A%E6%89%8B%E6%9E%B6%E5%8C%85vuecli)
   - [2. 登录云服务器](#2-%E7%99%BB%E5%BD%95%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8)
   - [3. 安装docker](#3-%E5%AE%89%E8%A3%85docker)
   - [4. 安装 mongodb](#4-%E5%AE%89%E8%A3%85-mongodb)
-    - [找到搜索结果第一个mongo, 点开使用提示的命令拉取到mongo镜像](#%E6%89%BE%E5%88%B0%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C%E7%AC%AC%E4%B8%80%E4%B8%AAmongo-%E7%82%B9%E5%BC%80%E4%BD%BF%E7%94%A8%E6%8F%90%E7%A4%BA%E7%9A%84%E5%91%BD%E4%BB%A4%E6%8B%89%E5%8F%96%E5%88%B0mongo%E9%95%9C%E5%83%8F)
   - [5. 运行mongo](#5-%E8%BF%90%E8%A1%8Cmongo)
   - [6. 下载远程登录mongo管理工具 Robo 3T](#6-%E4%B8%8B%E8%BD%BD%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95mongo%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-robo-3t)
     - [1. Robo 3T 1.3.1 点击左上角电脑标识 -> create](#1-robo-3t-131-%E7%82%B9%E5%87%BB%E5%B7%A6%E4%B8%8A%E8%A7%92%E7%94%B5%E8%84%91%E6%A0%87%E8%AF%86---create)
@@ -19,6 +19,8 @@
 
 # centOs7.6云服务器上搭项目
 > 练习的全栈项目，实现开发的全套自动化管理
+
+## [linux命令文档](linux命令.md)
 
 ## 1. 在win/mac本地电脑上安装前端脚手架包vue/cli
 
@@ -32,7 +34,7 @@ vue --version
 
 ## 2. 登录云服务器
 ```
-ssh root@119.xx.xx.xx (你的云服务器公网ip, root是你的用户名，默认root)
+ssh -p 22 root@119.xx.xx.xx (你的云服务器公网ip, 你的公网ip端口, root是你的用户名，默认root)
 提示password: 输入你的云服务器密码（密码输入时是看不到的）
 
 // 安装redhat-lsb可查看linux版本信息
@@ -85,6 +87,7 @@ lsb_release -a
     * systemctl start docker    // 启动docker
     * systemctl stop docker     // 关闭docker
     * systemctl restart docker  // 重启dokcer
+    * systemctl status docker   // 查看dokcer运行状态
 
 6. 安装docker集合工具docker-compose
     > docker-compose工具install网址 https://docs.docker.com/compose/install/ 选择Linux
@@ -106,67 +109,7 @@ lsb_release -a
 ## 4. 安装 mongodb
 1. 在hub.docker上搜索mongo镜像 https://hub.docker.com/search?q=mongo&type=image
 
-- 国内加速包镜像地址
-https://www.cnblogs.com/reasonzzy/p/11127359.html
-
-    ```
-    Docker中国官方镜像加速
-
-    --registry-mirror=https://registry.docker-cn.com
-
-    网易163镜像加速
-
-    --registry-mirror=http://hub-mirror.c.163.com
-
-    中科大镜像加速
-
-    --registry-mirror=https://docker.mirrors.ustc.edu.cn
-
-    阿里云镜像加速
-
-    --registry-mirror=https://{your_id}.mirror.aliyuncs.com
-
-    daocloud镜像加速
-
-    --registry-mirror=http://{your_id}.m.daocloud.io
-
-    
-
-    创建文件夹
-    sudo mkdir -p /etc/docker
-
-    编辑/etc/docker/daemon.json文件，并输入国内镜像源地址
-    sudo vi /etc/docker/daemon.json
-    输入 i 转为编辑状态INSERT
-    复制粘贴以下你要加入的加速配置
-    按esp键 再按shift + ;键输入 :
-    然后再输入 wq 保存并退出
-    如果中途保存退出失败有异常，会生成.daemon.json.swp文件
-    使用 rm .daemon.json.swp 删除
-
-    修改完地址后，重新加载配置文件，重启docker服务
-    sudo systemctl daemon-reload
-    sudo systemctl restart docker
-
-    Docker中国官方镜像加速
-    {
-    "registry-mirrors": ["https://registry.docker-cn.com"]
-    }
-
-    网易163镜像加速
-    {
-    "registry-mirrors": ["http://hub-mirror.c.163.com"]
-    }
-
-    中科大镜像加速
-    {
-        "registry-mirrors": ["https://docker.mirrors.ustc.edu.cn"]     
-    }
-
-    也可以直接下载站点镜像：
-    docker pull hub.c.163.com/library/tomcat:latest  //复制站点链接用 pull 下来
-    阿里云跟daocloud镜像加速需要注册账号
-    ```
+   ### [配置docker国内加速包镜像地址](配置docker国内加速包镜像地址.md)     
 
    ### 找到搜索结果第一个mongo, 点开使用提示的命令拉取到mongo镜像
     ```
@@ -275,3 +218,5 @@ https://www.cnblogs.com/reasonzzy/p/11127359.html
 
 > 有Hyper-V时 [去新建虚拟机 -> 在windows管理工具或直接搜索 Hyper-V 再点击打开](Hyper-V.md)
 
+
+## 8. 重新安装docker
