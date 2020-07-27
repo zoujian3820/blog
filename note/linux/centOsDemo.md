@@ -155,7 +155,7 @@ lsb_release -a
         ```
         - 如果失败报FirewallD is not running(防火墙没打开)
 
-            **[打开/关闭防火墙](firewall-cmd.md)**
+            **[打开/关闭防火墙](打开-关闭防火墙.md)**
             ```
             // 打开防火墙
             systemctl start firewalld
