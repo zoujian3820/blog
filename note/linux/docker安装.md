@@ -1,5 +1,14 @@
 ## 安装docker-ce的多种方式
 > 参考资料 https://www.cnblogs.com/cobcmw/p/12514444.html
+1. Docker 运行在 CentOS-6.5 或更高的版本的 CentOS 上，要求系统为64位、系统内核版本为 2.6.32-431 或者更高版本。
+
+2. Docker 运行在CentOS 7 上，要求系统为64位、系统内核版本为 3.10 以上。
+
+3. 通过uname -r 命令查看你当前的内核版本
+    ```
+    [root@VM-16-15-centos ~]# uname -r
+    3.10.0-1062.18.1.el7.x86_64
+    ```
 
 ### 更新为最新的yum
 
@@ -33,7 +42,7 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 ```
 
-### 使用仓库安装
+### 使用仓库安装（推荐的方式）
 
 1. 安装必须的依赖
 

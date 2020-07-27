@@ -29,3 +29,9 @@ ls -la  详细列出所有目录结构,包含隐藏文件
 ### **top** 查看 cpu/内存/进程 使用情况
 - 按 m 键 看使用百分比
 - Ctrl + c 退出 top 命令
+
+### **nmcli d** 查看安装在本机的网卡
+
+### **nmtui** 打开网络管理员
+
+### **systemctl restart network** 重启网络服务

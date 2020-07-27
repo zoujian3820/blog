@@ -46,6 +46,8 @@ lsb_release -a
 ## 3. 安装docker
 > github网址[https://github.com/docker/docker-install](https://github.com/docker/docker-install)
 
+### [docker安装文档](docker安装.md)
+
 1. Docker 运行在 CentOS-6.5 或更高的版本的 CentOS 上，要求系统为64位、系统内核版本为 2.6.32-431 或者更高版本。
 
 2. Docker 运行在CentOS 7 上，要求系统为64位、系统内核版本为 3.10 以上。
@@ -135,7 +137,7 @@ lsb_release -a
     ```
 
 |  -d  | --name |  -p  | mongo:latest |
-| :--: | :----: | :--: | :-:
+| :--: | :----: | :--: | :----------: |
 | 表示在后台运行指令 | 给运行程序取的名字 | 给容器内程序服务端口印射到宿主机端口 | 执行的程序名 + 标签(TAG) |
 
 3. 在宿主机上放行10050端口
@@ -179,10 +181,10 @@ lsb_release -a
 
 **conection选项**
 
-|name|address|address右侧端口|
-|:--:|:-----:|:------------:|
-|给连接的数据库取个名称|云服务器ip地址/localhost|服务器端口/27017|
-|DEV|119.XX.XXX.X|10050(主机上给docker mongodb放行的端口)|
+| name | address | address右侧端口 |
+| :--: | :-----: | :------------: |
+| 给连接的数据库取个名称 | 云服务器ip地址/localhost | 服务器端口/27017 |
+| DEV | 119.XX.XXX.X | 10050(主机上给docker mongodb放行的端口) |
 
 **SSH选项**
 > 选中打开 Use SSH tunnel
@@ -219,4 +221,3 @@ lsb_release -a
 > 有Hyper-V时 [去新建虚拟机 -> 在windows管理工具或直接搜索 Hyper-V 再点击打开](Hyper-V.md)
 
 
-## 8. 重新安装docker
