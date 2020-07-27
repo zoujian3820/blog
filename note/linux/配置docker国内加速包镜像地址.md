@@ -55,7 +55,7 @@ sudo vi /etc/docker/daemon.json
 
 按esp键 再按shift + ;键输入 :
 
-然后再输入 wq 保存并退出
+然后再输入 wq -> 回车 -> 保存并退出
 
 如果中途保存退出失败有异常，会生成.daemon.json.swp文件
 
