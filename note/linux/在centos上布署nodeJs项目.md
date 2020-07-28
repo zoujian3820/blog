@@ -81,11 +81,82 @@ nvm ls
 nvm use v10.20.0
 ```
 
-### 7. 安装vim编辑器
+nvm重启终端node版本被重置解决办法
+
+```
+nvm alias default v10.20.0
+```
+
+### 7. 安装 nrm 
+
+```
+npm install -g nrm
+
+// 创建软链接, 全局访问（相当于windows添加到环境变量path中）
+// 找到其安装时显示的存放目录，去添加软链接
+
+ln -s /usr/local/node-v10.15.3-linux-x64/bin/nrm /usr/local/bin/nrm
+```
+
+### 8. 安装vim编辑器
 
 ```
 yum install vim
 
+cd /
+cd usr/src
+mkdir www/demo
+echo demo.js
+
 // 使用vim, 编辑一个文件
-vim example.js
+vim demo.js
+
+// 输入 i 进入编辑模式
 ```
+
+复制粘贴，输入以下代码
+
+```
+const http = require('http');
+const hostname = '0.0.0.0';
+const port = 3000;
+const server = http.createServer((req, res) => { 
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello World\n');
+}); 
+
+server.listen(port, hostname, () => { 
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
+
+// 输入 :wq 保存退出
+```
+
+跑起项目来，并监听3000端口
+
+```
+node demo.js
+```
+
+需在防火墙，转发放行demo.js监听的3000端口
+
+```
+firewall-cmd --zone=public --add-port=10050/tcp --permanent
+```
+
+成功后更新防火墙规则
+
+```
+firewall-cmd --reload
+```
+
+现在可以在浏览器中输入你的主机ip + 3000端口去查看项目
+
+```
+// 页面中将展示 res.end('Hello World\n') 的结果
+
+Hello World
+```
+
+
