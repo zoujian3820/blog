@@ -60,7 +60,7 @@ source /etc/profile
 
 列出Node.js的所有版本
 ```
-nvm list-remote
+nvm list-remote node
 ```
 
 安装多个Node.js版本
