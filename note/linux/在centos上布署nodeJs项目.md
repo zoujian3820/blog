@@ -80,3 +80,12 @@ nvm ls
 ```
 nvm use v10.20.0
 ```
+
+### 7. 安装vim编辑器
+
+```
+yum install vim
+
+// 使用vim, 编辑一个文件
+vim example.js
+```
