@@ -96,9 +96,18 @@ npm install -g nrm
 // 找到其安装时显示的存放目录，去添加软链接
 
 ln -s /usr/local/node-v10.15.3-linux-x64/bin/nrm /usr/local/bin/nrm
+
+nrm ls
+nrm use taobao
 ```
 
-### 8. 安装vim编辑器
+### 8. 安装pm2
+
+```
+npm install -g pm2
+```
+
+### 9. 安装vim编辑器
 
 ```
 yum install vim
