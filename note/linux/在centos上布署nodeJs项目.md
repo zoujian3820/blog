@@ -110,6 +110,8 @@ nrm use taobao
 
 ### 8. 安装pm2
 
+[pm2安装与使用文档](pm2安装与使用文档.md)
+
 ```
 npm install -g pm2
 ```
