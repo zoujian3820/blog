@@ -20,6 +20,12 @@ wget https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz
 tar xvf node-v10.15.3-linux-x64.tar.xz
 ```
 
+- 重命名解压的文件夹名称为nodejs
+
+    ```
+    mv node-v10.15.3-linux-x64 nodejs
+    ```
+
 ### 3. 创建软链接，您就可以在任意目录下直接使用node和npm命令
 
 ```
@@ -27,8 +33,8 @@ tar xvf node-v10.15.3-linux-x64.tar.xz
 cd / 
 
 创建软链接
-ln -s /usr/local/node-v10.15.3-linux-x64/bin/node /usr/local/bin/node
-ln -s /usr/local/node-v10.15.3-linux-x64/bin/npm /usr/local/bin/npm
+ln -s /usr/local/nodejs/bin/node /usr/local/bin/node
+ln -s /usr/local/nodejs/bin/npm /usr/local/bin/npm
 ```
 
 ### 4. 查看node、npm版本
@@ -95,7 +101,7 @@ npm install -g nrm
 // 创建软链接, 全局访问（相当于windows添加到环境变量path中）
 // 找到其安装时显示的存放目录，去添加软链接
 
-ln -s /usr/local/node-v10.15.3-linux-x64/bin/nrm /usr/local/bin/nrm
+ln -s /usr/local/nodejs/bin/nrm /usr/local/bin/nrm
 
 nrm ls
 nrm use taobao
