@@ -1,4 +1,5 @@
 ## 部署Node.js环境
+参考资料： https://segmentfault.com/a/1190000009393665
 
 ### 1. 下载安装包：
 
@@ -157,7 +158,7 @@ node demo.js
 需在防火墙，转发放行demo.js监听的3000端口
 
 ```
-firewall-cmd --zone=public --add-port=10050/tcp --permanent
+firewall-cmd --zone=public --add-port=3000/tcp --permanent
 ```
 
 成功后更新防火墙规则
@@ -174,4 +175,7 @@ firewall-cmd --reload
 Hello World
 ```
 
+### 10. [安装nginx](安装nginx.md)
 
+### 11. 通过Filezilla实现本地Windows上传文件到Linux服务器/从Linux服务器下载文件
+下载地址： https://www.filezilla.cn/download/client

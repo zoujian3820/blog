@@ -20,6 +20,18 @@ df      用KB来做单位显示使用情况
 df -TH  用M来做单位显示使用情况
 ```
 
+### 处理目录的常用命令
+|处理目录的常用命令 |注释|
+|:----|:-------|
+|ls|        列出目录|
+|cd|        切换目录| 
+|pwd|       显示目前的目录| 
+|mkdir|     创建一个新的目录| 
+|rmdir|     删除一个空的目录| 
+|cp|        复制文件或目录| 
+|rm|        移除文件或目录| 
+|注意点|     可以使用 man [命令] 来查看各个命令的使用文档,如 :man cp|
+
 ### **cd /** 进根目录
 
 ### **rm**   删除文件
@@ -33,6 +45,42 @@ df -TH  用M来做单位显示使用情况
 ls -a   列出所有文件和目录,包含隐藏文件
 ls -la  详细列出所有目录结构,包含隐藏文件
 ```
+
+### 文件内容查看的命令
+|文件内容查看的命令 |注释|
+|:----|:-------|
+|cat|    由第一行开始显示文件内容| 
+|tac|    从最后一行开始显示,可以看出tac 是 cat 的倒著写!| 
+|nl|     显示的时候,顺道输出行号!| 
+|more|   一页一页的显示文件内容| 
+|less|   与 more 类似,但是比 more 更好的是,他可以往前翻页!| 
+|head|   只看头几行| 
+|tail|   只看尾巴几行|
+
+
+### yum常用命令 
+- 列出所有可更新的软件清单命令    yum check-update 
+- 更新所有软件命令               yum update 
+- 仅安装指定的软件命令            yum install <package name> 
+- 仅更新指定的软件命令            yum update <package name> 
+- 列出所有可安裝的软件清单命令     yum list 
+- 删除软件包命令                 yum remove <package name> 
+- 查找软件包 命令                yum search <keyword> 
+- 清除缓存命令: 
+    - yum clean packages       清除缓存目录下的软件包 
+    - yum clean headers        清除缓存目录下的 headers 
+    - yum clean oldheaders     清除缓存目录下旧的 headers 
+    - yum clean, yum clean all (= yum clean packages; yum clean oldheaders)  清除缓存目录下的软件包及旧的headers
+
+
+### nginx 服务器命令 
+|nginx服务器命令 |注释|
+|:----|:-------|
+|启动nginx|               service nginx start| 
+|访问(nginx默认是80端口)|  curl 127.0.0.1| 
+|nginx配置文件目录|        nginx -t| 
+|重启nginx|               service nginx restart| 
+|停用nginx|               service nginx stop|
 
 ### **top** 查看 cpu/内存/进程 使用情况
 - 按 m 键 看使用百分比
