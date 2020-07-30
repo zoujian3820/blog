@@ -101,6 +101,10 @@ docker run --name study-mysql -e MYSQL_ROOT_PASSWORD=123456 -p 28001:3306 -d mys
 ### docker命令
 
 ```
+service docker start    // 启动docker
+service docker restart  // 重启docker
+service docker stop     // 关闭docker
+
 docker ps      // 查看当前运行的容器   
 docker ps -a   // 查看当前所有容器，包含停止的
 
