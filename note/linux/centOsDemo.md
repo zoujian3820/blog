@@ -15,6 +15,7 @@
     - [2. Studio 3T 点击左上角圆柱Connect标识 -> New Connection](#2-studio-3t-%E7%82%B9%E5%87%BB%E5%B7%A6%E4%B8%8A%E8%A7%92%E5%9C%86%E6%9F%B1connect%E6%A0%87%E8%AF%86---new-connection)
   - [7. 虚拟机](#7-%E8%99%9A%E6%8B%9F%E6%9C%BA)
     - [window10](#window10)
+  - [8. 在centos上布署nodeJs项目和静态网站](#8-%E5%9C%A8centos%E4%B8%8A%E5%B8%83%E7%BD%B2nodejs%E9%A1%B9%E7%9B%AE%E5%92%8C%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -26,6 +27,9 @@
 ## 1. 在win/mac本地电脑上安装前端脚手架包vue/cli
 
 ```bash
+npm install -g @vue/cli
+npm install -g @vue/cli-service-global
+
 yarn global add @vue/cli
 yarn global add @vue/cli-service-global
 
@@ -222,3 +226,5 @@ lsb_release -a
 > 有Hyper-V时 [去新建虚拟机 -> 在windows管理工具或直接搜索 Hyper-V 再点击打开](Hyper-V.md)
 
 
+## 8. 在centos上布署nodeJs项目和静态网站
+[在centos上布署nodeJs项目和静态网站](在centos上布署nodeJs项目.md)
