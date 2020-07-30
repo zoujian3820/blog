@@ -1,3 +1,15 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [如果没安装该命令ifconfig的包，则报ifconfig command not found](#%E5%A6%82%E6%9E%9C%E6%B2%A1%E5%AE%89%E8%A3%85%E8%AF%A5%E5%91%BD%E4%BB%A4ifconfig%E7%9A%84%E5%8C%85%E5%88%99%E6%8A%A5ifconfig-command-not-found)
+  - [查看是否真的没有设置IP地址](#%E6%9F%A5%E7%9C%8B%E6%98%AF%E5%90%A6%E7%9C%9F%E7%9A%84%E6%B2%A1%E6%9C%89%E8%AE%BE%E7%BD%AEip%E5%9C%B0%E5%9D%80)
+  - [确认sbin目录是否存在](#%E7%A1%AE%E8%AE%A4sbin%E7%9B%AE%E5%BD%95%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8)
+  - [确认是否安装ifconfig命令](#%E7%A1%AE%E8%AE%A4%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85ifconfig%E5%91%BD%E4%BB%A4)
+  - [确认没安装， 则安装net-tools，因为该包中包含ifconfig命令](#%E7%A1%AE%E8%AE%A4%E6%B2%A1%E5%AE%89%E8%A3%85-%E5%88%99%E5%AE%89%E8%A3%85net-tools%E5%9B%A0%E4%B8%BA%E8%AF%A5%E5%8C%85%E4%B8%AD%E5%8C%85%E5%90%ABifconfig%E5%91%BD%E4%BB%A4)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 ## 如果没安装该命令ifconfig的包，则报ifconfig command not found
 
