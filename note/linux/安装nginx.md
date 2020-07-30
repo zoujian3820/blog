@@ -326,7 +326,7 @@ yum install -y nginx
          **解决办法，将nginx.config的user改为和启动用户一致(root)**
          
          ```
-         vim conf/nginx.conf
+         vim /etc/nginx/nginx.conf
        
          找到 user nginx;  或者  user nobody;
          
