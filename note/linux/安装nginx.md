@@ -275,6 +275,14 @@ yum install -y nginx
         输入 i 进入编辑模式，然后粘贴进去下面代码
         ```
         server {
+            gzip on;
+            gzip_buffers 32 4K;
+            gzip_comp_level 6;
+            gzip_min_length 100;
+            gzip_types application/javascript text/css text/xml;
+            gzip_disable "MSIE [1-6]\."; # 配置禁用gzip条件，支持正则。此处表示ie6及以下不启用gzip（因为ie低版本不支持）
+            gzip_vary on;
+     
             listen       80;   // 你网站运行时监听的端口
             server_name  192.168.2.195;  // 表示你网站在浏览器中打开时输入的ip（云服务器公网ip, 虚拟机则用ifconfig查看本地ip）  有域名的填域名, 如(tangmaomao.top)
         
