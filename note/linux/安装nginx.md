@@ -261,6 +261,13 @@ yum install -y nginx
       ```
 
   3. 新建一个名叫 localhost.conf 的配置文件
+  
+        <!-- [Nginx配置静态资源文件404 Not Found问题解决方法及alias用法](https://blog.csdn.net/qq_39852676/article/details/93617190) -->
+       
+        [Nginx配置静态资源文件404 Not Found问题解决方法及alias用法](Nginx配置静态资源文件404 Not Found问题解决方法及alias用法.md)
+       
+        [nginx 之 proxy_pass 接口转发的规则](https://segmentfault.com/a/1190000018933857)
+  
         ```
         // 跳到conf.d 文件夹目录下
         cd /etc/nginx/conf.d/
@@ -283,24 +290,37 @@ yum install -y nginx
             gzip_disable "MSIE [1-6]\."; # 配置禁用gzip条件，支持正则。此处表示ie6及以下不启用gzip（因为ie低版本不支持）
             gzip_vary on;
      
-            listen       80;   // 你网站运行时监听的端口
-            server_name  192.168.2.195;  // 表示你网站在浏览器中打开时输入的ip（云服务器公网ip, 虚拟机则用ifconfig查看本地ip）  有域名的填域名, 如(tangmaomao.top)
+            listen       80;   # 你网站运行时监听的端口
+            server_name  192.168.2.196;  #  表示你网站在浏览器中打开时输入的ip（云服务器公网ip, 虚拟机则用ifconfig查看本地ip）  有域名的填域名, 如(tangmaomao.top)
         
+            location /kwpatient/ {
+                proxy_pass https://wxtest.kuaiwen.cn;
+            }	
+    
+            location ^~/payment/ {
+                alias /www/demo/;
+            }
+            
+            location ^~/payment/_nuxt/ {
+                alias /www/demo/_nuxt/;
+            }
+    
             location / {
-                root   /www/payment/dist; // 配置你项目地址的路径，从根目录开始（我的www目录在/根目录下， 在cd / 中）
-                index  index.html index.htm; // 配置默认打开的文件名 如index.php index.html 等
+                root   /www/demo/; # 配置你项目地址的路径，从根目录开始（我的www目录在/根目录下， 在cd / 中）
+                index  index.html index.htm; # 配置默认打开的文件名 如index.php index.html 等
             }
         
-            error_page 404 /40x.html;        // 表示当报404错时，都重定向到40x.html
-            location = /40x.html {           // 当404报错重定向到40x.html时（即当前location地址等于/40x.html）,做拦截
-                root   /www/payment/dist/;   // 重新配置页面的根目录，即40x.html的根目录在哪
+            error_page 404 /40x.html;        # 表示当报404错时，都重定向到40x.html
+            location = /40x.html {           # 当404报错重定向到40x.html时（即当前location地址等于/40x.html）,做拦截
+                root   /www/demo/;   # 重新配置页面的根目录，即40x.html的根目录在哪
             }
      
-            error_page 500 502 503 504  /50x.html;  // 表示当报500 502 503 504错时，都重定向到50x.html
-            location = /50x.html {                    // 当500 502 503 504报错重定向到50x.html时（即当前location地址等于/50x.html），做拦截
-                root   /www/payment/dist/;            // 重新配置页面的根目录，即50x.html的根目录在哪
+            error_page 500 502 503 504  /50x.html;  # 表示当报500 502 503 504错时，都重定向到50x.html
+            location = /50x.html {                    # 当500 502 503 504报错重定向到50x.html时（即当前location地址等于/50x.html），做拦截
+                root   /www/demo/;            # 重新配置页面的根目录，即50x.html的根目录在哪
             }
         }
+
         ```
         按 Esc 键 退出编辑
  
@@ -310,7 +330,7 @@ yum install -y nginx
         ```
         service nginx restart
         ```
-        完了后，在浏览器中输入你的地址查看你的网页 http://192.168.2.195/demo/
+        完了后，在浏览器中输入你的地址查看你的网页 http://192.168.2.196/demo/
         
   5. 上面这步如果失败并进入 403 forbidden 报错页面
   
@@ -337,15 +357,15 @@ yum install -y nginx
         ```
        server {
                    listen       80;   // 你网站运行时监听的端口
-                   server_name  192.168.2.195;  // 表示你网站在浏览器中打开时输入的ip（云服务器公网ip, 虚拟机则用ifconfig查看本地ip）  有域名的填域名, 如(tangmaomao.top)
+                   server_name  192.168.2.196;  // 表示你网站在浏览器中打开时输入的ip（云服务器公网ip, 虚拟机则用ifconfig查看本地ip）  有域名的填域名, 如(tangmaomao.top)
                
                    location / {
-                       root   /www/payment/dist; // 配置你项目地址的路径，从根目录开始（我的www目录在/根目录下， 在cd / 中）
+                       root   //www/demo; // 配置你项目地址的路径，从根目录开始（我的www目录在/根目录下， 在cd / 中）
                        index  index.html index.htm; // 配置默认打开的文件名 如index.php index.html 等
                    }
                }
        
-       // 如果在/www/payment/dist下面没有 index.php 或 index.html的文件  会报403 forbidden
+       // 如果在/www/demo下面没有 index.php 或 index.html的文件  会报403 forbidden
         ```
         
      - 三、权限问题，如果nginx没有web目录的操作权限，也会出现403错误
@@ -354,8 +374,7 @@ yum install -y nginx
          解决办法：修改web目录的读写权限，或者是把nginx的启动用户改成目录的所属用户，重启Nginx即可解决
             
          chmod -R 777 /www
-         chmod -R 777 /www/payment
-         chmod -R 777 /www/payment/dist/
+         chmod -R 777 /www/demo
          ```
      
      - 四、SELinux设置为开启状态（enabled）的原因。
@@ -388,5 +407,5 @@ yum install -y nginx
   ```
     service nginx restart
   ```
-  完了后，在浏览器中输入你的地址查看你的网页 http://192.168.2.195/demo/
+  完了后，在浏览器中输入你的地址查看你的网页 http://192.168.2.196/demo/
 

@@ -207,11 +207,11 @@ Hello World
 
 先在centos根目录新建一个 **www** 文件夹存放项目
 
-用Filezilla上传本地build编绎完的项目代码（vue项目在dist文件夹中）到www中
+用Filezilla上传本地build编绎完的项目代码（vue项目在dist文件夹中）到www/demo中
 
 ```
 www
-├─dist
+├─demo
 │  ├─_nuxt
 │  ├─lib
 │  ├─demo
@@ -224,5 +224,5 @@ www
 ### 添加自定义的nginx配置 xxx.conf
 [添加自定义的nginx配置](安装nginx.md)
 
-完了后，在浏览器中输入你的地址查看你的网页 http://192.168.2.195/demo/
+完了后，在浏览器中输入你的地址查看你的网页 http://192.168.2.196/demo/
 
