@@ -54,7 +54,7 @@ ls | grep ifconfig
 ### 确认没安装， 则安装net-tools，因为该包中包含ifconfig命令
         
 ```
-sudo yum installnet-tools
+sudo yum install net-tools
             
 // 安装过程中询问是否安装，输入  y  并回车即可
 ```
