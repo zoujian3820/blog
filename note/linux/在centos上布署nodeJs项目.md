@@ -109,7 +109,7 @@ nvm ls
 nvm use v10.20.0
 ```
 
-nvm重启终端node版本被重置解决办法
+终端重启后nvm使用的node版本被重置解决办法
 
 ```
 nvm alias default v10.20.0
