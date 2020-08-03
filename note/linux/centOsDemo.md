@@ -99,10 +99,16 @@ lsb_release -a
 6. 安装docker集合工具docker-compose
     > docker-compose工具install网址 https://docs.docker.com/compose/install/ 选择Linux
 
-    ```
-    // 安装命令
-    sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-    ```
+    - 官方安装命令
+       ```
+       sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+       ```
+      
+    - 使用国内加速源安装
+       ```
+       curl -L https://get.daocloud.io/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+       ```
+       
     ### [sudo chmod +x 命令作用，给文件加执行权限](https://blog.csdn.net/u012106306/article/details/80436911)
     ```
     // 对docker-compose脚本增加执行权限

@@ -57,50 +57,49 @@ sh get-docker.sh
 
 ### 使用仓库安装（推荐的方式）
 
-1. 安装必须的依赖
+> 先改为国内阿里源[解决yum安装下载慢的问题](解决yum安装下载慢的问题.md)
 
-    ```
-    sudo yum install -y yum-utils \
-    device-mapper-persistent-data \
-    lvm2
-    ```
+#### (1). 安装必须的依赖
 
-2. 添加stable的Docker-ce源
+```
+sudo yum install -y yum-utils \
+device-mapper-persistent-data \
+lvm2
+```
 
-    ```
-    sudo yum-config-manager \
-        --add-repo \
-        https://download.docker.com/linux/centos/docker-ce.repo
-    ```
+#### (2). 添加stable的Docker-ce源
 
-    或者使用阿里云镜像
+```
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+```
 
-    ```
-    sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-    ```
+或者使用阿里云镜像
 
-3. 安装最新版docker-ce
+```
+sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+```
 
-    ```
-    sudo yum install docker-ce docker-ce-cli containerd.io
-    ```
+#### (3). 安装最新版docker-ce
 
-4. 安装指定版本docker-ce
+```
+sudo yum install docker-ce docker-ce-cli containerd.io
+```
 
-    ```
-    yum list docker-ce --showduplicates | sort -r
-    sudo yum install docker-ce-<VERSION_STRING> docker-ce-cli-<VERSION_STRING> containerd.io
-    ```
+#### (4). 安装指定版本docker-ce
+
+```
+yum list docker-ce --showduplicates | sort -r
+sudo yum install docker-ce-<VERSION_STRING> docker-ce-cli-<VERSION_STRING> containerd.io
+```
+
+#### (5). 配置docker国内加速包镜像地址 
+
+- [配置docker国内加速包镜像地址](配置docker国内加速包镜像地址.md)
 
 
-
-
-5. 配置docker国内加速包镜像地址 
-
-[配置docker国内加速包镜像地址](配置docker国内加速包镜像地址.md)
-
-
-6. 下载并运行一个包(mysql)
+#### (6). 下载并运行一个包(mysql)
 > 运行docker run 会检测docker本地有没有下载过要运行的包
 > 有则直接运行跳过 docker pull ，无则先从远程下载下来，然后再运行
 
@@ -109,6 +108,30 @@ sh get-docker.sh
 docker run --name study-mysql -e MYSQL_ROOT_PASSWORD=123456 -p 28001:3306 -d mysql
 ```
 
+
+#### (7). 安装docker集合工具docker-compose
+
+> docker-compose工具install网址 https://docs.docker.com/compose/install/ 选择Linux
+
+- 官方安装命令
+    ```
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    ```
+
+- 使用国内加速源安装
+    ```
+    curl -L https://get.daocloud.io/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+    ```
+
+### [sudo chmod +x 命令作用，给文件加执行权限](https://blog.csdn.net/u012106306/article/details/80436911)
+```
+// 对docker-compose脚本增加执行权限
+sudo chmod +x /usr/local/bin/docker-compose
+
+// 测试安装结果
+docker-compose --version
+或 docker-compose -v
+```
 
 
 ### docker命令

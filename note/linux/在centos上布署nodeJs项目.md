@@ -26,7 +26,12 @@
 
 ```
 cd /usr/local
+
+// 下载node官方包
 wget https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz
+
+// 下载淘宝官方包
+wget https://npm.taobao.org/mirrors/node/v12.18.2/node-v12.18.2-linux-x64.tar.xz
 ```
 - wget: 提示未找到命令
 
@@ -39,13 +44,13 @@ wget https://nodejs.org/dist/v10.15.3/node-v10.15.3-linux-x64.tar.xz
 ### 2. 解压文件：
 
 ```
-tar xvf node-v10.15.3-linux-x64.tar.xz
+tar xvf node-v12.18.2-linux-x64.tar.xz
 ```
 
 - 重命名解压的文件夹名称为nodejs
 
     ```
-    mv node-v10.15.3-linux-x64 nodejs
+    mv node-v12.18.2-linux-x64 nodejs
     ```
 
 ### 3. 创建软链接，您就可以在任意目录下直接使用node和npm命令
@@ -91,6 +96,13 @@ source /etc/profile
 nvm list-remote node
 ```
 
+nvm使用taobao镜像
+```
+echo -e "\nexport NVM_NODEJS_ORG_MIRROR=http://npm.taobao.org/mirrors/node" >> ~/.bashrc
+
+source ~/.bashrc
+```
+
 安装多个Node.js版本
 ```
 nvm install v8.9.0
@@ -118,6 +130,7 @@ nvm alias default v10.20.0
 ### 7. 安装 nrm 
 
 ```
+npm config set registry https://registry.npm.taobao.org
 npm install -g nrm
 
 // 创建软链接, 全局访问（相当于windows添加到环境变量path中）
