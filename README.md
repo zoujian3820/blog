@@ -11,7 +11,7 @@
 https://zoujian3820.github.io/blog/
 
 坚持做一件事，把它变成习惯，总会有意想不到的收获：
- 
+
 - **学习** : 论坛/[博客](https://www.cnblogs.com/MrZouJian/)/资料/书籍
 - **运动** : 跑步/爬山/健身
 - **旅游** : 固定时间，去一次户外拓展/游玩，放松心情
@@ -27,8 +27,10 @@ https://zoujian3820.github.io/blog/
 - [webstorm+Prettier+ESLint实现保存格式化代码](note/webstorm+Prettier+ESLint.md)
 - [js中偏门一些的知识点记录下](note/pianMengZhiShiDian.md)
 - [centOs7.6云服务器上搭建项目](note/linux/centOsDemo.md)
+- [git笔记](note/git/README.md)
 
 **md目录生成脚本**
+
 ```
  npm i doctoc --save-dev
  doctoc xxx.md 指定文件生成
