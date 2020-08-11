@@ -16,13 +16,13 @@
 
     ```
     pushd "%~dp0"
-
+    
     dir /b %SystemRoot%\servicing\Packages\*Hyper-V*.mum >hyper-v.txt
-
+    
     for /f %%i in ('findstr /i . hyper-v.txt 2^>nul') do dism /online /norestart /add-package:"%SystemRoot%\servicing\Packages\%%i"
-
+    
     del hyper-v.txt
-
+    
     Dism /online /enable-feature /featurename:Microsoft-Hyper-V-All /LimitAccess /ALL
     ```
 ### 2. 填写入以上内容后，点击左上角 文件 -> 另存为，并命名为 **Hyper-V.cmd** 编码选择uft-8
@@ -56,7 +56,7 @@
            点击右侧 新建 -> 虚拟机
            按提示 设置下一步 (选第一代) 到 配置网络 这一步时，选择刚新建的 Hyper-V适配器
            配完了后，可以再去调整配置，及安装 镜像
-           ```
+    ```
 
 - #### 6.虚拟机安装centos后的注意事项
 
@@ -69,7 +69,7 @@
     ```
 
     - 步骤1：在终端输入以下命令，查看安装在本机的网卡：
-    
+
         ```
         nmcli d
         
@@ -77,29 +77,50 @@
         或
         // eth0   处于disconnected状态；
         ```
-    
+
     - 步骤2：在终端中输入以下命令，打开网络管理员：
-    
+
         ```
         nmtui
-      
+        
         //  选择“Edit a connection”后按回车键（使用TAB键进行选择的选项）
         ```
-    
+
     - 步骤3：现在可以看到所有的网络接口，选择一个（我的是eth0），然后键盘上下左右键选择到“Edit”并Enter确认进入:
-    
+
     - 步骤4：进行动态配置：
-    
+
     　　（1）在IPv4 CONFIGURATION配置选择<Automatic>；
-    
+
     　　（2）按空格键选择“Automatically connetc”复选框；
-    
+
     　　（3）点击OK键，退出网络管理器；
-    
+
     　　（4）依次Back Exit，返回终端界面；
-    
+
     　　（5）输入命令重新启动网络服务：systemctl restart network
-    
+
+    - 如果还是不行参考如下后，再install
+      https://blog.51cto.com/11699706/2362520
+
+      ```
+      cd /
+      vi /etc/resolv.conf
+      
+      然后输入以下内容
+      nameserver 219.141.136.10
+      nameserver 219.141.140.10
+      
+      重启网络
+      systemctl restart network
+      
+      yum clean all
+      
+      // 更新为最新的yum
+    sudo yum update -y
+      ```
+      
+      
 
 - #### 7.使用ssh登录Hyper-V centos
 
@@ -136,10 +157,10 @@
        ```
        Port 22              把端口号注释 # 去掉
        PermitRootLogin Yes  把注释 # 去掉  需要用root用户连接就选yes，否则输入no
-      
+        
        然后按 Esc 键离开编辑模式  再输入 :wq  保存退出
-       ``` 
-     
+       ```
+    
        **修改完成之后输入下面的命令开开启服务** 
        
        ```
