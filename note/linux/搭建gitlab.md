@@ -95,13 +95,13 @@
          command:
          - --loglevel warning
          volumes:
-         - redis-data:/var/lib/redis:Z
+         - /srv/docker/gitlab/redis-data:/var/lib/redis:Z
      
        postgresql:
          restart: always
          image: sameersbn/postgresql:11-20200524
          volumes:
-         - postgresql-data:/var/lib/postgresql:Z
+         - /srv/docker/gitlab/postgresql-data:/var/lib/postgresql:Z
          environment:
          - DB_USER=gitlab
          - DB_PASS=password
@@ -118,7 +118,7 @@
          - "13800:80" # 80端口印射
          - "13822:22" # 22端口印射
          volumes:
-         - gitlab-data:/home/git/data:Z
+         - /srv/docker/gitlab/gitlab-data:/home/git/data:Z
          healthcheck:
            test: ["CMD", "/usr/local/sbin/healthcheck"]
            interval: 5m
@@ -245,10 +245,10 @@
          - OAUTH_AZURE_API_SECRET=
          - OAUTH_AZURE_TENANT_ID=
      
-     volumes:
-       redis-data: /srv/docker/gitlab
-       postgresql-data: /srv/docker/gitlab
-       gitlab-data: /srv/docker/gitlab
+     # volumes:
+     #   redis-data: 
+     #   postgresql-data: 
+     #   gitlab-data: 
      
      ```
    
