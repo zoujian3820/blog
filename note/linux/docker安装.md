@@ -7,6 +7,14 @@
   - [安装前先卸载旧版本](#%E5%AE%89%E8%A3%85%E5%89%8D%E5%85%88%E5%8D%B8%E8%BD%BD%E6%97%A7%E7%89%88%E6%9C%AC)
   - [快捷安装方式](#%E5%BF%AB%E6%8D%B7%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F)
   - [使用仓库安装（推荐的方式）](#%E4%BD%BF%E7%94%A8%E4%BB%93%E5%BA%93%E5%AE%89%E8%A3%85%E6%8E%A8%E8%8D%90%E7%9A%84%E6%96%B9%E5%BC%8F)
+    - [(1). 安装必须的依赖](#1-%E5%AE%89%E8%A3%85%E5%BF%85%E9%A1%BB%E7%9A%84%E4%BE%9D%E8%B5%96)
+    - [(2). 添加stable的Docker-ce源](#2-%E6%B7%BB%E5%8A%A0stable%E7%9A%84docker-ce%E6%BA%90)
+    - [(3). 安装最新版docker-ce](#3-%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%89%88docker-ce)
+    - [(4). 安装指定版本docker-ce](#4-%E5%AE%89%E8%A3%85%E6%8C%87%E5%AE%9A%E7%89%88%E6%9C%ACdocker-ce)
+    - [(5). 配置docker国内加速包镜像地址](#5-%E9%85%8D%E7%BD%AEdocker%E5%9B%BD%E5%86%85%E5%8A%A0%E9%80%9F%E5%8C%85%E9%95%9C%E5%83%8F%E5%9C%B0%E5%9D%80)
+    - [(6). 下载并运行一个包(mysql)](#6-%E4%B8%8B%E8%BD%BD%E5%B9%B6%E8%BF%90%E8%A1%8C%E4%B8%80%E4%B8%AA%E5%8C%85mysql)
+    - [(7). 安装docker集合工具docker-compose](#7-%E5%AE%89%E8%A3%85docker%E9%9B%86%E5%90%88%E5%B7%A5%E5%85%B7docker-compose)
+  - [sudo chmod +x 命令作用，给文件加执行权限](#sudo-chmod-x-%E5%91%BD%E4%BB%A4%E4%BD%9C%E7%94%A8%E7%BB%99%E6%96%87%E4%BB%B6%E5%8A%A0%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90)
   - [docker命令](#docker%E5%91%BD%E4%BB%A4)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
