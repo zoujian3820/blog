@@ -32,17 +32,17 @@
 
 
 ## 更新 软件包
-apt-get update // 更新安装源（Source）
-apt-get upgrade // 更新已安装的软件包
-apt-get dist-upgrade //更新已安装的软件包（识别并处理依赖关系的改变）
+- apt-get update // 更新安装源（Source）
+- apt-get upgrade // 更新已安装的软件包
+- apt-get dist-upgrade //更新已安装的软件包（识别并处理依赖关系的改变）
 
 ## 查询 软件包
-dpkg -l // 列出已安装的所有软件包
-apt-cache search PackageName // 搜索软件包
-apt-cache show PackageName // 获取软件包的相关信息, 如说明、大小、版本等
-apt-cache depends PackageName // 查看该软件包需要哪些依赖
-apt-cache rdepends PackageName // 查看该软件包被哪些包依
-apt-get check // 检查是否有损坏的依赖
+- dpkg -l // 列出已安装的所有软件包
+- apt-cache search PackageName // 搜索软件包
+- apt-cache show PackageName // 获取软件包的相关信息, 如说明、大小、版本等
+- apt-cache depends PackageName // 查看该软件包需要哪些依赖
+- apt-cache rdepends PackageName // 查看该软件包被哪些包依
+- apt-get check // 检查是否有损坏的依赖
 
 ##  apt-get --help  输出命令帮助提示
 
