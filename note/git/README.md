@@ -61,5 +61,15 @@ git checkout .
 
 ### 移除文件
 ```
-git -c diff.mnemonicprefix=false -c core.quotepath=false --no-optional-locks rm -q -f -- note/git/SourceTree回滚版本到某次提交.md
+git rm -q -f note/git/SourceTree回滚版本到某次提交.md
+
+# 移除相当于 删除了文件 并做了一次 git add xxx
+# 所以要还原回来的话 要先取消暂存 git reset -q HEAD -- xxx
+# 再做一次 丢弃 操作 git checkout HEAD -- xxx
+
+# 取消暂存
+git reset -q HEAD -- note/git/SourceTree回滚版本到某次提交.md
+# 丢弃操作
+git checkout HEAD -- note/git/SourceTree回滚版本到某次提交.md
 ```
+
