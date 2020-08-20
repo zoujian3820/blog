@@ -10,3 +10,56 @@
 ##  git笔记
 
 ### [SourceTree回滚版本到某次提交](SourceTree回滚版本到某次提交.md)
+
+### stash 贮藏 改动
+```
+git stash save tttggg
+```
+
+### 查看所有贮藏
+```
+git stash list
+
+# 查看贮藏列表
+$ git stash list
+stash@{0}: WIP on master: ee80f12 no message
+stash@{1}: On master: tttggg
+
+# 恢复贮藏改动时 在 apply 后加上前缀即可
+# git stash apply stash@{0}
+
+```
+
+### stash 恢复 贮藏 改动
+```
+git stash apply stash@{0}
+```
+
+### 暂存(add) 与 取消暂存(reset)
+```
+// 暂存所有
+git add .
+
+// 暂存单个文件
+git add xx/xxx/fileName
+
+// 取消所有暂存
+git reset .
+
+// 取消所有暂存单个文件
+git reset xx/xxx/fileName
+```
+
+### 丢弃改动
+```
+# 丢弃单个文件
+git checkout note/git/SourceTree回滚版本到某次提交.md
+
+# 丢弃所有文件
+git checkout .
+```
+
+### 移除文件
+```
+git -c diff.mnemonicprefix=false -c core.quotepath=false --no-optional-locks rm -q -f -- note/git/SourceTree回滚版本到某次提交.md
+```
