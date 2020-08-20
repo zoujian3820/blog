@@ -73,3 +73,20 @@ git reset -q HEAD -- note/git/SourceTree回滚版本到某次提交.md
 git checkout HEAD -- note/git/SourceTree回滚版本到某次提交.md
 ```
 
+### 合并分支
+
+```
+git checkout 要被合并的分支
+git merge 要合并的分支
+
+例如:
+ 
+开发分支: feat-order-list-20200820
+
+需发版到正式环境（生产线）上 master 分支
+
+则切换 git checkout master
+
+再合并 git merge feat-order-list-20200820
+
+```
