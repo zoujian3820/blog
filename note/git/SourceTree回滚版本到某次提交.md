@@ -39,3 +39,5 @@ git -c diff.mnemonicprefix=false -c core.quotepath=false --no-optional-locks res
 ```
 
 8. 等待重置完。发现本地仓库分支已和远程仓库分支同步。这个结果似乎看起来两次重置抵消了一样，代码版本没有发生任何的变化。实际已经成功了
+
+----xxxxf
