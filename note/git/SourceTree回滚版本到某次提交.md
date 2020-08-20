@@ -28,6 +28,7 @@ git reflog
 3. 右键   ->   **重置当前分支到此次提交**
 4. 在弹窗中 使用模式选择 **强行合并--丢弃所有改动过的工作副本**，点击确定 **--hard**
 ```
+# 这次的 commit id 是你要重置的版本的id
 git -c diff.mnemonicprefix=false -c core.quotepath=false --no-optional-locks reset -q --hard 592b8380e329398ee75f727ecabdbb4b9ae07e51
 ```
 
@@ -35,6 +36,7 @@ git -c diff.mnemonicprefix=false -c core.quotepath=false --no-optional-locks res
 6. 依然是同样的操作 **选中最新的** 提交历史记录，右键  ->  **重置当前分支到此次提交**
 7. 这次选的使用模式是  **软合并 – 保持所有本地改动**，点击确定  **--soft**
 ```
+# 这次的 commit id 切记要是 最新 的一次提交的 commit id
 git -c diff.mnemonicprefix=false -c core.quotepath=false --no-optional-locks reset -q --soft 40837d11bb78ba4719c939c92a43e4ae4de93cb3
 ```
 
