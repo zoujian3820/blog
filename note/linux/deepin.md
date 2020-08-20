@@ -138,4 +138,80 @@ apt-get 可以从认证软件源下载软件包及相关信息，以便安装和
    apt-get upgrade
    ```
 
+## deepin安装新版的webstorm    商店中的版本很老还是2017版
+
+- linux版下载地址 webstorm 2019.1
+
+  链接：https://pan.baidu.com/s/1YUpFYruc1JgkRHVSjWDN_w 
+  提取码：3820
+
+- 安装方法参考 https://www.jianshu.com/p/898f3de8266b
+
+1. 下载完成后，得到包  linux.webstorm.2019.1.gz
+
+   ```
+   # 解压包
+   gzip -d linux.webstorm.2019.1.gz
    
+   # 解压后得到文件夹 linux.webstorm.2019.1
+   ```
+
+2. 复制文件到你想放置的目录，这里放在/usr/share/webstorm下
+
+   ```
+   # 使用sudo提升权限为root用户
+   # 复制 linux.webstorm.2019.1 下所有文件  ->  到/usr/share/webstorm下
+   # webstorm文件夹会自动创建
+   
+   sudo cp -r linux.webstorm.2019.1/ /usr/share/webstorm
+   
+   # 切换到webstorm文件夹  并授权
+   cd /usr/share/webstorm
+   sudo chmod -R 777 webstorm/
+   ```
+
+3. #### 将`webstorm`图标锁定在启动器，相当于加入到windows的开始菜单栏中
+
+   - 用可执行文件   打开软件， 此种方式只做演示原理，应该没人喜欢这种方式
+
+   ```
+   cd /usr/share/webstorm
+   ls -la
+   cd bin
+   
+   # 在bin中有一个webstorm.sh  双击选择  运行/终端运行 就可打开webstorm 编辑器
+   
+   # 或者使用 sh webstorm.sh 命令运行  打开webstorm 编辑器
+   sh webstorm.sh
+   # 没权限 则加 sudo sh webstorm.sh
+
+   # 查看当前路径  /usr/share/webstorm/bin
+pwd
+   ```
+   
+   - 加入启动器
+   
+   ```
+   # 创建一个文件 webstorm.desktop
+   
+   sudo vim /usr/share/applications/webstorm.desktop
+   
+   # 编辑 webstorm.desktop -> 输入  i 转编辑模式  ->  然后 录入 以下内容
+   
+   [Desktop Entry]
+   Name = WebStorm
+   Comment= WebStorm
+   Exec=上面复制文件时放入的路径/webstorm.sh  # /usr/share/webstorm/bin/webstorm.sh
+Icon=上面复制文件时放入的路径/webstorm.png  # /usr/share/webstorm/bin/webstorm.png
+   Terminal=false
+Type=Application
+   ```
+   
+   - 保存退出
+   
+     ```
+     :wq
+     
+     # 保存退出后  在启动器底部就能看到webstorm了
+     ```
+
