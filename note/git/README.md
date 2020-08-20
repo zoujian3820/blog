@@ -51,6 +51,7 @@ git reset xx/xxx/fileName
 ```
 
 ### 丢弃改动
+> 丢弃的文件会回到没 git add 前
 ```
 # 丢弃单个文件
 git checkout note/git/SourceTree回滚版本到某次提交.md
