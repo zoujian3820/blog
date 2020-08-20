@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [安装nvm管理node版本](#%E5%AE%89%E8%A3%85nvm%E7%AE%A1%E7%90%86node%E7%89%88%E6%9C%AC)
+  - [安装 nrm](#%E5%AE%89%E8%A3%85-nrm)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## 安装nvm管理node版本
 
 

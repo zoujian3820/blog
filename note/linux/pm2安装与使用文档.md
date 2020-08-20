@@ -3,7 +3,6 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [pm2安装与使用](#pm2%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8)
-- [deepin安装新版的webstorm    商店中的版本很老还是2017版](#deepin%E5%AE%89%E8%A3%85%E6%96%B0%E7%89%88%E7%9A%84webstorm----%E5%95%86%E5%BA%97%E4%B8%AD%E7%9A%84%E7%89%88%E6%9C%AC%E5%BE%88%E8%80%81%E8%BF%98%E6%98%AF2017%E7%89%88)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

@@ -2,6 +2,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+- [深度系统版本为 deepin V20  用来做平时开发的个人电脑](#%E6%B7%B1%E5%BA%A6%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E4%B8%BA-deepin-v20--%E7%94%A8%E6%9D%A5%E5%81%9A%E5%B9%B3%E6%97%B6%E5%BC%80%E5%8F%91%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%94%B5%E8%84%91)
 - [su root 切换为root用户](#su-root-%E5%88%87%E6%8D%A2%E4%B8%BAroot%E7%94%A8%E6%88%B7)
 - [安装 软件包](#%E5%AE%89%E8%A3%85-%E8%BD%AF%E4%BB%B6%E5%8C%85)
 - [卸载 软件包](#%E5%8D%B8%E8%BD%BD-%E8%BD%AF%E4%BB%B6%E5%8C%85)
@@ -9,8 +10,12 @@
 - [查询 软件包](#%E6%9F%A5%E8%AF%A2-%E8%BD%AF%E4%BB%B6%E5%8C%85)
 - [apt-get --help  输出命令帮助提示](#apt-get---help--%E8%BE%93%E5%87%BA%E5%91%BD%E4%BB%A4%E5%B8%AE%E5%8A%A9%E6%8F%90%E7%A4%BA)
 - [设置deepin深度的镜像源为阿里云](#%E8%AE%BE%E7%BD%AEdeepin%E6%B7%B1%E5%BA%A6%E7%9A%84%E9%95%9C%E5%83%8F%E6%BA%90%E4%B8%BA%E9%98%BF%E9%87%8C%E4%BA%91)
+- [deepin安装新版的webstorm    商店中的版本很老还是2017版](#deepin%E5%AE%89%E8%A3%85%E6%96%B0%E7%89%88%E7%9A%84webstorm----%E5%95%86%E5%BA%97%E4%B8%AD%E7%9A%84%E7%89%88%E6%9C%AC%E5%BE%88%E8%80%81%E8%BF%98%E6%98%AF2017%E7%89%88)
+- [安装 nvm 管理 node 版本 + 安装 nrm 管理npm源](#%E5%AE%89%E8%A3%85-nvm-%E7%AE%A1%E7%90%86-node-%E7%89%88%E6%9C%AC--%E5%AE%89%E8%A3%85-nrm-%E7%AE%A1%E7%90%86npm%E6%BA%90)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## 深度系统版本为 deepin V20  用来做平时开发的个人电脑
 
 ## su root 切换为root用户
 
