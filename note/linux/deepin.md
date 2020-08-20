@@ -170,7 +170,7 @@ apt-get 可以从认证软件源下载软件包及相关信息，以便安装和
    sudo chmod -R 777 webstorm/
    ```
 
-3. #### 将`webstorm`图标锁定在启动器，相当于加入到windows的开始菜单栏中
+3. 将`webstorm`图标锁定在启动器，相当于加入到windows的开始菜单栏中
 
    - 用可执行文件   打开软件， 此种方式只做演示原理，应该没人喜欢这种方式
 
@@ -214,4 +214,7 @@ Type=Application
      
      # 保存退出后  在启动器底部就能看到webstorm了
      ```
+     
+
+## [安装 nvm 管理 node 版本 + 安装 nrm 管理npm源](安装nvm管理node版本+安装nrm管理npm源.md)
 

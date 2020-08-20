@@ -77,72 +77,9 @@ npm -v
 yum install git
 ```
 
-### 6. 安装 nvm 管理node 版本
+### [6. 安装 nvm 管理 node 版本 + 安装 nrm 管理npm源](安装nvm管理node版本+安装nrm管理npm源.md)
 
-使用git将源码克隆到本地的~/.nvm目录下，并检查最新版本
-```
-git clone https://github.com/cnpm/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`
-```
-
-激活NVM
-```
-echo ". ~/.nvm/nvm.sh" >> /etc/profile
-
-source /etc/profile
-```
-
-列出Node.js的所有版本
-```
-nvm list-remote node
-```
-
-nvm使用taobao镜像
-```
-echo -e "\nexport NVM_NODEJS_ORG_MIRROR=http://npm.taobao.org/mirrors/node" >> ~/.bashrc
-
-source ~/.bashrc
-```
-
-安装多个Node.js版本
-```
-nvm install v8.9.0
-nvm install v10.20.0
-nvm install v12.18.0
-nvm install v14.0.0
-```
-
-查看本地安装的版本和当前使用的版本
-```
-nvm ls
-```
-
-使用某个版本
-```
-nvm use v10.20.0
-```
-
-终端重启后nvm使用的node版本被重置解决办法
-
-```
-nvm alias default v10.20.0
-```
-
-### 7. 安装 nrm 
-
-```
-npm config set registry https://registry.npm.taobao.org
-npm install -g nrm
-
-// 创建软链接, 全局访问（相当于windows添加到环境变量path中）
-// 找到其安装时显示的存放目录，去添加软链接
-
-ln -s /usr/local/nodejs/bin/nrm /usr/local/bin/nrm
-
-nrm ls
-nrm use taobao
-```
-
-### 8. 安装pm2
+### 7. 安装pm2
 
 [pm2安装与使用文档](pm2安装与使用文档.md)
 
@@ -150,7 +87,7 @@ nrm use taobao
 npm install -g pm2
 ```
 
-### 9. 安装vim编辑器
+### 8. 安装vim编辑器
 
 ```
 yum install vim
@@ -211,12 +148,12 @@ firewall-cmd --reload
 Hello World
 ```
 
-### 10. [安装nginx](安装nginx.md)
+### 9. [安装nginx](安装nginx.md)
 
-### 11. 通过Filezilla实现本地Windows上传文件到Linux服务器/从Linux服务器下载文件
+### 10. 通过Filezilla实现本地Windows上传文件到Linux服务器/从Linux服务器下载文件
 下载地址： https://www.filezilla.cn/download/client
 
-### 12. 用nginx跑一个web静态项目
+### 11. 用nginx跑一个web静态项目
 
 先在centos根目录新建一个 **www** 文件夹存放项目
 
