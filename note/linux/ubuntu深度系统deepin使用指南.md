@@ -191,35 +191,38 @@ apt-get 可以从认证软件源下载软件包及相关信息，以便安装和
    # 没权限 则加 sudo sh webstorm.sh
 
    # 查看当前路径  /usr/share/webstorm/bin
-pwd
+   pwd
    ```
    
    - 加入启动器
    
    ```
-   # 创建一个文件 webstorm.desktop
-   
+#创建一个文件 webstorm.desktop
+      
    sudo vim /usr/share/applications/webstorm.desktop
-   
-   # 编辑 webstorm.desktop -> 输入  i 转编辑模式  ->  然后 录入 以下内容
-   
+      
+# 编辑 webstorm.desktop -> 输入  i 转编辑模式  ->  然后 录入 以下内容
+      
    [Desktop Entry]
    Name = WebStorm
-   Comment= WebStorm
+  Comment= WebStorm
    Exec=上面复制文件时放入的路径/webstorm.sh  # /usr/share/webstorm/bin/webstorm.sh
-Icon=上面复制文件时放入的路径/webstorm.png  # /usr/share/webstorm/bin/webstorm.png
+   Icon=上面复制文件时放入的路径/webstorm.png  # /usr/share/webstorm/bin/webstorm.png
    Terminal=false
-Type=Application
+   Type=Application
    ```
+   
+   
+   
    
    - 保存退出
    
      ```
-     :wq
-     
-     # 保存退出后  在启动器底部就能看到webstorm了
+   :wq
      ```
+   
+   保存退出后  在启动器底部就能看到webstorm了
+   
      
 
-## [安装 nvm 管理 node 版本 + 安装 nrm 管理npm源](安装nvm管理node版本+安装nrm管理npm源.md)
-
+### [安装 nvm 管理 node 版本 + 安装 nrm 管理npm源](安装nvm管理node版本+安装nrm管理npm源.md)
