@@ -6,6 +6,19 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+
+## 查看提交的历史记录 可查看 commit id
+
+```
+# 可查看详情信息，commit 注释 提交日期 完整的commit id  提交作者
+git log
+
+# 查看简版的信息 左边的 commit id 为完整版的前7位
+git reflog
+
+```
+
+
 ## SourceTree回滚版本到某次提交
 
 - [参考学习资料](https://jingyan.baidu.com/article/ab0b563057387ac15afa7dca.html)
