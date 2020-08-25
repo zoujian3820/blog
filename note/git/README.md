@@ -9,6 +9,51 @@
 
 ##  git笔记
 
+### git ssh
+  ```
+   git config --global user.name "mrzou"
+   
+   git config --global user.email "3xxxxxx8@qq.com"
+  
+   ssh-keygen -t rsa -C "3xxxxxx8@qq.com"
+   
+   # 查看刚刚生成的公钥
+   cat ~/.ssh/id_rsa.pub
+   
+   # 复制公钥 然后粘贴到你的git仓库 settings SSH 中
+   
+  ```
+
+- windows
+> window 做完以上步骤 就可以正常使用了
+
+- mac os
+[参考资料](https://www.jianshu.com/p/c0d5e649411f)
+  ```
+  # 将sshkey添加到sourceTree
+  ssh-add ~/.ssh/id_rsa
+  
+  # 将sshkey添加到钥匙串
+  ssh-add -K ~/.ssh/id_rsa
+  
+  # cd 到 .ssh目录下
+  cd .ssh
+  
+  # 用touch .config命令创建.config文件
+  touch .config
+  
+  # 编辑.config文件
+  vi .config
+  
+  #输入下面的配置内容, 保存·config文件
+  Host *
+     UseKeychain yes
+     AddKeysToAgent yes
+     IdentityFile ~/.ssh/id_rsa
+     IdentityFile ~/.ssh/github_rsa
+     
+  ```
+
 ### [SourceTree回滚版本到某次提交](SourceTree回滚版本到某次提交.md)
 
 ### stash 贮藏 改动
