@@ -93,6 +93,8 @@ sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/cen
 
 ```
 sudo yum install docker-ce docker-ce-cli containerd.io
+
+systemctl enable docker   // 安装完开启   开机自动启动docker 
 ```
 
 #### (4). 安装指定版本docker-ce
