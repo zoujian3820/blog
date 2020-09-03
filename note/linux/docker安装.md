@@ -172,6 +172,21 @@ docker stop 容器名
 docker rm (填写docker ps -a查看到的容器的 NAMES 或者 CONTAINER ID)
 ```
 
+### 导入和导出容器
+查看容器
+```
+docker ps -a
+[root@localhost /]# docker ps -a
+CONTAINER ID   IMAGE           COMMAND       CREATED          STATUS  PORTS                NAMES
+2ba5b58e8a84   ubuntu:latest   "/bin/bash"   38 minutes ago   Exited (0) 38 minutes ago    pensive_volhard
+
+# 导出
+$ docker export 2ba > test_for_stop.tar
+# 导入
+$ docker import test_for_run.tar -- test/ubuntu:vl.O
+```
+
+
 ### 搭建本地私有仓库
 1. 使用 registry 镜像创建私有仓库
 
