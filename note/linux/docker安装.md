@@ -215,6 +215,10 @@ docker rm (填写docker ps -a查看到的容器的 NAMES 或者 CONTAINER ID)
     $ docker tag ubuntu:18.04 192.168.2.242:5000/testUbuntu:v1.0
     ```
     由于客户端采用https而docker registry未采用https服务所致。处理方式是把客户对地址192.168.2.242:5000请求改为http
+    
+    比较新的 Docker 版本对安全性要求较高，会要求仓库支持 SSL/TLS 证书 。 对于内部使用的私有仓库，可以自行配置证书或关闭对仓库的安全性检查
+    
+    修改 Docker daemon 的启动参数，添加如下参数，表示信任这个私有仓库，不进行安全证书检查：
     ```
     $ vi /etc/docker/daemon.json
     加入  "insecure-registries":["192.168.2.242:5000"]
@@ -233,5 +237,8 @@ docker rm (填写docker ps -a查看到的容器的 NAMES 或者 CONTAINER ID)
     ```
     docker push 192.168.2.242:5000/testUbuntu:v1.0
     ```
+    现在可以到任意一台能访问到 192.168.2.242 地址的机器去下载这个镜像了 。
     
+
+
 
