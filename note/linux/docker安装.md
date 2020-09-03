@@ -170,3 +170,67 @@ docker stop 容器名
 // 删除容器，只能删除停止的容器，运行中的要先 stop， 再删除
 docker rm (填写docker ps -a查看到的容器的 NAMES 或者 CONTAINER ID)
 ```
+
+### 搭建本地私有仓库
+1. 使用 registry 镜像创建私有仓库
+
+    安装 Docker 后可以通过官方提供的 registry 镜像来简单搭建一套本地私有仓库环境：
+    ```
+    $ docker run -d -p 5000:5000 registry:2
+    ```
+    这将自动下载井启动一个 registry 容器，创建本地的私有仓库服务。
+    默认情况下，仓库会被创建在容器的/var/lib/registry目录下。 可以通过 -v 参数来将镜
+    像文件存放在本地的指定路径。例如下面的例子将上传的镜像放到/opt/data/registry 目录：
+    ```
+    $ docker run -d -p 5000:5000 -v /opt/data/registry:/var/lib/registry registry:2
+    ```
+    此时 在本地将启动一个私有仓库服务，监听端口为 5000
+    
+2. 下载一个测试镜像ubuntu:18.04
+    ```
+    $ docker pull ubuntu:18.04
+    
+    # 查看刚下载的镜像
+    $ docker images
+    $ ubuntu   18.04   6526a1858e5d   13 days ago   64.2MB
+    ```
+    获取当前宿主机的ip 192.168.2.242 
+    > 如果宿主机是云服务器，则ip 就是云服务主机的公网ip
+    ```
+    $ ifconfig
+    $ eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+              inet 192.168.2.242  netmask 255.255.255.0  broadcast 192.168.2.255
+              inet6 fe80::cf7:da6:9bb3:5220  prefixlen 64  scopeid 0x20<link>
+              ether 00:15:5d:02:74:00  txqueuelen 1000  (Ethernet)
+              RX packets 2116810  bytes 374257014 (356.9 MiB)
+              RX errors 0  dropped 0  overruns 0  frame 0
+              TX packets 39543  bytes 8018628 (7.6 MiB)
+              TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+    ```
+    使用 docker tag 命令将这个镜像标记为 192.168.2.242:5000/testUbuntu:v1.0
+    ```
+    # 使用registry搭私库套路如此，要按这些格式添加以域名开头的镜像标签
+    $ docker tag ubuntu:18.04 192.168.2.242:5000/testUbuntu:v1.0
+    ```
+    由于客户端采用https而docker registry未采用https服务所致。处理方式是把客户对地址192.168.2.242:5000请求改为http
+    ```
+    $ vi /etc/docker/daemon.json
+    加入  "insecure-registries":["192.168.2.242:5000"]
+    
+    $ cat /etc/docker/daemon.json
+    {
+    	"registry-mirrors": ["http://hub-mirror.c.163.com"],
+     	"insecure-registries":["192.168.2.242:5000"]
+    }
+    
+    $ systemctl daemon-reload 
+    $ systemctl restart docker
+    ```
+    
+3. 使用docker push上传标记的镜像
+    ```
+    docker push 192.168.2.242:5000/testUbuntu:v1.0
+    ```
+    
+
