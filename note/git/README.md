@@ -2,8 +2,20 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [git笔记](#git%E7%AC%94%E8%AE%B0)
-  - [SourceTree回滚版本到某次提交](#sourcetree%E5%9B%9E%E6%BB%9A%E7%89%88%E6%9C%AC%E5%88%B0%E6%9F%90%E6%AC%A1%E6%8F%90%E4%BA%A4)
+  - [git笔记](#git%E7%AC%94%E8%AE%B0)
+    - [git ssh](#git-ssh)
+    - [SourceTree回滚版本到某次提交](#sourcetree%E5%9B%9E%E6%BB%9A%E7%89%88%E6%9C%AC%E5%88%B0%E6%9F%90%E6%AC%A1%E6%8F%90%E4%BA%A4)
+    - [stash 贮藏 改动](#stash-%E8%B4%AE%E8%97%8F-%E6%94%B9%E5%8A%A8)
+    - [查看所有贮藏](#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E8%B4%AE%E8%97%8F)
+    - [stash 恢复 贮藏 改动](#stash-%E6%81%A2%E5%A4%8D-%E8%B4%AE%E8%97%8F-%E6%94%B9%E5%8A%A8)
+    - [暂存(add) 与 取消暂存(reset)](#%E6%9A%82%E5%AD%98add-%E4%B8%8E-%E5%8F%96%E6%B6%88%E6%9A%82%E5%AD%98reset)
+    - [丢弃改动](#%E4%B8%A2%E5%BC%83%E6%94%B9%E5%8A%A8)
+- [丢弃所有文件](#%E4%B8%A2%E5%BC%83%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6)
+- [移除相当于 删除了文件 并做了一次 git add xxx](#%E7%A7%BB%E9%99%A4%E7%9B%B8%E5%BD%93%E4%BA%8E-%E5%88%A0%E9%99%A4%E4%BA%86%E6%96%87%E4%BB%B6-%E5%B9%B6%E5%81%9A%E4%BA%86%E4%B8%80%E6%AC%A1-git-add-xxx)
+- [所以要还原回来的话 要先取消暂存 git reset -q HEAD -- xxx](#%E6%89%80%E4%BB%A5%E8%A6%81%E8%BF%98%E5%8E%9F%E5%9B%9E%E6%9D%A5%E7%9A%84%E8%AF%9D-%E8%A6%81%E5%85%88%E5%8F%96%E6%B6%88%E6%9A%82%E5%AD%98-git-reset--q-head----xxx)
+- [再做一次 丢弃 操作 git checkout HEAD -- xxx](#%E5%86%8D%E5%81%9A%E4%B8%80%E6%AC%A1-%E4%B8%A2%E5%BC%83-%E6%93%8D%E4%BD%9C-git-checkout-head----xxx)
+- [取消暂存](#%E5%8F%96%E6%B6%88%E6%9A%82%E5%AD%98)
+- [丢弃操作](#%E4%B8%A2%E5%BC%83%E6%93%8D%E4%BD%9C)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

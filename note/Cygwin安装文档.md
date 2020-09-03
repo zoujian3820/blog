@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [window安装Cygwin](#window%E5%AE%89%E8%A3%85cygwin)
+  - [下载最新版本的安装包：](#%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%89%88%E6%9C%AC%E7%9A%84%E5%AE%89%E8%A3%85%E5%8C%85)
+  - [运行setup-x86_64.exe进入安装](#%E8%BF%90%E8%A1%8Csetup-x86_64exe%E8%BF%9B%E5%85%A5%E5%AE%89%E8%A3%85)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## window安装Cygwin
 
 > Cygwin是一个用于Windows的类unix shell环境，可用于在windows上运行unix命令

@@ -16,6 +16,7 @@
     - [(7). 安装docker集合工具docker-compose](#7-%E5%AE%89%E8%A3%85docker%E9%9B%86%E5%90%88%E5%B7%A5%E5%85%B7docker-compose)
   - [sudo chmod +x 命令作用，给文件加执行权限](#sudo-chmod-x-%E5%91%BD%E4%BB%A4%E4%BD%9C%E7%94%A8%E7%BB%99%E6%96%87%E4%BB%B6%E5%8A%A0%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90)
   - [docker命令](#docker%E5%91%BD%E4%BB%A4)
+  - [搭建本地私有仓库](#%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
