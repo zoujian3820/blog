@@ -170,6 +170,24 @@ docker restart 容器名
 docker stop 容器名
 // 删除容器，只能删除停止的容器，运行中的要先 stop， 再删除
 docker rm (填写docker ps -a查看到的容器的 NAMES 或者 CONTAINER ID)
+
+# 进入容器
+# -i 打开标准输入接受用户输入命令， 默认值为false;
+# -t 分配伪终端，默认值为 false;
+# 243c32535da7 容器id 也可用容器名
+docker exec -it 243c32535da7 /bin/bash
+
+# 查看容器的端口映射情况
+# b2c 容器id前三位
+docker port b2c
+
+# 查看容器内文件系统的变更
+docker diff b2c
+
+# 在容器和主机之间复制文件
+# 将本地的路径 data 复制到 test 容器的 /tmp 路径下 
+docker cp data test:/tmp/
+
 ```
 
 ### 导入和导出容器
@@ -255,5 +273,48 @@ $ docker import test_for_run.tar -- test/ubuntu:vl.O
     现在可以到任意一台能访问到 192.168.2.242 地址的机器去下载这个镜像了 。
     
 
+### 数据卷
 
+- 绑定挂载目录 -v=[] 
+
+- 宿主机绑定 -v<host>:<container>:[rw|ro]
+  ```
+  docker run -d -p 5000:5000 -v /opt/data/registry:/var/lib/registry:ro registry:2
+  ```
+- 在Docker中新建一个共享的卷  -v /<container> 
+  ```
+   docker run -it -v /dbdata --name dbdata ubuntu
+   
+   root@63562c6370d3:/# ls
+   bin  boot  dbdata  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+  ```
+  然后，可以在其他容器中使用 --volumes-from 来挂载 dbdata 容器中的数据卷<br/>
+  例如创建 dbl 和 db2 两个容器，并从 dbdata 容器挂载数据卷：<br/>
+  ```
+  docker run -it --volumes-from dbdata --name dbl ubuntu
+  docker run -it --volumes-from dbdata --name db2 ubuntu
+  ```
+  此时， 容器 dbl 和 db2 都挂载同一个数据卷到相同的 /dbdata 目录，三个容器任何
+  一方在该目录下的写人，其他容器都可以看到<br/>
+
+  例如，在 dbdata 容器中创建一个 test 文件：<br/>
+  ```
+   root@3ed94f279b6f: /# cd /dbdata
+   root@3ed94f279b6f: /dbdata# touch test
+   root@3ed94f279b6f: /dbdata# ls
+   test
+  ```
+  在 dbl 容器内查看它<br/>
+  ```
+  docker run -it --volumes-from dbdata --name dbl ubuntu
+  root@4128d2d804b4:/# ls
+  bin boot dbdata dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr var
+  root@4128d2d804b4:/# ls dbdata/
+  test
+  ```
+  可以多次使用 --volumes-from 参数来从多个容器挂载多个数据卷，<br/>
+  还可以从其他已经挂载了容器卷的容器来挂载数据卷<br/>
+  ```
+  docker run -d --name db3 --volumes-from dbl training/postgres
+  ```
 
