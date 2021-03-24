@@ -3,6 +3,7 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [欢迎来到我的博客](#%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2)
+      - [md目录生成脚本](#md%E7%9B%AE%E5%BD%95%E7%94%9F%E6%88%90%E8%84%9A%E6%9C%AC)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -28,8 +29,13 @@ https://zoujian3820.github.io/blog/
 - [js中偏门一些的知识点记录下](note/pianMengZhiShiDian.md)
 - [centOs7.6云服务器上搭建项目](note/linux/centOsDemo.md)
 - [git笔记](note/git/README.md)
+- [数据库](note/数据库/mysql.md)
+- [vue-router源码](note/vue源码/vue-router.md)
+- [vuex源码](note/vue源码/vuex.md)
+- [vue源码](note/vue源码/vue.md)
 
-**md目录生成脚本**
+
+#### md目录生成脚本
 
 ```
  npm i doctoc --save-dev
