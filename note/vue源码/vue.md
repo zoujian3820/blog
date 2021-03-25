@@ -7,4 +7,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## vue
+- 草率的思路图
+  ![草率的思路图](./流程.png)
+
 - xxxx
