@@ -10,7 +10,7 @@
 - vue的思路图
   ![草率的思路图](./vue-laotu.png)
 
-- 分析defineReactive函数 并实现数据劫持
+- 分析defineReactive函数 并实现数据劫持函数observe
 ```javascript
 // Object.defineProperty()
 // 将传入的obj，动态设置一个key，它的值val
