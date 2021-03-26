@@ -8,7 +8,7 @@
 
 ## vue
 - vue的思路图
-  ![草率的思路图](./vue-laotu.png)
+  ![草率的思路图](./vue-laotu1.png)
 
 - 分析defineReactive函数 并实现数据劫持函数observe
 ```javascript
