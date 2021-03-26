@@ -13,7 +13,9 @@ https://zoujian3820.github.io/blog/
 
 坚持做一件事，把它变成习惯，总会有意想不到的收获：
 
-- **学习** : 论坛/[博客](https://www.cnblogs.com/MrZouJian/)/资料/书籍
+- **学习** : 论坛/资料/书籍
+- 博客园：https://www.cnblogs.com/MrZouJian/
+- 掘金：https://juejin.cn/user/3737995264660152/posts
 - **运动** : 跑步/爬山/健身
 - **旅游** : 固定时间，去一次户外拓展/游玩，放松心情
 
