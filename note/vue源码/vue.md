@@ -11,7 +11,7 @@
   ![草率的思路图](./vue-laotu1.png)
 
 - 分析defineReactive函数 并实现数据劫持函数observe
-  - 核心使用 defineProperty 实现数据的获取与修改监听 (get/set)
+  - 核心使用 defineProperty 实现数据的获取与修改监听 (get/set)， Vue3使用了Proxy
   - 使用闭包原理 把形参 val 转换成了内部私有变量， 便于set(修改)后，get(获取)能拿到最新修改的值
   - 而数据本身可能会有多个属性，为了使用上不至于每次都手动调用 defineReactive 故封装了observe函数
   - observe函数通过遍历，可以自动的将每个属性做劫持处理，并添加了非对象情况的过滤处理
