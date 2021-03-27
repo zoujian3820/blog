@@ -120,7 +120,7 @@
       yum clean all
       
       // 更新为最新的yum
-    sudo yum update -y
+      sudo yum update -y
       ```
       
       
