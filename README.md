@@ -34,8 +34,6 @@ https://zoujian3820.github.io/blog/
 - [git笔记](note/git/README.md)
 - [linux相关](note/linux/README.md)
 - [数据库](note/数据库/mysql.md)
-- [vue-router源码](note/vue源码/vue-router.md)
-- [vuex源码](note/vue源码/vuex.md)
 - [vue源码](note/vue源码/vue.md)
 
 
