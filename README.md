@@ -32,7 +32,7 @@ https://zoujian3820.github.io/blog/
 - [js中偏门一些的知识点记录下](note/pianMengZhiShiDian.md)
 - [centOs7.6云服务器上搭建项目](note/linux/centOsDemo.md)
 - [git笔记](note/git/README.md)
-- [linux相关]()
+- [linux相关](note/linux/README.md)
 - [数据库](note/数据库/mysql.md)
 - [vue-router源码](note/vue源码/vue-router.md)
 - [vuex源码](note/vue源码/vuex.md)
