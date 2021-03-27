@@ -224,26 +224,26 @@
   
   ```
   
-  - 使用Vue
-    ```html
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <div id="app">
-      <p>{{counter}}</p>
-      <p v-text="counter"></p>
-      <p v-html="desc"></p>
-    </div>
-    <script src="./vue.js"></script>
-    <script>
-      const app = new Vue({
-        el: "#app",
-        data: {
-          counter: 1,
-          desc: '<span style="color: red">测试文本节点</span>'
-        }
-      });
-      setInterval(() => {
-        app.counter++;
-      }, 1000);
-    </script>
-
-    ```
+- 使用Vue
+  ```html
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <div id="app">
+    <p>{{counter}}</p>
+    <p v-text="counter"></p>
+    <p v-html="desc"></p>
+  </div>
+  <script src="./vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        counter: 1,
+        desc: '<span style="color: red">测试文本节点</span>'
+      }
+    });
+    setInterval(() => {
+      app.counter++;
+    }, 1000);
+  </script>
+  
+  ```
