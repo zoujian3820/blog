@@ -86,7 +86,7 @@
       // 2.响应式处理
       observe(this.$data);
   
-      // 3.代理data到KVue实例上
+      // 3.代理data到Vue实例上
       proxy(this);
   
       // 4.编译
