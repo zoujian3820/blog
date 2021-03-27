@@ -18,68 +18,73 @@
   - 数据本身可能存在多层级结构，所以defineReactive函数每次在调用时，都做了一次observe递归，以便子层级数据能被劫持到
   - Vue.set  this.$set 实现就更简单了，添加额外的属性时，只需按defineReactive的格式手动添加即可，Vue便于使用封装了set函数，并挂载到了Vue原型上
 
-  ```javascript
-  // Object.defineProperty()
-  // 将传入的obj，动态设置一个key，它的值val
-  function defineReactive(obj, key, val) {
-    // 递归
-    observe(val)
+  - 对象数据
+    ```javascript
+    // Object.defineProperty()
+    // 将传入的obj，动态设置一个key，它的值val
+    function defineReactive(obj, key, val) {
+      // 递归
+      observe(val)
+      
+      Object.defineProperty(obj, key, {
+        get() {
+          console.log('get', key);
+          return val
+        },
+        set(v) {
+          if (val !== v) {
+            console.log('set', key);
+            // 传入新值v可能还是对象, 所以再做一次检测并劫持
+            observe(v)
+            
+            // 由于是闭包，所以val字段已经成为内部私有变量
+            // 所以此处赋值后，get里面能拿到更新的值
+            // 相当于在函数顶部 val = val
+            val = v
+          }
+        },
+      })
+    }
     
-    Object.defineProperty(obj, key, {
-      get() {
-        console.log('get', key);
-        return val
-      },
-      set(v) {
-        if (val !== v) {
-          console.log('set', key);
-          // 传入新值v可能还是对象, 所以再做一次检测并劫持
-          observe(v)
-          
-          // 由于是闭包，所以val字段已经成为内部私有变量
-          // 所以此处赋值后，get里面能拿到更新的值
-          // 相当于在函数顶部 val = val
-          val = v
-        }
-      },
-    })
-  }
-  
-  // 递归遍历obj，动态拦截obj的所有key
-  function observe(obj) {
-    if (typeof obj !== 'object' || obj == null) {
-      return obj
+    // 递归遍历obj，动态拦截obj的所有key
+    function observe(obj) {
+      if (typeof obj !== 'object' || obj == null) {
+        return obj
+      }
+      Object.keys(obj).forEach(key => {
+        defineReactive(obj, key, obj[key])
+      })
     }
-    Object.keys(obj).forEach(key => {
-      defineReactive(obj, key, obj[key])
-    })
-  }
-  
-  // this.$set() 的实现
-  // Vue.set() 的实现
-  function set(obj, key, val) {
-    // 由于用户可能添加，未在原对象中声明的新属性
-    // 所以要做到劫持，必需使用此方式添加新属性
-    defineReactive(obj, key, val)
-  }
-  
-  const obj = {
-    foo: 'foo',
-    bar: 'bar',
-    baz: {
-      a: 1
+    
+    // this.$set() 的实现
+    // Vue.set() 的实现
+    function set(obj, key, val) {
+      // 由于用户可能添加，未在原对象中声明的新属性
+      // 所以要做到劫持，必需使用此方式添加新属性
+      defineReactive(obj, key, val)
     }
-  }
-  // defineReactive(obj, 'foo', 'foo')
-  observe(obj)
-  
-  // obj.foo
-  // obj.foo = 'fooooooo'
-  // obj.baz.a
-  // obj.baz = { a: 10 }
-  // obj.baz.a
-  // obj.dong = 'dong'
-  // obj.dong
-  // set(obj, 'dong', 'dong')
-  // obj.dong
-  ```
+    
+    const obj = {
+      foo: 'foo',
+      bar: 'bar',
+      baz: {
+        a: 1
+      }
+    }
+    // defineReactive(obj, 'foo', 'foo')
+    observe(obj)
+    
+    // obj.foo
+    // obj.foo = 'fooooooo'
+    // obj.baz.a
+    // obj.baz = { a: 10 }
+    // obj.baz.a
+    // obj.dong = 'dong'
+    // obj.dong
+    // set(obj, 'dong', 'dong')
+    // obj.dong
+    ```
+  - 兼容数组数据并实现响应式
+    ```javascript
+    // xxxx
+    ```
