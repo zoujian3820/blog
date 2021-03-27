@@ -264,7 +264,7 @@ yum install -y nginx
   
          [Nginx配置静态资源文件404 Not Found问题解决方法及alias用法](https://blog.csdn.net/qq_39852676/article/details/93617190)
               
-        [Nginx配置静态资源文件404 Not Found问题解决方法及alias用法](Nginx配置静态资源文件404 Not Found问题解决方法及alias用法.md)
+        [Nginx配置静态资源文件404 Not Found问题解决方法及alias用法](Nginx配置静态资源文件404NotFound问题解决方法及alias用法.md)
               
         [nginx 之 proxy_pass 接口转发的规则](https://segmentfault.com/a/1190000018933857)
   

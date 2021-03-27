@@ -9,7 +9,7 @@
 - [Linux各目录及每个目录的详细介绍.md](Linux各目录及每个目录的详细介绍.md)
 - [linux命令.md](linux命令.md)
 - [安装nginx.md](安装nginx.md)
-- [Nginx配置静态资源文件404 Not Found问题解决方法及alias用法.md](Nginx配置静态资源文件404 Not Found问题解决方法及alias用法.md)
+- [Nginx配置静态资源文件404NotFound问题解决方法及alias用法.md](Nginx配置静态资源文件404NotFound问题解决方法及alias用法.md)
 - [ubuntu深度系统deepin使用指南.md](ubuntu深度系统deepin使用指南.md)
 - [安装查看ip命令ifconfig的包net-tools.md](安装查看ip命令ifconfig的包net-tools.md)
 - [防火墙文档.md](防火墙文档.md)
