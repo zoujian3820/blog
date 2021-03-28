@@ -6,6 +6,7 @@
             ```bash
             npm install phantomjs-prebuilt@2.1.16 --ignore-scripts
             ```
+    - phantomjs（端到端测试）也可不装，安装到这里时，可以直接(ctrl+c)终止        
 - 安装rollup: npm i -g rollup
 - 修改dev脚本：添加 --sourcemap
     - 为了后面方便代码与文件之间的连系，开启vue打包时的sourcemap
