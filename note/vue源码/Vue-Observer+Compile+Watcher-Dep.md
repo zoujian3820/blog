@@ -6,6 +6,20 @@
 - 核心类Observer  Compile  Watcher  Dep
   ```javascript
   // Vue.js
+  // 数组响应式
+  // 替换数组原型中7个方法
+  const orginalProto = Array.prototype;
+  // 备份一份，并修改备份
+  const arrayProto = Object.create(orginalProto);
+  ["push", "pop", "shift", "unshift"].forEach(method => {
+    arrayProto[method] = function() {
+      // 原始操作
+      orginalProto[method].apply(this, arguments);
+      // 覆盖操作，通知更新
+      console.log("数组执行：" + method + "操作");
+    };
+  });
+  
   function defineReactive(obj, key, val) {
     // 递归
     observe(val);
@@ -51,6 +65,13 @@
       // 判断对象类型
       if (Array.isArray(obj)) {
         // todo
+        // 覆盖原型， 替换7个变更操作
+        obj.__proto__ = arrayProto;
+        // 对数组内部元素执行响应化
+        // const keys = Object.keys(obj);
+        for (let i = 0; i < obj.length; i++) {
+          this.walk(obj[i]);
+        }
       } else {
         this.walk(obj);
       }
@@ -95,7 +116,7 @@
   }
   
   class Compile {
-    // el-宿主，vm-KVue实例
+    // el-宿主，vm-vue实例
     constructor(el, vm) {
       this.$vm = vm;
       this.$el = document.querySelector(el);
@@ -137,6 +158,14 @@
       return attr.startsWith("v-");
     }
   
+    isEvent(dir) {
+      return dir.indexOf("@") == 0;
+    }
+    eventHandler(node, exp, dir) {
+      // methods: {onClick: function(){}}
+      const fn = this.$vm.$options.methods[exp] && this.$vm.$options.methods[exp];
+      node.addEventListener(dir, fn.bind(this.$vm));
+    }
     // 更新函数，
     update(node, exp, dir) {
       // init
@@ -171,6 +200,14 @@
           const dir = attrName.substring(2);
           this[dir] && this[dir](node, exp);
         }
+  
+        // 事件处理
+        if (this.isEvent(attrName)) {
+          // @click="onClick"
+          const dir = attrName.substring(1); // click
+          // 事件监听
+          this.eventHandler(node, exp, dir);
+        }
       });
     }
   
@@ -182,6 +219,18 @@
     // v-html
     html(node, exp) {
       this.update(node, exp, "html");
+    }
+  
+    // v-model
+    model(node, exp) {
+      this.update(node, exp, "model");
+      node.addEventListener("input", e => {
+        this.$vm[exp] = e.target.value;
+      });
+    }
+  
+    modelUpdater(node, val) {
+      node.value = val;
     }
   
     htmlUpdater(node, val) {
@@ -221,16 +270,21 @@
       this.deps.forEach(dep => dep.update());
     }
   }
-  
+
   ```
   
 - 使用Vue
   ```html
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
   <div id="app">
-    <p>{{counter}}</p>
-    <p v-text="counter"></p>
-    <p v-html="desc"></p>
+  <p>{{counter}}</p>
+  <p v-text="counter"></p>
+  <p v-html="desc"></p>
+  <input type="text" style="width: 80%" v-model="desc" />
+  <div style="margin-top: 20px">
+    <button @click="onAdd">点击增加</button>
+    <button @click="onReduce">点击减少</button>
+  </div>
   </div>
   <script src="./vue.js"></script>
   <script>
@@ -238,9 +292,18 @@
       el: "#app",
       data: {
         counter: 1,
-        desc: '<span style="color: red">测试文本节点</span>'
+        desc: '<span style="color: red">测试的文本</span>'
+      },
+      methods: {
+        onAdd() {
+          this.counter++;
+        },
+        onReduce() {
+          this.counter--;
+        }
       }
     });
+
     setInterval(() => {
       app.counter++;
     }, 1000);
