@@ -335,5 +335,5 @@ $ docker import test_for_run.tar -- test/ubuntu:vl.O
   EXPOSE 3306
   CMD /usr/bin/mysqld_safe
   构建镜像∶ docker build -t mrzou-mysql .
-  运行镜像∶ docker run -d -p 306∶3306 09ce279d92df
+  运行镜像∶ docker run -d -p 3306∶3306 09ce279d92df
   ```
