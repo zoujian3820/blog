@@ -320,3 +320,20 @@ $ docker import test_for_run.tar -- test/ubuntu:vl.O
   docker run -d --name db3 --volumes-from dbl training/postgres
   ```
 
+
+
+### 自定义 MySQL 镜像
+- 定义 Dockerfile 文件∶
+  ```
+  FROM centos:centos6
+  MAINTAINER mrzou
+  RUN yum install mysql-server mysql -y
+  RUN /etc/init.d/mysqld start &&\
+    mysql -e "grant all privileges on *.* to 'root'@'%' identified by '123456' WITH GRANT OPTION;"&&\
+    mysql -e "grant all privileges on *.* to 'root'@'localhost' identified by '123456' WITH GRANT OPTION;"&&\
+    mysql -uroot -p123456 -e "show databases;"
+  EXPOSE 3306
+  CMD /usr/bin/mysqld_safe
+  构建镜像∶ docker build -t mrzou-mysql .
+  运行镜像∶ docker run -d -p 306∶3306 09ce279d92df
+  ```
