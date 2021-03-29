@@ -21,3 +21,21 @@
 - 定位源文件所在位置
     - 在当前断点执行所在的代码文件中 - 鼠标右键 - 点击 Reveal in sidebar
     - 点击可在左侧文件目录中定位到源码文件所在目录及位置
+
+## 阅读的源码版本 umd 版本
+    - npm run dev
+    - 入口文件 src\platforms\web\entry-runtime-with-compiler.js
+        - 解析模版相关选项
+    - src\platforms\web\runtime/index.js
+        - 安装平台patch 实现跨平台操作
+        - 实现$mount('#app') => mountComponent: render() => vdom => patch() => 真实dom
+    - src\core\index  
+        - 初始化全局API
+    - src\core\instance\index.js
+        - Vue构造函数     
+        - 声明实例属性和方法
+    - src\core\instance\init.js    
+        - 初始化
+    - src\instance\lifecycle.js
+        - mountComponent() => updateComponent => new Watcher() => updateComponent() = > render() => update() => patch() => 真实dom
+
