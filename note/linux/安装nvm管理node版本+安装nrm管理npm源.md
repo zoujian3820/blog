@@ -9,6 +9,20 @@
 
 ## 安装nvm管理node版本
 
+### window装nvm
+  - 找到安装目录下的settings.txt文件
+  - 打开文件在后面添加如下配置，使用淘宝镜像
+    ```
+    node_mirror: https://npm.taobao.org/mirrors/node/
+    npm_mirror: https://npm.taobao.org/mirrors/npm/
+    ```
+  - 列出Node.js的所有版本
+    ```
+    nvm list available
+    ```
+
+
+### linux安装nvm
 
 使用git将源码克隆到本地的~/.nvm目录下，并检查最新版本
 ```
@@ -83,7 +97,39 @@ nvm use v10.20.0
 nvm alias default v10.20.0
 ```
 
-### 安装 nrm 
+## 安装 nrm 
+
+### window安装nrm
+
+- window近期新版本 nrm安装完成运行会报错， 如下
+  ```
+  internal/validators.js:124
+    throw new ERR_INVALID_ARG_TYPE(name, 'string', value);
+    ^
+
+  [TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
+    at validateString (internal/validators.js:124:11)
+    at Object.join (path.js:375:7)
+    at Object.<anonymous> (D:\nvm\v14.15.4\node_modules\nrm\cli.js:17:20)
+    at Module._compile (internal/modules/cjs/loader.js:1063:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)
+    at Module.load (internal/modules/cjs/loader.js:928:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:769:14)
+    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)
+    at internal/main/run_main_module.js:17:47
+  ] {
+    code: 'ERR_INVALID_ARG_TYPE'
+  }
+  ```
+- 解决办法
+  - 找到nvm文件夹安装位置，打开cli.js 第17行修改成
+    ```
+    // 找到此行代码 并注释掉 换成下面代码 const NRMRC = path.join(process.env.HOME, '.nrmrc');
+    const NRMRC = path.join(process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'], '.nrmrc');
+    ```
+  - 关闭窗口  再次打开cmd并运行nrm --- 成功  
+
+### linux安装nrm
 
 ```
 npm config set registry https://registry.npm.taobao.org
