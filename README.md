@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-03-29 10:06:24
+ * @LastEditTime: 2021-04-02 13:47:22
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \blog\README.md
+-->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
@@ -29,6 +37,7 @@ https://zoujian3820.github.io/blog/
 - [填坑大集合](note/tiankenjihe.md)
 - [commitlint+husky规范git commit日志](note/pre-commit.md)
 - [webstorm+Prettier+ESLint实现保存格式化代码](note/webstorm+Prettier+ESLint.md)
+- [vscode开发环境配置](note/vscode-config.md)
 - [js中偏门一些的知识点记录下](note/pianMengZhiShiDian.md)
 - [centOs7.6云服务器上搭建项目](note/linux/centOsDemo.md)
 - [git笔记](note/git/README.md)
