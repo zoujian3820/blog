@@ -1,3 +1,10 @@
+<!--
+ * @Author: mrzou
+ * @Date: 2020-09-01 09:40:11
+ * @LastEditors: mrzou
+ * @LastEditTime: 2021-04-02 15:33:00
+ * @Description: file content
+-->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
@@ -12,9 +19,10 @@
 ## e.target与e.currentTarget的区别
   1. target是指当前点击到的实际元素对象
   2. currentTarget是指当前事件处理函数绑定的对象，
-  <br/>而在log里看到的是null，是因为这个event是一个引用，在log的时候里面的一些属性被重置了
-  <br/>这是因为currentTarget 只能用于事件正在处理过程中，当回调结束，会被重新赋值
-  <br/>在log中打印要直接获值才不会被重置, 使用上也是
+
+    <br/>而在log里看到的是null，是因为这个event是一个引用，在log的时候里面的一些属性被重置了
+    <br/>这是因为currentTarget 只能用于事件正在处理过程中，当回调结束，会被重新赋值
+    <br/>在log中打印要直接获值才不会被重置, 使用上也是
 
   ```javascript
   // 模似： 事件正在处理过程中， 故函数中能获取到值
@@ -44,4 +52,27 @@
     }
   }
   ```
+## 宏任务（macrotask）与微任务（microtask）
+
+  >...
+  > js是单线程工作，一次只能有一个宏任务，多个宏任务会加入到宏任务队列
+  遇到定时器、IO 操作等，也会加入到事件队列并等待回调函数执行
+  > 
+  > 但是微任务会存在多个，多个微任务也会加入到微任务队列
+  **在当前宏任务（除异步外的所有同步代码）执行结束前，会一次性清空微任务，
+  也就是按照微任务加入的顺序，遍历执行一次**
+  >
+  > 然后发生页面UI上的重绘 接着开始检查宏任务对列，并开始下一次的宏任务（周而复始）
+  >...
+
+  - macrotask
+    - setTimeout setInterval  （定时器）
+    - MessageChannel  （消息通道）
+    - window.postMessage （可以安全地实现跨源通信）
+    - setImmediate  （IE专用）
+    - requestAnimationFrame （告诉浏览器在下次执行重绘前，要做什么操作 而重绘在宏任务之前、微任务之后执行）
+  - microtast
+    - MutationObsever （提供了监视对DOM树所做更改的能力，Vue的nexTick实现就用到了，为兼容问题降级使用）
+    - Promise.then  （Vue的nexTick实现第一优先使用的方法）
+  
 
