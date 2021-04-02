@@ -1,8 +1,8 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-02 10:59:23
- * @LastEditTime: 2021-04-02 13:49:11
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-04-02 14:01:54
+ * @LastEditors: mrzou
  * @Description: In User Settings Edit
  * @FilePath: \blog\note\vscode-config.md
 -->
@@ -29,10 +29,13 @@
 - 1 记下 刚生成的 GitHub token
 - 2 ctrl（Mac 是 command） + shift + p
 - 3 输入 Sync: Advanced Options
+
   ![token](../images/SyncAdvancedOptions.png)
 - 4 Sync:编辑扩展本地配置
+
   ![token](../images/SyncAdvancedOptionsJson.png)
 - 5 找到配置文件中 token 字段，并填写成记下的 token
+
   ![token](../images/sync-setting-token.png)
 - 6 ctrl + shift + p 选择 Sync: Upload / Update Settings (上传本地的配置)
 - 7 记下生成的 gist id
@@ -53,6 +56,7 @@
   - 安装 Settings Sync 插件，并重启
   - 重复第 4 到 5 步, 配置 token
   - 配置gist id
+
     ![gist id](../images/sync-setting-gist-id.png)
   - 重复第 2 步
   - 输入 sync，点击 Sync: Download Settings（下载配置到 vscode）
@@ -69,9 +73,12 @@
 - 非常好用的图片压缩插件tinyPng
   - 官网地址注册地址https://tinypng.com/developers
   - 需配置api key才使用
-  ![gist id](../images/tinypng.png)
+  
+    ![gist id](../images/tinypng.png)
   - 使用方法
     - 压缩一个文件夹的图片
-    ![压缩一个文件夹的图片](../images/tinypng-compress-images.png)
+
+      ![压缩一个文件夹的图片](../images/tinypng-compress-images.png)
     - 压缩单个的图片
-    ![压缩单个的图片](../images/tinypng-compress-file.png)
+
+      ![压缩单个的图片](../images/tinypng-compress-file.png)
