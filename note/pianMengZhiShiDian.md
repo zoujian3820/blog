@@ -2,7 +2,7 @@
  * @Author: mrzou
  * @Date: 2020-09-01 09:40:11
  * @LastEditors: mrzou
- * @LastEditTime: 2021-04-02 15:33:00
+ * @LastEditTime: 2021-04-02 15:37:14
  * @Description: file content
 -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -74,5 +74,8 @@
   - microtast
     - MutationObsever （提供了监视对DOM树所做更改的能力，Vue的nexTick实现就用到了，为兼容问题降级使用）
     - Promise.then  （Vue的nexTick实现第一优先使用的方法）
-  
 
+  - 同步异步
+    ![](../images/macrotask/task01.png)
+  - 宏任务、微任务
+    ![](../images/macrotask/task02.png)
