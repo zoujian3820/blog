@@ -2,7 +2,7 @@
  * @Author: mrzou
  * @Date: 2020-09-01 09:40:11
  * @LastEditors: mrzou
- * @LastEditTime: 2021-04-02 15:37:14
+ * @LastEditTime: 2021-04-04 18:58:06
  * @Description: file content
 -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -56,14 +56,17 @@
 ## 宏任务（macrotask）与微任务（microtask）
 
   >...
-  > js是单线程工作，一次只能有一个宏任务，多个宏任务会加入到宏任务队列
-  遇到定时器、IO 操作等，也会加入到事件队列并等待回调函数执行
+  > 浏览器的事件循环机制会不停的检测自己当前有哪些任务要处理
+   并把任务分为了宏任务与微任务 
+  并且js是单线程工作，一次只能有一个宏任务，多个宏任务会加入到宏任务队列
+  遇到定时器、IO 操作等，也加入到宏任务队列等待回调函数执行
   > 
   > 但是微任务会存在多个，多个微任务也会加入到微任务队列
   **在当前宏任务（除异步外的所有同步代码）执行结束前，会一次性清空微任务，
   也就是按照微任务加入的顺序，遍历执行一次**
   >
-  > 然后发生页面UI上的重绘 接着开始检查宏任务对列，并开始下一次的宏任务（周而复始）
+  > 然后发生页面UI上的重绘 接着等待浏览器的事件循环 下次事件触发时 开始检查宏任务对列，
+  并开始下一次的宏任务（周而复始）
   >...
 
   - macrotask
@@ -72,7 +75,7 @@
     - window.postMessage （可以安全地实现跨源通信）
     - setImmediate  （IE专用）
     - requestAnimationFrame （告诉浏览器在下次执行重绘前，要做什么操作 而重绘在宏任务之前、微任务之后执行）
-  - microtast
+  - microtask
     - MutationObsever （提供了监视对DOM树所做更改的能力，Vue的nexTick实现就用到了，为兼容问题降级使用）
     - Promise.then  （Vue的nexTick实现第一优先使用的方法）
 
