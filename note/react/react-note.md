@@ -2,7 +2,7 @@
  * @Author: mrzou
  * @Date: 2021-04-07 17:30:01
  * @LastEditors: mrzou
- * @LastEditTime: 2021-04-11 16:11:59
+ * @LastEditTime: 2021-04-11 18:20:12
  * @Description: file content
 -->
 ## jsx规则
@@ -318,3 +318,34 @@ class Demo extends React.Component{
         // 快照信息可以获取，更新前的一些信息，如滚动条位置，节点高度等等
       }
       ```  
+
+## create-react-app 脚手架
+- 入口html文件  public/index.html
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <!-- %PUBLIC_URL%代表public文件夹的路径 -->
+      <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+      <!-- 开启理想视口，用于做移动端网页的适配 -->
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <!-- 用于配置浏览器页签+地址栏的颜色(仅支持安卓手机浏览器) -->
+      <meta name="theme-color" content="red" />
+      <meta
+        name="description"
+        content="Web site created using create-react-app"
+      />
+      <!-- 用于指定网页添加到手机主屏幕后的图标 -->
+      <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+      <!-- 应用加壳时的配置文件 -->
+      <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+      <title>React App</title>
+    </head>
+    <body>
+      <!-- 若llq不支持js则展示标签中的内容 -->
+      <noscript>You need to enable JavaScript to run this app.</noscript>
+      <div id="root"></div>
+    </body>
+  </html>
+  ```
