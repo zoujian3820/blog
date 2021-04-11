@@ -2,7 +2,7 @@
  * @Author: mrzou
  * @Date: 2020-09-01 09:40:11
  * @LastEditors: mrzou
- * @LastEditTime: 2021-04-04 18:58:06
+ * @LastEditTime: 2021-04-11 11:22:30
  * @Description: file content
 -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -86,3 +86,64 @@
   - 宏任务、微任务
   
     ![](../images/macrotask/task02.png)
+
+- 可折叠注释
+  ```javascript
+  //#region
+  中间是你要写的代码
+  //#endregion
+  ```
+
+- 高阶函数				
+  >如果一个函数符合下面2个规范中的任何一个，那该函数就是高阶函数。
+  
+  - 1.若A函数，接收的参数是一个函数，那么A就可以称之为高阶函数。
+ 
+  - 2.若A函数，调用的返回值依然是一个函数，那么A就可以称之为高阶函数。
+  
+  - 常见的高阶函数有：Promise、setTimeout、arr.map()等等
+
+- 函数的柯里化
+  > 通过函数调用继续返回函数的方式，实现多次接收参数最后统一处理的函数编码形式。 
+  ```javascript
+  function sum(a){
+    return(b)=>{
+      return (c)=>{
+        return a+b+c
+      }
+    }
+  }
+  ```
+  ```javascript
+  class Login extends React.Component{
+    //初始化状态
+    state = {
+      username:'', //用户名
+      password:'' //密码
+    }
+
+    // 保存表单数据到状态中
+    // 使用 高阶函数	与 函数的柯里化 写法
+    saveFormData = (dataType)=>{
+      return (event)=>{
+        this.setState({[dataType]:event.target.value})
+      }
+    }
+
+    //表单提交的回调
+    handleSubmit = (event)=>{
+      event.preventDefault() //阻止表单提交
+      const {username,password} = this.state
+      alert(`你输入的用户名是：${username},你输入的密码是：${password}`)
+    }
+    render(){
+      return(
+        <form onSubmit={this.handleSubmit}>
+          用户名：<input onChange={this.saveFormData('username')} type="text" name="username"/>
+          密码：<input onChange={this.saveFormData('password')} type="password" name="password"/>
+          <button>登录</button>
+        </form>
+      )
+    }
+  }
+  ```

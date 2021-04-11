@@ -2,7 +2,7 @@
  * @Author: mrzou
  * @Date: 2021-04-07 17:30:01
  * @LastEditors: mrzou
- * @LastEditTime: 2021-04-10 00:40:12
+ * @LastEditTime: 2021-04-11 16:11:59
  * @Description: file content
 -->
 ## jsx规则
@@ -121,11 +121,10 @@
       // 此方式工作中使用居多
       alert(input1.value)
     }
-    showData2 = ()=>{
-      const {input1} = this
+    showData2 = (c)=>{
+			this.input2 = c;
       // ref获取到的dom input1
       // 这里用的是调用函数的方式，更新时不会触发两次
-      alert(input1.value)
     }
     render(){
       return(
@@ -169,3 +168,153 @@ class Demo extends React.Component{
   }
 }
 ```
+
+## react组件生命周期
+  - 新版本废弃了三Will个钩子，新增了两个钩子
+  - 旧版本（17版本之前）的生命周期
+    ![旧的生命周期](./images/2_react生命周期(旧).png)
+
+  - 新版本（17 版本及以上）的生命周期
+    ![](./images/3_react生命周期(新).png)
+  - 初始化第一执行 constructor 构造器
+  - 组件将要挂载的钩子
+    - 此钩子将来可能废弃
+    ```javascript
+    // 旧版写法
+    componentWillMount(){
+      console.log('组件将要挂载');
+    }
+
+    // 新版写法
+    UNSAFE_componentWillMount(){
+      console.log('组件将要挂载');
+    }
+    ```
+  - 组件挂载完毕 执行的钩子函数
+    ```javascript
+    componentDidMount(){
+      console.log('组件挂载完毕');
+    }
+    ```
+    - 手动卸载组件
+      ```javascript
+      // 找到当前组件的容器 dom 然后调用 ReactDOM.unmountComponentAtNode
+      // 且是顶级容器
+      ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+      ```
+      
+  - 控制组件更新的“阀门”
+    ```javascript
+    shouldComponentUpdate(){
+      console.log('控制组件是否更新');
+      // 返回一个布尔值  表示是否更新
+      // return true  表示更新  不写shouldComponentUpdate默认就是 true
+      // return false 表示不更新
+    }
+    ```
+  - 组件将要更新的钩子
+    - 此钩子将来可能废弃
+    ```javascript
+    // 旧版写法
+    componentWillUpdate(){
+      console.log('组件将要开始更新了');
+    }
+
+     // 新版写法
+    UNSAFE_componentWillUpdate(){
+      console.log('组件将要开始更新了');
+    }
+    ```
+  - 组件更新完毕的钩子
+    ```javascript
+    componentDidUpdate(preProps, preState, snapshotValue){
+      console.log('组件已经更新完了');
+      // preProps        更新前的 props
+      // preState        更新前的 state
+      // snapshotValue   更新前获取的快照信息，由getSnapshotBeforeUpdate钩子返回
+      // 快照信息可以获取，更新前的一些信息，如滚动条位置，节点高度等等
+    }
+    ```  
+
+  - 组件将要到接收  父组件新的props  时触发的钩子
+    - 此钩子将来可能废弃
+    ```javascript
+    // 只有父组件传给子组件的props值发生改变时，子组件才会触发这个钩子
+    // 且第一次初始化时，传的props是不会触发的，一定是新的值才触发
+
+    // 旧版写法
+    componentWillReceiveProps(props){
+      console.log('B---componentWillReceiveProps',props);
+    }
+
+    // 新版写法
+    UNSAFE_componentWillReceiveProps(props){
+      console.log('B---componentWillReceiveProps',props);
+    }
+    ``` 
+
+  - 组件将要卸载 执行的钩子函数 react设计上无componentDidUnmount 因为卸载后再操作无意义
+    ```javascript
+    componentWillUnmount(){
+      console.log('组件将要卸载');
+    }
+    ```  
+  - 初始化渲染 或 状态更新之后 执行的钩子函数
+    ```javascript
+    render(){
+      console.log('初始化渲染 或 状态更新之后 执行');
+      return(
+        <div>
+          <div>{this.name}</div>
+        </div>
+      )
+    }
+    ```
+  - 无数据更改的视图强制更新 forceUpdate 方法
+    ```javascript
+    force = ()=>{
+      this.forceUpdate()
+    }
+    ```
+
+  - 新版新增的两个生命周期钩子
+    - getDerivedStateFromProps
+      ```javascript
+      // 若state的值在任何时候都取决于props，那么可以使用getDerivedStateFromProps
+      // 且是一个静态方法 必须加 static 声明
+      // 且须返回值 null 或者 一个数据对象
+      // 数据对象中如果包含了state中相同的 key 则初始化和后面的数据更新，将以数据对象为准
+      static getDerivedStateFromProps(props,state){
+        console.log('getDerivedStateFromProps',props,state);
+        return null // 则数据不受影响, 不加此钩子 默认为 null
+        /*
+        return {count: 100} 
+          如果 state 中含有 count 这个key 则count这个字段不会更新 始终为100
+          初始化时 count也为 100
+        */
+
+        /*
+         return props
+          钩子中能获取父组件传过来的props 和 当前组 state
+          如果这个组件的数据，要从父组件传过来使用，则直接反回 props
+          可以用来替代state，两个数据互不关扰，只会被替代
+          如在修改state时，不影响此数据
+        */
+      }
+      ```
+    - getSnapshotBeforeUpdate
+      - 在更新钩子前执行
+      ```javascript
+      //在更新之前获取快照
+      getSnapshotBeforeUpdate(){
+        console.log('getSnapshotBeforeUpdate');
+        // 必须要有返回值，可反回null
+        // return null
+        return {
+          scrollTop: 100
+        }
+
+        // 更新前获取的快照信息，返回给 componentDidUpdate 钩子当第三个参数调用
+        // 快照信息可以获取，更新前的一些信息，如滚动条位置，节点高度等等
+      }
+      ```  
