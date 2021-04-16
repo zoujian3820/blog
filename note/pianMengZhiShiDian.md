@@ -147,3 +147,13 @@
     }
   }
   ```
+## 代码触发原生事件
+```javascript
+// target html节点
+// evtName 事件名 如 input
+export function dispatchEvent(target, evtName) {
+  const evt = document.createEvent('HTMLEvents')
+  evt.initEvent(evtName, true, true)
+  target.dispatchEvent(evt)
+}
+```
