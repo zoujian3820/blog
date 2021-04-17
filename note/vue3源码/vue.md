@@ -463,14 +463,14 @@ export const createApp = ((...args) => {
   - 承接上面的流程 setupComponent 组件的安装
   
     ```typescript
-  export function setupComponent(
+    export function setupComponent(
       instance: ComponentInternalInstance,
       isSSR = false
     ) {
       isInSSRComponentSetup = isSSR
     
       const { props, children } = instance.vnode
-    const isStateful = isStatefulComponent(instance)
+      const isStateful = isStatefulComponent(instance)
       // 处理props
       initProps(instance, props, isStateful, isSSR)
       // 处理插槽
@@ -603,9 +603,6 @@ export const createApp = ((...args) => {
           } = options
         ```
   
-        
-
-
 
 ### 注册全局方法
 
