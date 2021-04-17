@@ -43,7 +43,9 @@ https://zoujian3820.github.io/blog/
 - [git笔记](note/git/README.md)
 - [linux相关](note/linux/README.md)
 - [数据库](note/数据库/mysql.md)
-- [vue源码](note/vue源码/vue.md)
+- [vue2.0源码](note/vue源码/vue.md)
+- [vue3.0源码](note/vue3源码/vue.md)
+- [react](note/react/react-note.md)
 
 
 #### md目录生成脚本

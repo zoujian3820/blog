@@ -1,10 +1,4 @@
-<!--
- * @Author: mrzou
- * @Date: 2021-04-07 17:30:01
- * @LastEditors: mrzou
- * @LastEditTime: 2021-04-15 12:49:34
- * @Description: file content
--->
+
 ## jsx规则
 - 1.定议虚拟DOM时，不要写引号
 - 2.标签中混入js表达式时要用{}
@@ -202,7 +196,7 @@ class Demo extends React.Component{
       // 且是顶级容器
       ReactDOM.unmountComponentAtNode(document.getElementById('test'))
       ```
-      
+    
   - 控制组件更新的“阀门”
     ```javascript
     shouldComponentUpdate(){
@@ -234,7 +228,7 @@ class Demo extends React.Component{
       // snapshotValue   更新前获取的快照信息，由getSnapshotBeforeUpdate钩子返回
       // 快照信息可以获取，更新前的一些信息，如滚动条位置，节点高度等等
     }
-    ```  
+    ```
 
   - 组件将要到接收  父组件新的props  时触发的钩子
     - 此钩子将来可能废弃
@@ -251,14 +245,14 @@ class Demo extends React.Component{
     UNSAFE_componentWillReceiveProps(props){
       console.log('B---componentWillReceiveProps',props);
     }
-    ``` 
+    ```
 
   - 组件将要卸载 执行的钩子函数 react设计上无componentDidUnmount 因为卸载后再操作无意义
     ```javascript
     componentWillUnmount(){
       console.log('组件将要卸载');
     }
-    ```  
+    ```
   - 初始化渲染 或 状态更新之后 执行的钩子函数
     ```javascript
     render(){
@@ -317,7 +311,7 @@ class Demo extends React.Component{
         // 更新前获取的快照信息，返回给 componentDidUpdate 钩子当第三个参数调用
         // 快照信息可以获取，更新前的一些信息，如滚动条位置，节点高度等等
       }
-      ```  
+      ```
 
 ## create-react-app 脚手架
 - 入口html文件  public/index.html
@@ -349,6 +343,7 @@ class Demo extends React.Component{
     </body>
   </html>
   ```
+
 ## 脚手架配置代理
 - 单个代理 使用package.json 中的 proxy 字段
   ```json
@@ -387,3 +382,23 @@ class Demo extends React.Component{
   说明：
   1. 优点：可以配置多个代理，可以灵活的控制请求是否走代理。
   2. 缺点：配置繁琐，前端请求资源时必须加前缀。
+
+## css in js(css模块化)
+- css文件命名规则, 需带上module
+  - index.module.css
+  ```javascript
+  import Hello from './index.module.css'
+  // index.module.css
+  .title{
+    color: #333;
+  }
+  
+  // jsx
+  render(){
+    return <div className={Hello.title}>hello</div>
+  }
+  ```
+
+## 快捷键生成jsx代码片段
+- rcc
+- rfc
