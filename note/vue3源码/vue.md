@@ -642,34 +642,34 @@ export const createApp = ((...args) => {
 
   - app.config.globalProperties 需在app挂载前使用
 
-  ```javascript
-  const app = createApp(App)
-  app.config.globalProperties.http = () => {}
-  app.mount('#app')
-  
-  import { ref, computed, watch, getCurrentInstance, onMounted } from "vue";
-  export default {
-    components: {
-  	TestComp
-    },
-    setup( ) {
-      // 获取上下文实例，ctx相当于vue2的this  
-      // 但是ctx不是响应式的  
-      // proxy 是响应式的  
-      const { ctx, proxy } = getCurrentInstance(); 
-  
-      onMounted(() => {
-        // 这样在本地环境可以， 但是线上环境会报错  
-        console.log(ctx, "ctx")
-        ctx.http()
-        
-        // 下面这种才能正常使用  
-        const instance = getCurrentInstance()
-        instance.appContext.config.globalProperties.http()
-      });
-    },
-  };
-  ```
+    ```javascript
+    const app = createApp(App)
+    app.config.globalProperties.http = () => {}
+    app.mount('#app')
+    
+    import { ref, computed, watch, getCurrentInstance, onMounted } from "vue";
+    export default {
+      components: {
+      TestComp
+      },
+      setup( ) {
+        // 获取上下文实例，ctx相当于vue2的this  
+        // 但是ctx不是响应式的  
+        // proxy 是响应式的  
+        const { ctx, proxy } = getCurrentInstance(); 
+    
+        onMounted(() => {
+          // 这样在本地环境可以， 但是线上环境会报错  
+          console.log(ctx, "ctx")
+          ctx.http()
+          
+          // 下面这种才能正常使用  
+          const instance = getCurrentInstance()
+          instance.appContext.config.globalProperties.http()
+        });
+      },
+    };
+    ```
 
   
 
