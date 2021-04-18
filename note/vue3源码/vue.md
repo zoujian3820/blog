@@ -414,7 +414,7 @@ export const createApp = ((...args) => {
       parentComponent,
       parentSuspense
     ))
-
+  
     // inject renderer internals for keepAlive
     if (isKeepAlive(initialVNode)) {
       ;(instance.ctx as KeepAliveContext).renderer = internals
@@ -459,9 +459,9 @@ export const createApp = ((...args) => {
     )
   }
   ```
-  
+
   - 承接上面的流程 setupComponent 组件的安装
-  
+
     ```typescript
     export function setupComponent(
       instance: ComponentInternalInstance,
@@ -484,9 +484,9 @@ export const createApp = ((...args) => {
       return setupResult
     }
     ```
-  
+
     - setupStatefulComponent 数据响应式处理
-  
+
       ```typescript
       function setupStatefulComponent(
         instance: ComponentInternalInstance,
@@ -563,11 +563,11 @@ export const createApp = ((...args) => {
         }
       }
       ```
-  
+
     - 接着 看 finishComponentSetup函数
-  
+
       - 内部又调用了 applyOptions(instance, Component)，兼容vue2.0处理
-  
+
         ```javascript
         const {
             // composition
@@ -602,8 +602,98 @@ export const createApp = ((...args) => {
             expose
           } = options
         ```
-  
+    
+  - 组件安装完了后 走 setupRenderEffect
 
+    ```typescript
+    // 函数内部访问到的数据有变化，则函数就会重新执行
+    // 和vue2比这里没有了watcher
+    instance.update = effect(function componentEffect() {
+      // 先获取当前根组件的vnode
+      // 其实就是执行了render函数得到了虚拟dom
+      const subTree = (instance.subTree = renderComponentRoot(instance))
+      // 初始化patch
+      // 由于初始化时，是一个 Fragment
+      // 走了patch后内部会分别对和类型节点做处理，并递归查找
+      patch(
+        null,
+        subTree, // 初始化时是一个 Fragment
+        container,
+        anchor,
+        instance,
+        parentSuspense,
+        isSVG
+      )
+    })
+    
+    // patch -> processFragment
+    
+    const processFragment = (
+      n1: VNode | null,
+      n2: VNode,
+      container: RendererElement,
+      anchor: RendererNode | null,
+      parentComponent: ComponentInternalInstance | null,
+      parentSuspense: SuspenseBoundary | null,
+      isSVG: boolean,
+      slotScopeIds: string[] | null,
+      optimized: boolean
+    ) => {
+      // 初始化时n1旧vnode传了一个null
+      // n2新vnode传了subTree过来
+      if (n1 == null) {
+        hostInsert(fragmentStartAnchor, container, anchor)
+        hostInsert(fragmentEndAnchor, container, anchor)
+        // 挂载孩子节点
+        mountChildren(
+          n2.children as VNodeArrayChildren,
+          container,
+          fragmentEndAnchor,
+          parentComponent,
+          parentSuspense,
+          isSVG,
+          slotScopeIds,
+          optimized
+        )
+      }
+    }
+    
+    // mountChildren 挂载孩子节点
+    const mountChildren: MountChildrenFn = (
+      children,
+      container,
+      anchor,
+      parentComponent,
+      parentSuspense,
+      isSVG,
+      optimized,
+      slotScopeIds,
+      start = 0
+    ) => {
+      // 遍历递归子节点分别做patch处理
+      // 至此初始化已走完
+      // patch中会根据节类型做相应处理
+      // 如文本 标签 注释等等
+      for (let i = start; i < children.length; i++) {
+        const child = (children[i] = optimized
+          ? cloneIfMounted(children[i] as VNode)
+          : normalizeVNode(children[i]))
+        patch(
+          null,
+          child,
+          container,
+          anchor,
+          parentComponent,
+          parentSuspense,
+          isSVG,
+          optimized,
+          slotScopeIds
+        )
+      }
+    }
+    ```
+
+    
 ### 注册全局方法
 
 - Vue2中可用原型，但是Vue3中不能使用了
