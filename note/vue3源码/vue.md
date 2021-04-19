@@ -691,8 +691,19 @@ export const createApp = ((...args) => {
         )
       }
     }
-    ```
 
+    // 再次的patch 将会走到 element的处理最后会执行
+    // mountElement -> 
+      el = vnode.el = hostCreateElement(
+        vnode.type as string,
+        isSVG,
+        props && props.is,
+        props
+      )
+      // 把节点insert到 container（#app） 中 且位于  anchor（应该是一个空的文本节点）节点之前
+      hostInsert(el, container, anchor)
+    ```
+    
     
 ### 注册全局方法
 
