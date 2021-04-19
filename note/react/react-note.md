@@ -402,3 +402,42 @@ class Demo extends React.Component{
 ## 快捷键生成jsx代码片段
 - rcc
 - rfc
+
+## 配合订阅与发布实现在兄弟组件之前的通讯
+- 之前兄弟组件之间通讯，可能都是通过父组件, 并采用prop的方式
+
+- 父组件把数据传给需要使用的子组件，然后再传一个修改数据的函数方法（方法里直接把子组件传来的值，赋值给当前父组件），给需要修改数据的子组件
+
+- 这样当修改数据的子组件，修改了数据后，另外一个子组件也就得到了更新
+
+- **以上方法虽然可以实现通讯，但这样会导致父组件需要做很多额外的事情，变得很庞大**
+
+  - 使用订阅与发布 pubsub-js  能把事情分离出来给需要的子组件自己管理
+
+  - 兄弟组件之前可以直接通讯了，并且不用经过父组件，使用上也简洁明了
+
+  - github地址：https://github.com/mroderick/PubSubJS
+
+    ```javascript
+    // web中使用
+    import PubSub from 'pubsub-js'
+    
+    // nodejs 中这样使用
+    const PubSub = require('pubsub-js');
+    
+    // 订阅 mySub 并返回一个当前订阅的token
+    const Token = PubSub.subscribe('mySub', (msg, data) => {  
+        // 你要做的处理 
+        // msg: 'mySub'   msg的设计是多余的，但格式如此，可以用_代替
+        // data: 为publish时传过来的数据
+    });
+    
+    // 发布（派发）mySub 这个订阅，并传递数据
+    PubSub.publish('mySub', {name: 'mrz', age: 18});
+    
+    // 取消订阅，参数为需要取消的订阅的token
+    PubSub.unsubscribe(Token);
+    ```
+
+    
+
