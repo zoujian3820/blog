@@ -439,5 +439,90 @@ class Demo extends React.Component{
     PubSub.unsubscribe(Token);
     ```
 
-    
+## react-router-dom页面路由
+- 路由器，路由放在路由器中才能正常使用
+- 路由器有两种
+  - BrowserRouter  为history模式
+  - HashRouter  为hash模式
+  ```jsx
+  // 入口文件 index.js
 
+  //引入react核心库
+  import React from 'react'
+  //引入ReactDOM
+  import ReactDOM from 'react-dom'
+  //
+  import {BrowserRouter, HashRouter} from 'react-router-dom'
+  //引入App
+  import App from './App'
+
+  // 因为所有的路由都要放在路由器 BrowserRouter 中才能工作
+  // 所以此处直接在 app的根文件上添加 BrowserRouter
+  // 这样项目中的所有路由都在路由器的包裹中
+  ReactDOM.render(
+    <BrowserRouter> // HashRouter
+      <App/>
+    </BrowserRouter>,
+    document.getElementById('root')
+  )
+  ```
+    
+- 路由注册 Route  与 路由跳转 Link
+  ```jsx
+  // App.jsx
+  import React, { Component } from 'react'
+  import {Link,Route} from 'react-router-dom'
+  import Home from './components/Home'
+  import About from './components/About'
+
+  export default class App extends Component {
+    render() {
+      return (
+        <div>
+          <div className="list-group">
+            {/* 原生html中，靠<a>跳转不同的页面 */}
+            {/* <a className="list-group-item" href="./about.html">About</a>
+            <a className="list-group-item active" href="./home.html">Home</a> */}
+
+            {/* 在React中靠路由链接实现切换组件--编写路由链接 */}
+            <Link className="list-group-item" to="/about">About</Link>
+            <Link className="list-group-item" to="/home">Home</Link>
+          </div>
+          <div className="panel-body">
+            {/* 注册路由 */}
+            <Route path="/about" component={About}/>
+            <Route path="/home" component={Home}/>
+          </div>
+        </div>
+      )
+    }
+  }
+  ```
+- 路由组件与一般组件
+  ```javascript
+  // 路由组件 props 自动会把打路由信息传入
+  this.props: {
+    history: {
+      go(){},
+      goBack(){},
+      goForward(){},
+      push(){},
+      replace(){},
+      listen(){},
+      length: 2
+    },
+    location: {
+      pathname: '/about',
+      search: '',
+      state: ''
+    },
+    match: {
+      params: {},
+      path: '/about',
+      url: '/about'
+    }
+  }
+  
+  // 一般组件 需要父组件传递prop
+  <about data={data}></about>
+  ```
