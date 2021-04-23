@@ -467,11 +467,12 @@ class Demo extends React.Component{
   )
   ```
     
-- 路由注册 Route  与 路由跳转 Link
+- 路由注册 Route  与 路由跳转 Link / NavLink
+- Link / NavLink 编绎出来就是a标签
   ```jsx
   // App.jsx
   import React, { Component } from 'react'
-  import {Link,Route} from 'react-router-dom'
+  import {Link, NavLink, Route, Switch} from 'react-router-dom'
   import Home from './components/Home'
   import About from './components/About'
 
@@ -487,11 +488,28 @@ class Demo extends React.Component{
             {/* 在React中靠路由链接实现切换组件--编写路由链接 */}
             <Link className="list-group-item" to="/about">About</Link>
             <Link className="list-group-item" to="/home">Home</Link>
+            {/* 
+              Link与NavLink区别： 
+                NavLink在点击后，默认会自动给自己加active类名className 
+                使用activeClassName="xxx" 可以设置使用其他的className 
+                不再使用默认的active 
+            */}
+            <NavLink className="list-group-item" to="/home">Home</NavLink>
+
           </div>
           <div className="panel-body">
             {/* 注册路由 */}
             <Route path="/about" component={About}/>
             <Route path="/home" component={Home}/>
+            {/*
+              使用 Switch 组件可以终止路由的向下匹配
+              匹配到第一个后，就不再向下匹配
+              这样效率比上面不用Switch的写法要高，就像find方法一样，找到第一个就停止并返回
+            */}
+            <Switch>
+              <Route path="/about" component={About}/>
+              <Route path="/home" component={Home}/>
+            </Switch>
           </div>
         </div>
       )
@@ -499,9 +517,10 @@ class Demo extends React.Component{
   }
   ```
 - 路由组件与一般组件
-  ```javascript
-  // 路由组件 props 自动会把打路由信息传入
-  this.props: {
+  ```jsx
+  // 路由组件 props 自动会把当前路由信息传入
+  // 当前路由组件 props的值如下, 使用: console.log(this.props.match.path)
+  this.props = {
     history: {
       go(){},
       goBack(){},
@@ -524,5 +543,9 @@ class Demo extends React.Component{
   }
   
   // 一般组件 需要父组件传递prop
-  <about data={data}></about>
+  // 一般组件中的props 默认有一个属性children 代表的是子节点内容
+  // 可写在组件标签中间，也可和其他属性一个写在标签上
+  <About data={data}> children子节点 </About>
+  <Home data={data} children={'children子节点'}/>
+  // 通过 this.props.children 可获取到
   ```
