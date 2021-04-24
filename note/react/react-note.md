@@ -27,7 +27,7 @@
 - 需继承React.Component
   
   - class Weather extends React.Component{}
-- 不用写构造器constructor，写了就必须写super(props)并传值
+  - 不用写构造器constructor，写了就必须写super(props)并传值
   - 写了构造器不写super会报错
   - 写了super不传值 props 实例中将获取不到props  
 - 类中定义原型方法与实例方法与实例属性加简写与props类型限制
