@@ -494,7 +494,7 @@ class Demo extends React.Component{
                 使用activeClassName="xxx" 可以设置使用其他的className 
                 不再使用默认的active 
             */}
-            <NavLink className="list-group-item" to="/home">Home</NavLink>
+            <NavLink activeClassName="active22" className="list-group-item" to="/home">Home</NavLink>
 
           </div>
           <div className="panel-body">
@@ -549,3 +549,48 @@ class Demo extends React.Component{
   <Home data={data} children={'children子节点'}/>
   // 通过 this.props.children 可获取到
   ```
+## 样式丢失问题
+```html
+<!-- 
+  1. 写绝对路径 %PUBLIC_URL% : 代表当前public这个目录绝对路径, 仅在react脚手架中 （常用）
+  2. 不要在写 ./ 要写 /   ./表示以当前页面地址为根路径的基础上的相对路径， / 表示以域名地址为根路径  （常用）
+  3. 如果一定要用 ./ 则需改用 hash路由  <HashRouter></HashRouter>
+ -->
+<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+<link rel="stylesheet" href="/css/bootstrap.css">
+
+ReactDOM.render(
+  <BrowserRouter>
+    <App/>
+  </BrowserRouter>,
+  document.getElementById('root')
+)
+```
+
+## 路由的模糊匹配与严格匹配
+
+```jsx
+// exact为严格匹配：则link中to的路径要和Route中的path相等，才匹配
+// 不给Route添加exact属性为默认 模糊匹配：顺序一致, 只要开头对的上，就匹配  如 /home/a/b  /home 匹配上了 /home
+// 严格匹配不要随便开启，需要再开，有些时候开启会导致无法继续匹配二级路由
+<NavLink to="/home/a/b">Home</NavLink>
+<div className="panel-body">
+  {/* 注册路由 */}
+  <Switch>
+    <Route exact path="/home" component={About}/>
+  </Switch>
+</div>
+```
+## Redirect的使用	(重定向)
+```jsx
+// 1.一般写在所有路由注册的最下方，当所有路由都无法匹配时，跳转到Redirect指定的路由
+// 2.具体编码：
+import {Route, Switch, Redirect} from 'react-router-dom'
+// 如当前 浏览器中地址输入 localhost:3000
+// 前面两路由都将不匹配，最后匹配到了Redirect 所以会打开about页面
+<Switch>
+  <Route path="/about" component={About}/>
+  <Route path="/home" component={Home}/>
+  <Redirect to="/about"/>
+</Switch>
+```
