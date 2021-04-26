@@ -594,3 +594,81 @@ import {Route, Switch, Redirect} from 'react-router-dom'
   <Redirect to="/about"/>
 </Switch>
 ```
+
+## 嵌套路由
+
+- 1. 注册子路由时要写上父路由的path值
+- 2. 路由的匹配是按照注册路由的顺序进行的
+
+## 向路由组件传递参数
+
+```jsx
+1.params参数
+  路由链接(携带参数)：<Link to='/demo/test/mrzou/18'}>详情</Link>
+  注册路由(声明接收)：<Route path="/demo/test/:name/:age" component={Test}/>
+  接收参数：this.props.match.params
+2.search参数
+  路由链接(携带参数)：<Link to='/demo/test?name=mrzou&age=18'}>详情</Link>
+  注册路由(无需声明，正常注册即可)：<Route path="/demo/test" component={Test}/>
+  接收参数：this.props.location.search
+  备注：获取到的search是urlencoded编码字符串，需要借助querystring解析
+3.state参数
+  路由链接(携带参数)：<Link to={{pathname:'/demo/test', state:{name:'mrzou',age:18}}}>详情</Link>
+  注册路由(无需声明，正常注册即可)：<Route path="/demo/test" component={Test}/>
+  接收参数：this.props.location.state
+  备注：刷新也可以保留住参数
+```
+
+## 编程式路由导航
+
+借助this.prosp.history对象上的API对操作路由跳转、前进、后退
+- this.prosp.history.push()
+  ```javascript
+  // params参数
+  this.prosp.history.push('/demo/test/mrzou/18')
+  // search参数
+  this.prosp.history.push('/demo/test?name=mrzou&age=18')
+  // state参数
+  this.prosp.history.push('/demo/test', {name: 'mrzou', age: 18})
+  ```
+- this.prosp.history.replace()
+- this.prosp.history.goBack()
+- this.prosp.history.goForward()
+- this.prosp.history.go()
+
+## withRouter
+正常情况下编程式路由导航只有在路由组件中调用
+因为一般组件的props中不会自动注入路由信息
+想要在一般组件中使用编程路由  需要使用withRouter方法(虽然也是从react-router-dom中导出，但非组件，组件首字母为大写，所以只能当函数使用) 
+
+- withRouter可以加工一般组件，让一般组件具备路由组件所特有的API
+- withRouter的返回值是一个新组件
+  ```jsx
+  import React, { Component } from 'react'
+  import {withRouter} from 'react-router-dom'
+
+  class Header extends Component {
+    back = ()=>{
+      this.props.history.goBack()
+    }
+    forward = ()=>{
+      this.props.history.goForward()
+    }
+    go = ()=>{
+      this.props.history.go(-2)
+    }
+    render() {
+      console.log('Header组件收到的props是',this.props);
+      return (
+        <div className="page-header">
+          <h2>React Router Demo</h2>
+          <button onClick={this.back}>回退</button>&nbsp;
+          <button onClick={this.forward}>前进</button>&nbsp;
+          <button onClick={this.go}>go</button>
+        </div>
+      )
+    }
+  }
+
+  export default withRouter(Header)
+  ```
