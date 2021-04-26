@@ -38,6 +38,7 @@
         // const initial = window.location.hash.slice(1) || "/";
         // Vue.util.defineReactive(this, "current", initial);
         this.current = window.location.hash.slice(1) || "/";
+        // defineReactive 内部有依赖收集能把数据转为响应式
         Vue.util.defineReactive(this, "matched", []);
         // match方可以递归遍历路由表，获得匹配关系数组
         this.match();
