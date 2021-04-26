@@ -38,7 +38,9 @@
         // const initial = window.location.hash.slice(1) || "/";
         // Vue.util.defineReactive(this, "current", initial);
         this.current = window.location.hash.slice(1) || "/";
-        // defineReactive 内部有依赖收集能把数据转为响应式
+        // defineReactive 内部有依赖收集, 能把数据转为响应式
+        // 所以有调用 this.matched的地方，只要matched发生更改，就会触发更新
+        // 所以matched发生更改  render函数就重新执行，组件也就重新渲染了
         Vue.util.defineReactive(this, "matched", []);
         // match方可以递归遍历路由表，获得匹配关系数组
         this.match();
