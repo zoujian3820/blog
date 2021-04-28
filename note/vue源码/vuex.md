@@ -17,6 +17,44 @@
 - install
     - Vue.prototype.$store    
     
+- use demo
+  ```javascript
+  const store = new Vuex.Store({
+    state: {
+      count: 1
+    },
+    mutations: {
+      increment (state, payload) {
+        // 变更状态
+        state.count += payload.amount
+      }
+    },
+    actions: {
+      incrementAsync (context, payload) {
+        setTimeout(() => {
+          context.commit('increment', payload)
+        }, 1000)
+      }
+    }
+  })
+
+  // Mutation
+    store.commit('increment', ) // 11
+    // 对象风格的提交方式
+    store.commit({
+      type: 'increment',
+      amount: 10
+    })
+
+  // Actions
+    store.dispatch('incrementAsync', {amount: 10})
+    // 对象风格的提交方式
+    store.dispatch({
+      type: 'incrementAsync',
+      amount: 10
+    })
+  ```
+
 - 代码块
     ```javascript
     // 1.插件：挂载$store
