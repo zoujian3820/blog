@@ -11,7 +11,7 @@
  * @Author: mrzou
  * @Date: 2021-04-12 12:45:22
  * @LastEditors: mrzou
- * @LastEditTime: 2021-05-07 22:28:21
+ * @LastEditTime: 2021-05-07 22:31:41
  * @Description: file content
 -->
 
@@ -53,22 +53,22 @@
   ```
 
 - 使用new Function
-```javascript
-const print = new Function(
-  'obj',
-  'return `${Object.keys(obj).map(key => obj[key])}`'
-)
-print({num: 63}) // 66
+  ```javascript
+  const print = new Function(
+    'obj',
+    'return `${Object.keys(obj).map(key => obj[key])}`'
+  )
+  print({num: 63}) // 66
 
-const aa = 'name'
-const gg = 'age'
-const print1 = new Function(
-  'obj',
-  'return `${' +
-    'Object.keys(obj).map(key => {' +
-      'return obj['+JSON.stringify(aa)+']['+JSON.stringify(gg)+']' +
-    '})' +
-  '}`'
-)
-print1({name: {age: 666}}) // 666
-```
+  const aa = 'name'
+  const gg = 'age'
+  const print1 = new Function(
+    'obj',
+    'return `${' +
+      'Object.keys(obj).map(key => {' +
+        'return obj['+JSON.stringify(aa)+']['+JSON.stringify(gg)+']' +
+      '})' +
+    '}`'
+  )
+  print1({name: {age: 666}}) // 666
+  ```
