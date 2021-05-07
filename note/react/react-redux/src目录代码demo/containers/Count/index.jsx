@@ -62,6 +62,16 @@ export default connect(
 		count:state.count,
 		personCount:state.persons.length
 	}),
+	/*
+  // mapDispatchToProps的一般写法
+  dispatch => ({
+		increment: (number) => dispatch(increment(number)),
+		decrement: (number) => dispatch(decrement(number)),
+		incrementAsync: (number,time) => dispatch(incrementAsync(number,time)),
+	})
+  */
+
+  // mapDispatchToProps的简写
 	{increment,decrement,incrementAsync}
 )(Count)
 
