@@ -6,11 +6,13 @@
 	(1). setState(stateChange, [callback])------对象式的setState
             1.stateChange为状态改变对象(该对象可以体现出状态的更改)
             2.callback是可选的回调函数, 它在状态更新完毕、界面也更新后(render调用后)才被调用
+            this.setState({xxx: 666}, () => {})
 					
 	(2). setState(updater, [callback])------函数式的setState
             1.updater为返回stateChange对象的函数。
             2.updater可以接收到state和props。
             4.callback是可选的回调函数, 它在状态更新、界面也更新后(render调用后)才被调用。
+            this.setState((state, props) => ({xxx: state.count + 1}), () => {})
 总结:
 		1.对象式的setState是函数式的setState的简写方式(语法糖)
 		2.使用原则：
@@ -31,6 +33,7 @@
 ### 路由组件的lazyLoad
 
 ```js
+  import React, { Component, lazy, Suspense } from 'react'
 	//1.通过React的lazy函数配合import()函数动态加载路由组件 ===> 路由组件代码会被分开打包
 	const Login = lazy(()=>import('@/pages/Login'))
 	
