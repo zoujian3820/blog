@@ -19,6 +19,7 @@
   - [导入和导出容器](#%E5%AF%BC%E5%85%A5%E5%92%8C%E5%AF%BC%E5%87%BA%E5%AE%B9%E5%99%A8)
   - [搭建本地私有仓库](#%E6%90%AD%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93)
   - [数据卷](#%E6%95%B0%E6%8D%AE%E5%8D%B7)
+  - [自定义 MySQL 镜像](#%E8%87%AA%E5%AE%9A%E4%B9%89-mysql-%E9%95%9C%E5%83%8F)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

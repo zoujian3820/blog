@@ -3,7 +3,11 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [安装nvm管理node版本](#%E5%AE%89%E8%A3%85nvm%E7%AE%A1%E7%90%86node%E7%89%88%E6%9C%AC)
-  - [安装 nrm](#%E5%AE%89%E8%A3%85-nrm)
+  - [window装nvm](#window%E8%A3%85nvm)
+  - [linux安装nvm](#linux%E5%AE%89%E8%A3%85nvm)
+- [安装 nrm](#%E5%AE%89%E8%A3%85-nrm)
+  - [window安装nrm](#window%E5%AE%89%E8%A3%85nrm)
+  - [linux安装nrm](#linux%E5%AE%89%E8%A3%85nrm)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

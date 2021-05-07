@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [使用 Settings Sync 插件，把 vscode 插件等配置保存在 GitHub 上](#%E4%BD%BF%E7%94%A8-settings-sync-%E6%8F%92%E4%BB%B6%E6%8A%8A-vscode-%E6%8F%92%E4%BB%B6%E7%AD%89%E9%85%8D%E7%BD%AE%E4%BF%9D%E5%AD%98%E5%9C%A8-github-%E4%B8%8A)
+- [插件推荐](#%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 <!--
  * @Author: your name
  * @Date: 2021-04-02 10:59:23

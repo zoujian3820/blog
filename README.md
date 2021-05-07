@@ -1,8 +1,8 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-29 10:06:24
- * @LastEditTime: 2021-04-02 13:47:22
- * @LastEditors: your name
+ * @LastEditTime: 2021-05-07 14:19:06
+ * @LastEditors: mrzou
  * @Description: In User Settings Edit
  * @FilePath: \blog\README.md
 -->
@@ -45,7 +45,7 @@ https://zoujian3820.github.io/blog/
 - [数据库](note/数据库/mysql.md)
 - [vue2.0源码](note/vue源码/vue.md)
 - [vue3.0源码](note/vue3源码/vue.md)
-- [react](note/react/react-note.md)
+- [react](note/react/index.md)
 
 
 #### md目录生成脚本

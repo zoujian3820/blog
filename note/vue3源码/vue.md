@@ -1,3 +1,19 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [vue3源码解析](#vue3%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90)
+  - [依赖安装](#%E4%BE%9D%E8%B5%96%E5%AE%89%E8%A3%85)
+  - [准备调试](#%E5%87%86%E5%A4%87%E8%B0%83%E8%AF%95)
+  - [入口文件](#%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6)
+  - [createApp方法](#createapp%E6%96%B9%E6%B3%95)
+  - [承接上面，执行挂载操作mount](#%E6%89%BF%E6%8E%A5%E4%B8%8A%E9%9D%A2%E6%89%A7%E8%A1%8C%E6%8C%82%E8%BD%BD%E6%93%8D%E4%BD%9Cmount)
+  - [注册全局方法](#%E6%B3%A8%E5%86%8C%E5%85%A8%E5%B1%80%E6%96%B9%E6%B3%95)
+  - [xxxx](#xxxx)
+  - [xxxx](#xxxx-1)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## vue3源码解析
 
 ### 依赖安装 
@@ -773,8 +789,6 @@ export const createApp = ((...args) => {
     ```
 
   
-
-### xxxx
 
 ### xxxx
 

@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [简易版 Vue 实现](#%E7%AE%80%E6%98%93%E7%89%88-vue-%E5%AE%9E%E7%8E%B0)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## 简易版 Vue 实现
 
 - 编译器原理

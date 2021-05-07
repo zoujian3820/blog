@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [setState更新状态的2种写法](#setstate%E6%9B%B4%E6%96%B0%E7%8A%B6%E6%80%81%E7%9A%842%E7%A7%8D%E5%86%99%E6%B3%95)
+- [路由组件的lazy懒加载](#%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6%E7%9A%84lazy%E6%87%92%E5%8A%A0%E8%BD%BD)
+- [React Hook/Hooks是什么?](#react-hookhooks%E6%98%AF%E4%BB%80%E4%B9%88)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 <!--
  * @Author: mrzou
  * @Date: 2021-05-07 12:53:20

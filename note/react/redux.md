@@ -1,3 +1,20 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [redux](#redux)
+  - [项目入口](#%E9%A1%B9%E7%9B%AE%E5%85%A5%E5%8F%A3)
+    - [App.jsx](#appjsx)
+    - [index.js](#indexjs)
+  - [redux配置](#redux%E9%85%8D%E7%BD%AE)
+    - [store.js](#storejs)
+    - [constant.js](#constantjs)
+    - [reducer.js](#reducerjs)
+    - [action.js](#actionjs)
+  - [组件内部使用](#%E7%BB%84%E4%BB%B6%E5%86%85%E9%83%A8%E4%BD%BF%E7%94%A8)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 <!--
  * @Author: mrzou
  * @Date: 2021-04-28 13:39:22

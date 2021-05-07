@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [分析defineReactive函数 并实现数据劫持函数observe](#%E5%88%86%E6%9E%90definereactive%E5%87%BD%E6%95%B0-%E5%B9%B6%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E5%8A%AB%E6%8C%81%E5%87%BD%E6%95%B0observe)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## 分析defineReactive函数 并实现数据劫持函数observe
 - 核心使用 defineProperty 实现数据的获取与修改监听 (get/set)， Vue3使用了Proxy
 - 使用闭包原理 把形参 val 转换成了内部私有变量， 便于set(修改)后，get(获取)能拿到最新修改的值

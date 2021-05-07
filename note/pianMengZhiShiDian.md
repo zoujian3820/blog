@@ -12,6 +12,7 @@
 - [js中偏门一些的知识点记录下](#js%E4%B8%AD%E5%81%8F%E9%97%A8%E4%B8%80%E4%BA%9B%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AE%B0%E5%BD%95%E4%B8%8B)
   - [e.target与e.currentTarget的区别](#etarget%E4%B8%8Eecurrenttarget%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [宏任务（macrotask）与微任务（microtask）](#%E5%AE%8F%E4%BB%BB%E5%8A%A1macrotask%E4%B8%8E%E5%BE%AE%E4%BB%BB%E5%8A%A1microtask)
+  - [代码触发原生事件](#%E4%BB%A3%E7%A0%81%E8%A7%A6%E5%8F%91%E5%8E%9F%E7%94%9F%E4%BA%8B%E4%BB%B6)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

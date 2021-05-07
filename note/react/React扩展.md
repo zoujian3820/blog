@@ -1,3 +1,44 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [1. setState](#1-setstate)
+  - [setState更新状态的2种写法](#setstate%E6%9B%B4%E6%96%B0%E7%8A%B6%E6%80%81%E7%9A%842%E7%A7%8D%E5%86%99%E6%B3%95)
+- [2. lazyLoad](#2-lazyload)
+  - [路由组件的lazyLoad](#%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6%E7%9A%84lazyload)
+- [3. Hooks](#3-hooks)
+    - [1. React Hook/Hooks是什么?](#1-react-hookhooks%E6%98%AF%E4%BB%80%E4%B9%88)
+    - [2. 三个常用的Hook](#2-%E4%B8%89%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84hook)
+    - [3. State Hook](#3-state-hook)
+    - [4. Effect Hook](#4-effect-hook)
+    - [5. Ref Hook](#5-ref-hook)
+- [4. Fragment](#4-fragment)
+  - [使用](#%E4%BD%BF%E7%94%A8)
+  - [作用](#%E4%BD%9C%E7%94%A8)
+- [5. Context](#5-context)
+  - [理解](#%E7%90%86%E8%A7%A3)
+  - [使用](#%E4%BD%BF%E7%94%A8-1)
+  - [注意](#%E6%B3%A8%E6%84%8F)
+- [6. 组件优化](#6-%E7%BB%84%E4%BB%B6%E4%BC%98%E5%8C%96)
+  - [Component的2个问题](#component%E7%9A%842%E4%B8%AA%E9%97%AE%E9%A2%98)
+  - [效率高的做法](#%E6%95%88%E7%8E%87%E9%AB%98%E7%9A%84%E5%81%9A%E6%B3%95)
+  - [原因](#%E5%8E%9F%E5%9B%A0)
+  - [解决](#%E8%A7%A3%E5%86%B3)
+- [7. render props](#7-render-props)
+  - [如何向组件内部动态传入带内容的结构(标签)?](#%E5%A6%82%E4%BD%95%E5%90%91%E7%BB%84%E4%BB%B6%E5%86%85%E9%83%A8%E5%8A%A8%E6%80%81%E4%BC%A0%E5%85%A5%E5%B8%A6%E5%86%85%E5%AE%B9%E7%9A%84%E7%BB%93%E6%9E%84%E6%A0%87%E7%AD%BE)
+  - [children props](#children-props)
+  - [render props](#render-props)
+- [8. 错误边界](#8-%E9%94%99%E8%AF%AF%E8%BE%B9%E7%95%8C)
+    - [理解：](#%E7%90%86%E8%A7%A3)
+    - [特点：](#%E7%89%B9%E7%82%B9)
+      - [使用方式：](#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F)
+- [9. 组件通信方式总结](#9-%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93)
+    - [组件间的关系：](#%E7%BB%84%E4%BB%B6%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB)
+    - [几种通信方式：](#%E5%87%A0%E7%A7%8D%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F)
+    - [比较好的搭配方式：](#%E6%AF%94%E8%BE%83%E5%A5%BD%E7%9A%84%E6%90%AD%E9%85%8D%E6%96%B9%E5%BC%8F)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## 1. setState
 
 ### setState更新状态的2种写法

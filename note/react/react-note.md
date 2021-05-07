@@ -1,3 +1,28 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [jsx规则](#jsx%E8%A7%84%E5%88%99)
+- [实例组件](#%E5%AE%9E%E4%BE%8B%E7%BB%84%E4%BB%B6)
+- [函数式组件](#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6)
+- [ref的使用](#ref%E7%9A%84%E4%BD%BF%E7%94%A8)
+- [react组件生命周期](#react%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
+- [create-react-app 脚手架](#create-react-app-%E8%84%9A%E6%89%8B%E6%9E%B6)
+- [脚手架配置代理](#%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86)
+- [css in js(css模块化)](#css-in-jscss%E6%A8%A1%E5%9D%97%E5%8C%96)
+- [快捷键生成jsx代码片段](#%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%94%9F%E6%88%90jsx%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5)
+- [配合订阅与发布实现在兄弟组件之前的通讯](#%E9%85%8D%E5%90%88%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83%E5%AE%9E%E7%8E%B0%E5%9C%A8%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B6%E4%B9%8B%E5%89%8D%E7%9A%84%E9%80%9A%E8%AE%AF)
+- [react-router-dom页面路由](#react-router-dom%E9%A1%B5%E9%9D%A2%E8%B7%AF%E7%94%B1)
+- [样式丢失问题](#%E6%A0%B7%E5%BC%8F%E4%B8%A2%E5%A4%B1%E9%97%AE%E9%A2%98)
+- [路由的模糊匹配与严格匹配](#%E8%B7%AF%E7%94%B1%E7%9A%84%E6%A8%A1%E7%B3%8A%E5%8C%B9%E9%85%8D%E4%B8%8E%E4%B8%A5%E6%A0%BC%E5%8C%B9%E9%85%8D)
+- [Redirect的使用	(重定向)](#redirect%E7%9A%84%E4%BD%BF%E7%94%A8%09%E9%87%8D%E5%AE%9A%E5%90%91)
+- [嵌套路由](#%E5%B5%8C%E5%A5%97%E8%B7%AF%E7%94%B1)
+- [向路由组件传递参数](#%E5%90%91%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0)
+- [编程式路由导航](#%E7%BC%96%E7%A8%8B%E5%BC%8F%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%88%AA)
+- [withRouter](#withrouter)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 ## jsx规则
 - 1.定议虚拟DOM时，不要写引号

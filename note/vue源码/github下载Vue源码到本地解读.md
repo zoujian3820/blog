@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [搭建调试环境](#%E6%90%AD%E5%BB%BA%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83)
+- [调试技巧](#%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7)
+- [阅读的源码版本 umd 版本](#%E9%98%85%E8%AF%BB%E7%9A%84%E6%BA%90%E7%A0%81%E7%89%88%E6%9C%AC-umd-%E7%89%88%E6%9C%AC)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## 搭建调试环境
 - 获取地址：https://github.com/vuejs/vue
 - 安装依赖：npm i
