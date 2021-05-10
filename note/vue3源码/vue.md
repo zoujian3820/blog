@@ -67,7 +67,7 @@ yarn --ignore-scripts
 ### createApp方法
 
 ```javascript
-// runtime-dom.ts
+// runtime-dom\src\index.ts
 export const createApp = ((...args) => {
    // 首先获取一个渲染器
    // 实际上createApp方法是由渲染器提供的
