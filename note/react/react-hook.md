@@ -12,7 +12,7 @@
  * @Author: mrzou
  * @Date: 2021-05-07 12:53:20
  * @LastEditors: mrzou
- * @LastEditTime: 2021-05-07 13:04:38
+ * @LastEditTime: 2021-05-10 13:17:13
  * @Description: file content
 -->
 ### setState更新状态的2种写法
@@ -55,4 +55,33 @@
   - Ref Hook: React.useRef()
 
   #### State Hook
-  
+  - React.useState
+    ```jsx
+      import React from 'react'
+      export function Demo() {
+        // React.useState(0) 返回值是一个2个元素的数组（2元素为：当前值和更改值的方法），传入的参数0为初始值 
+        // const [当前值, 更改值的方法] = React.useState(0)
+        // React.useState 在第一次调用时React内部就给值，做了缓存处理，当组件更新再调时不会走初始化，所以值不会重新改为0
+        const [count, setCount] = React.useState(0)
+        const [name, setName] = React.useState('mzou')
+        
+        function add() {
+          // setCount(count + 1)
+          // 第二种写法, 传入一个函数，函数参数返回当前值，再return 你修改的值
+          setCount(count => count + 1)
+        }
+        
+        function chageName() {
+          setName('汤哥')
+        }
+
+        return (
+          <div>
+            <h2>当前求和为: {count}</h2>
+            <h2>我的名字为: {name}</h2>
+            <button onClick={add}>点我加1</button>
+            <button onClick={chageName}>点我改名</button>
+          </div>
+        )
+      }
+    ```
