@@ -12,7 +12,7 @@
  * @Author: mrzou
  * @Date: 2021-05-07 12:53:20
  * @LastEditors: mrzou
- * @LastEditTime: 2021-05-10 13:17:13
+ * @LastEditTime: 2021-05-11 12:56:05
  * @Description: file content
 -->
 ### setState更新状态的2种写法
@@ -54,7 +54,7 @@
   - Effect Hook: React.useEffect()
   - Ref Hook: React.useRef()
 
-  #### State Hook
+  #### State Hook 在函数组件中 模似类组件的 setState
   - React.useState
     ```jsx
       import React from 'react'
@@ -81,6 +81,64 @@
             <h2>我的名字为: {name}</h2>
             <button onClick={add}>点我加1</button>
             <button onClick={chageName}>点我改名</button>
+          </div>
+        )
+      }
+    ```
+
+  #### Effect Hook 可以在函数组件中 模似类组件的生命周期
+  - React.useEffect
+    - 模似三个生命周期
+      - componentDidMount
+      - componentDidUpdate
+      - componentWillUnmount
+    ```jsx
+      import React from 'react'
+      export function Demo() {
+        const [count, setCount] = React.useState(0)
+
+        // React.useEffect 有两参数
+          // 第一个为回调
+          // 第二个为一个数组, 元素为需要监听的数据名称key(可多个) 只要当前监听的数据变更，就执行回调（相当于componentDidUpdate）
+          // 不传第二个参数，则监听所有数据的变更并执行回调
+          // 第二参如传空数组，则不监听数据变更，只在组件挂载时执行一次（相当于componentDidMount）
+        React.useEffect(() => {
+          const timer = setInterval(() => {
+            setCount(count+1)
+          }, 1000)
+          return () => {
+            // return 的函数 相当于 componentWillUnmount
+            // 可以做一些收尾工作 如清除定时器等
+            clearInterval(timer)
+          }
+        }, ['count'])
+
+        return (
+          <div>
+            <h2>当前求和为: {count}</h2>
+          </div>
+        )
+      }
+    ```
+
+  #### Ref Hook 可以在函数组件中 模似类组件的ref  功能与React.createRef()一样
+  - React.useRef
+    ```jsx
+      import React from 'react'
+      export function Demo() {
+        const [count, setCount] = React.useState(0)
+
+        const myRef = React.useRef()
+
+        function show() {
+          alert(myRef.current.value)
+        }
+
+        return (
+          <div>
+            <input type="text" ref={myRef} />
+            <h2>当前求和为: {count}</h2>
+            <button onClick={show}>点我提示数据</button>
           </div>
         )
       }
