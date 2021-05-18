@@ -12,7 +12,7 @@
  * @Author: mrzou
  * @Date: 2021-05-11 13:01:39
  * @LastEditors: mrzou
- * @LastEditTime: 2021-05-12 13:12:00
+ * @LastEditTime: 2021-05-18 17:54:48
  * @Description: file content
 -->
 ### React的 Fragment Context PureComponent renderProps ErrorBoundary 使用方法
@@ -121,3 +121,64 @@
     )
   }
   ```
+
+#### PureComponent 优化组件的更新 仅适用于类组件 函数组件用 memo
+> Component的2个问题 
+> 1. 只要执行setState() 即使不改变状态数据, 组件也会重新render() ==> 效率低
+> 2. 只当前组件重新render() 就会自动重新render子组件，纵使子组件没有用到父组件的任何数据 ==> 效率低
+  - 原因是 Component中的shouldComponentUpdate()总是返回true
+  - 效率高的做法
+    - 只有当组件的state或props数据发生改变时才重新render()
+    
+  - 解决办法
+    - 1. 控制 shouldComponentUpdate 中的返回值 但如果值有多个属性 处理起来就会很麻烦
+    - 2. PureComponent 其内部 重写了shouldComponentUpdate() 只有state或props数据有变化才返回true
+    ```jsx
+      import React, { Component, PureComponent } from 'react'
+      export default class Demo extends PureComponent{
+        state = {carName: '奔驰大G', a: '66', b: '88'}
+        changeCar = () => {
+          //this.setState({})
+          
+          //this.setState({carName: '兰博大牛'})
+
+          // PureComponent 有个问题 它底层只做了一个浅对比
+          // 所以遇到以下情况时，setState将不触发更新 
+          // 原因是 obj 是一个对象的引用地址  先给obj 赋值后 再setState  
+          // PureComponent 此时内部会当把之前和下一个的props和state作比较，浅比较将检查原始值是否有相同的值（例如：1 == 1或者ture==true）,数组和对象引用是否相同。
+          const obj = this.state
+          obj.carName = 'haha'
+          this.setState(obj)
+        }
+        /*
+        shouldComponentUpdate(nextProps, nextState) {
+          // 目前的 props 和 state
+          console.log(this.props, this.state)
+          // 接下来要更新成的 目标props 和 目标state
+          console.log(nextProps, nextState)
+          return this.state.carName !== nextState.carName
+        }
+        */
+        render(){
+          return(
+           <div className="parent">
+            <h2>我是父组件  我的车名是 {this.carName}</h2>
+            <button onClick={this.changeCar}>点我换车</button>
+            <Child carName="奇瑞QQ" />
+           </div>
+          )
+        }
+      }
+
+      // class Child extends Component{
+      class Child extends PureComponent{
+        render(){
+          return(
+           <div className="parent">
+            <h2>我是child组件</h2>
+            <div>我接收到的车名为：{this.props.carName}</div>
+           </div>
+          )
+        }
+      }
+    ```
