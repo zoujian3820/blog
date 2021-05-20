@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-29 10:06:24
- * @LastEditTime: 2021-05-07 14:19:06
+ * @LastEditTime: 2021-05-19 15:26:05
  * @LastEditors: mrzou
  * @Description: In User Settings Edit
  * @FilePath: \blog\README.md
@@ -38,7 +38,7 @@ https://zoujian3820.github.io/blog/
 - [commitlint+husky规范git commit日志](note/pre-commit.md)
 - [webstorm+Prettier+ESLint实现保存格式化代码](note/webstorm+Prettier+ESLint.md)
 - [vscode开发环境配置](note/vscode-config.md)
-- [js中偏门一些的知识点记录下](note/pianMengZhiShiDian.md)
+- [js中偏门一些的知识点记录下](note/偏门一些的知识点.md)
 - [centOs7.6云服务器上搭建项目](note/linux/centOsDemo.md)
 - [git笔记](note/git/README.md)
 - [linux相关](note/linux/README.md)
