@@ -1,11 +1,13 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
-- [React 的 Fragment Context PureComponent renderProps ErrorBoundary 使用方法](#react%E7%9A%84-fragment-context-purecomponent-renderprops-errorboundary-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)
+- [React 的 Fragment Context PureComponent renderProps ErrorBoundary 使用方法](#react-%E7%9A%84-fragment-context-purecomponent-renderprops-errorboundary-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)
   - [Fragment 代码碎片](#fragment-%E4%BB%A3%E7%A0%81%E7%A2%8E%E7%89%87)
-  - [Context 实现 袓组件与后代组件 通讯 (类似 Vue 中的 provide inject 依赖注入)](#context-%E5%AE%9E%E7%8E%B0-%E8%A2%93%E7%BB%84%E4%BB%B6%E4%B8%8E%E5%90%8E%E4%BB%A3%E7%BB%84%E4%BB%B6-%E9%80%9A%E8%AE%AF-%E7%B1%BB%E4%BC%BCvue%E4%B8%AD%E7%9A%84-provide-inject-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5)
+  - [Context 实现 袓组件与后代组件 通讯 (类似 Vue 中的 provide inject 依赖注入)](#context-%E5%AE%9E%E7%8E%B0-%E8%A2%93%E7%BB%84%E4%BB%B6%E4%B8%8E%E5%90%8E%E4%BB%A3%E7%BB%84%E4%BB%B6-%E9%80%9A%E8%AE%AF-%E7%B1%BB%E4%BC%BC-vue-%E4%B8%AD%E7%9A%84-provide-inject-%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5)
+  - [PureComponent 优化组件的更新 仅适用于类组件 函数组件用 memo](#purecomponent-%E4%BC%98%E5%8C%96%E7%BB%84%E4%BB%B6%E7%9A%84%E6%9B%B4%E6%96%B0-%E4%BB%85%E9%80%82%E7%94%A8%E4%BA%8E%E7%B1%BB%E7%BB%84%E4%BB%B6-%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E7%94%A8-memo)
+  - [render props 属性式父子组件嵌套 向组件内部动态传入带内容的结构(标签)](#render-props-%E5%B1%9E%E6%80%A7%E5%BC%8F%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E5%B5%8C%E5%A5%97-%E5%90%91%E7%BB%84%E4%BB%B6%E5%86%85%E9%83%A8%E5%8A%A8%E6%80%81%E4%BC%A0%E5%85%A5%E5%B8%A6%E5%86%85%E5%AE%B9%E7%9A%84%E7%BB%93%E6%9E%84%E6%A0%87%E7%AD%BE)
+  - [错误边界(Error boundary)：用来捕获后代组件错误，渲染出备用页面](#%E9%94%99%E8%AF%AF%E8%BE%B9%E7%95%8Cerror-boundary%E7%94%A8%E6%9D%A5%E6%8D%95%E8%8E%B7%E5%90%8E%E4%BB%A3%E7%BB%84%E4%BB%B6%E9%94%99%E8%AF%AF%E6%B8%B2%E6%9F%93%E5%87%BA%E5%A4%87%E7%94%A8%E9%A1%B5%E9%9D%A2)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

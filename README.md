@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-29 10:06:24
- * @LastEditTime: 2021-05-19 15:26:05
+ * @LastEditTime: 2021-05-21 17:59:09
  * @LastEditors: mrzou
  * @Description: In User Settings Edit
  * @FilePath: \blog\README.md
@@ -32,7 +32,8 @@ https://zoujian3820.github.io/blog/
 
 - [svg资料](svg/svg.md)
 - [typescript/数据类型](typescript/数据类型.md)
-- [typescript/类的概念](typescript/class.md)
+- [typescript/类的概念](typescript/ts类.md)
+- [typescript/泛型](typescript/泛型.md)
 - [如何编写整洁代码](note/daimazhenjie.md)
 - [填坑大集合](note/tiankenjihe.md)
 - [commitlint+husky规范git commit日志](note/pre-commit.md)
