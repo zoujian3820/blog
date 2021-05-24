@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-29 10:06:24
- * @LastEditTime: 2021-05-24 13:11:02
+ * @LastEditTime: 2021-05-24 14:37:35
  * @LastEditors: mrzou
  * @Description: In User Settings Edit
  * @FilePath: \blog\README.md
@@ -47,6 +47,7 @@ https://zoujian3820.github.io/blog/
 - [数据库](note/数据库/mysql.md)
 - [vue2.0源码](note/vue源码/vue.md)
 - [vue3.0源码](note/vue3源码/vue.md)
+- [vue3](note/vue3使用/index.md)
 - [react](note/react/index.md)
 
 
