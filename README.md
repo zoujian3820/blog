@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-29 10:06:24
- * @LastEditTime: 2021-05-21 17:59:09
+ * @LastEditTime: 2021-05-24 14:37:35
  * @LastEditors: mrzou
  * @Description: In User Settings Edit
  * @FilePath: \blog\README.md
@@ -34,6 +34,7 @@ https://zoujian3820.github.io/blog/
 - [typescript/数据类型](typescript/数据类型.md)
 - [typescript/类的概念](typescript/ts类.md)
 - [typescript/泛型](typescript/泛型.md)
+- [typescript/声明文件](typescript/声明文件.md)
 - [如何编写整洁代码](note/daimazhenjie.md)
 - [填坑大集合](note/tiankenjihe.md)
 - [commitlint+husky规范git commit日志](note/pre-commit.md)
@@ -46,6 +47,7 @@ https://zoujian3820.github.io/blog/
 - [数据库](note/数据库/mysql.md)
 - [vue2.0源码](note/vue源码/vue.md)
 - [vue3.0源码](note/vue3源码/vue.md)
+- [vue3](note/vue3使用/index.md)
 - [react](note/react/index.md)
 
 

@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [与 vue2 的差异](#%E4%B8%8E-vue2-%E7%9A%84%E5%B7%AE%E5%BC%82)
+  - [生命周期](#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
+  - [api 使用](#api-%E4%BD%BF%E7%94%A8)
+    - [vue2 方式中的差异](#vue2-%E6%96%B9%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%B7%AE%E5%BC%82)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 <!--
  * @Author: mrzou
  * @Date: 2021-05-18 23:29:42
