@@ -1,11 +1,26 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
 
 - [与 vue2 的差异](#%E4%B8%8E-vue2-%E7%9A%84%E5%B7%AE%E5%BC%82)
   - [生命周期](#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
+    - [options 方式](#options-%E6%96%B9%E5%BC%8F)
+    - [composition 方式](#composition-%E6%96%B9%E5%BC%8F)
   - [api 使用](#api-%E4%BD%BF%E7%94%A8)
     - [vue2 方式中的差异](#vue2-%E6%96%B9%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%B7%AE%E5%BC%82)
+      - [emit 自定义事件](#emit-%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6)
+      - [双向绑定 v-model](#%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A-v-model)
+      - [混入 mixin](#%E6%B7%B7%E5%85%A5-mixin)
+      - [⾃定义指令 directive](#%E2%BE%83%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4-directive)
+      - [Teleport 传送门](#teleport-%E4%BC%A0%E9%80%81%E9%97%A8)
+      - [渲染函数 render](#%E6%B8%B2%E6%9F%93%E5%87%BD%E6%95%B0-render)
+    - [插件 plugin](#%E6%8F%92%E4%BB%B6-plugin)
+    - [vue3 Composition API](#vue3-composition-api)
+      - [setup ⼊⼝点](#setup-%E2%BC%8A%E2%BC%9D%E7%82%B9)
+      - [Reactivity 响应式 API](#reactivity-%E5%93%8D%E5%BA%94%E5%BC%8F-api)
+      - [⽣命周期钩⼦](#%E2%BD%A3%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E2%BC%A6)
+      - [依赖注⼊](#%E4%BE%9D%E8%B5%96%E6%B3%A8%E2%BC%8A)
+      - [模板引⽤ ref](#%E6%A8%A1%E6%9D%BF%E5%BC%95%E2%BD%A4-ref)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -146,6 +161,317 @@ app.component("my-component", {
   v-model:first-name="firstName"
   v-model:last-name="lastName"
 ></user-name>
+```
+
+##### 混入 mixin
+
+mixin 是 vue2 就有的功能，存在来源不明、命名冲突等问题
+vue3 中使⽤ composition-api 复⽤逻辑是更好的解决⽅案
+
+```js
+// 定义⼀个混⼊对象
+const myMixin = {
+  created() {
+    console.log("hello from mixin!");
+  },
+};
+// 局部混入
+const app = Vue.createApp({
+  // 使⽤混⼊
+  mixins: [myMixin],
+  // 混⼊对象的选项会和组件本身的选项合并
+  created() {
+    console.log("hello from app!");
+  },
+});
+// 全局混⼊
+app.mixin({
+  beforeCreate() {},
+});
+app.mount("#demo"); // 'hello from app!' 'hello from mixin!'
+```
+
+##### ⾃定义指令 directive
+
+需要对普通 DOM 元素进⾏底层操作，会⽤到⾃定义指令。
+
+```js
+const app = Vue.createApp({});
+// 全局注册指令 `v-focus`
+app.directive("focus", {
+  mounted(el) {
+    el.focus();
+  },
+});
+
+// 局部注册指令 `v-focus`
+Vue.createApp({
+  directives: {
+    focus: {
+      mounted(el) {
+        el.focus();
+      },
+    },
+  },
+});
+```
+
+- 指令钩⼦函数：钩⼦函数和 vue2 相较有⼀些变化，现在和组件钩⼦⼀致：
+  - beforeMount ：当指令第⼀次绑定到元素并且在挂载⽗组件之前调⽤，这⾥可以做⼀次性初始化设置。
+  - mounted ：在挂载绑定元素到⽗组件时调⽤。
+  - beforeUpdate ：在更新包含组件的 VNode 之前调⽤。
+  - updated ：在包含组件的 VNode 及其⼦组件的 VNode 更新后调⽤。
+  - beforeUnmount ：在卸载绑定元素的⽗组件之前调⽤
+  - unmounted ：当指令与元素解除绑定且⽗组件已卸载时，只调⽤⼀次。
+
+##### Teleport 传送门
+
+能将模板移动到 Vue app 之外的其他 DOM 的位置，⽐如⼀个弹窗内容、消息通知等 移动到 body 下面
+
+```jsx
+// 注册一个全局组件 并挂载到 body 下
+app.component("modal-button", {
+  template: `
+    <button @click="modalOpen = true">打开弹窗</button>
+    <teleport to="body">
+      <div v-if="modalOpen" class="modal">
+        <div>
+          <slot></slot>
+          <button @click="modalOpen = false">关闭</button>
+        </div>
+      </div>
+    </teleport>
+  `,
+  data() {
+    return { modalOpen: false };
+  },
+});
+// 使用这个组件
+<modal-button>
+ <template v-slot>弹窗内容。。。</template>
+</model-button>
+```
+
+##### 渲染函数 render
+
+渲染函数给我们提供完全 JS 编程能⼒，可以解决更复杂的模板需求。
+
+```js
+const app = Vue.createApp({});
+app.component("x-heading", {
+  render() {
+    return Vue.h(
+      "h" + this.level, // tag name
+      {}, // props/attributes
+      this.$slots.default() // array of children 默认的插槽 vue3中均为函数调用
+      // this.$slots.xxx() // 命名的插槽 vue3中均为函数调用
+    );
+  },
+  props: {
+    level: {
+      type: Number,
+      required: true,
+    },
+  },
+});
+```
+
+渲染函数中⽤ if / else 和 map() 来替代 v-if 和 v-for
+
+```js
+app.component("xxx-tt", {
+  props: {
+    items: {
+      type: Array,
+      default: [],
+    },
+  },
+  render() {
+    if (this.items.length) {
+      return Vue.h(
+        "ul",
+        this.items.map((item) => {
+          return Vue.h("li", item.name);
+        })
+      );
+    } else {
+      return Vue.h("p", "No items found.");
+    }
+  },
+});
+```
+
+v-model 指令展开为 modelValue 和 onUpdate:modelValue ，要实现同等功能必须提供这些 prop：
+
+```js
+app.component("xxx-tt", {
+  props: ["modelValue"],
+  render() {
+    return Vue.h(SomeComponent, {
+      modelValue: this.modelValue,
+      "onUpdate:modelValue": (value) => this.$emit("update:modelValue", value),
+    });
+  },
+});
+```
+
+事件处理需要提供⼀个正确的 prop 名称，例如，要处理 click 事件，prop 名称应该是 onClick 。
+
+```js
+render() {
+ return Vue.h('div', {
+    onClick: $event => console.log('clicked', $event.target)
+  })
+}
+```
+
+对于 .passive 、 .capture 和 .once 事件修饰符，Vue 提供了专属的对象语法：
+对于所有其它的修饰符，需要在事件处理函数中⼿动使⽤事件⽅法
+
+```js
+render() {
+  return Vue.h('input', {
+    onClick: {
+      handler: this.doThisOnceInCapturingMode,
+      once: true,
+      capture: true
+    },
+  })
+}
+```
+
+通过 this.$slots 访问静态插槽的内容，每个插槽都是⼀个 VNode 数组：
+
+```js
+render() {
+  // `<div><slot></slot></div>`
+  return Vue.h('div', {}, this.$slots.default())
+}
+```
+
+如果要将插槽传递给⼦组件：
+
+```js
+render() {
+  // `<child v-slot="props"><span>{{ props.text }}</span></child>`
+  return Vue.h('div', [
+    Vue.h('child', {},
+      {
+        // 传递⼀个对象作为children
+        // 形如 { name: props => VNode | Array<VNode> }
+        default: (props) => Vue.h('span', props.text)
+      }
+    )
+  ])
+}
+```
+
+#### 插件 plugin
+
+插件是⾃包含的代码，通常给 Vue 添加全局功能。插件可以是包含 install() ⽅法的 object ，也可以是 function
+
+```js
+export default {
+  install: (app, options) => {
+    // 插件接收应⽤实例和插件选项
+  },
+};
+```
+
+**插件常⻅任务**
+
+添加指令/组件/过渡等全局资源
+
+```js
+export default {
+  install: (app, options) => {
+    app.component("comp", {});
+  },
+};
+```
+
+全局混⼊⼀些组件选项
+
+```js
+export default {
+  install: (app, options) => {
+    app.mixin({});
+  },
+};
+```
+
+添加实例⽅法
+
+```js
+export default {
+  install: (app, options) => {
+    app.config.globalProperties.xx = xx;
+  },
+};
+```
+
+**使⽤插件**
+实例挂载之前调⽤ use()注册插件
+
+```js
+app.use(plugin);
+```
+
+范例：实现⼀个 Message 插件
+
+```jsx
+import { createApp, h, render } from "Vue";
+const MessagePlugin = function (app) {
+  const MyMessage = {
+    props: {
+      msg: {
+        type: String,
+        required: true,
+      },
+      duration: {
+        type: Number,
+        default: 1000,
+      },
+    },
+    template: `
+      <div class="message-box">
+        <p>{{msg}}</p>
+      </div>
+    `,
+    mounted() {
+      setTimeout(() => {
+        app.config.globalProperties.$message(null);
+      }, this.duration);
+    },
+  };
+
+  const container = document.createElement("div");
+  document.body.appendChild(container);
+  app.config.globalProperties.$message = function (props) {
+    if (props) {
+      render(h(MyMessage, props), container);
+    } else {
+      render(null, container);
+    }
+  };
+};
+
+// index.html
+/*
+<div id="app">
+  <p>{{title}}</p>
+  <button @click="$message({msg: 'hahaha'})">显示message组件</button>
+</div>
+*/
+createApp({
+  data() {
+    return {
+      title: "vue插件",
+    };
+  },
+})
+  .use(MessagePlugin)
+  .mount("#app");
 ```
 
 #### vue3 Composition API
