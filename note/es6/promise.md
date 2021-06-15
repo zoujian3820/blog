@@ -2,9 +2,31 @@
  * @Author: mrzou
  * @Date: 2021-06-16 01:42:33
  * @LastEditors: mrzou
- * @LastEditTime: 2021-06-16 01:43:33
+ * @LastEditTime: 2021-06-16 01:46:31
  * @Description: file content
 -->
+
+## promise 调用测试用例
+
+```js
+let p1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("OK");
+    // reject("Eror");
+  });
+});
+
+p1.then(
+  (value) => {
+    console.log(value);
+  },
+  (reason) => {
+    console.warn(reason);
+  }
+);
+
+console.log(Promise.resolve("OK"));
+```
 
 ## promise 源码实现
 
