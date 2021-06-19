@@ -1,0 +1,63 @@
+/*
+以弹性盒子为核心，自写wap css前端框架,
+不兼容firefox,<=ie9,
+支最新以webkit为内核的桌面浏览器,
+请用chrome浏览器测试。
+*/
+@charset "utf-8";
+*{
+	padding:0;margin:0;font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif;
+	padding:0;margin:0;outline: 0 !important;
+  	-webkit-text-size-adjust: none;/*设置字体不能被放大*/
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            text-rendering: auto;/*非标准的属性,浏览器将根据情况来优化文本速度、可读性、精度*/
+           -webkit-font-smoothing: antialiased;/*让页面里的字体变清晰*/
+           -moz-osx-font-smoothing: grayscale;/*字体抗踞齿化*/
+	}
+ul,ul li,li{list-style-type: none;}
+body{background: #fff;color:#000;} 
+img{display: block;width:100%;border:0;}
+a{text-decoration:none;}
+
+/*基础设定*/
+.ub{display: -webkit-box !important;display: box !important;position:relative;}
+.ub-ver{-webkit-box-orient:vertical;box-orient:vertical;}
+.ub-f1{position:relative;-webkit-box-flex: 1; box-flex: 1;}
+.ub-f2{position:relative;-webkit-box-flex: 2; box-flex: 2;}
+.ub-as{-webkit-box-align:start;box-align:start;}/*上*/
+.ub-ac{-webkit-box-align:center;box-align:center;}/*中*/
+.ub-ae{-webkit-box-align:end;box-align:end;}/*下*/
+.ub-ps{-webkit-box-pack:start;box-pack:start;}/*左*/
+.ub-pc{-webkit-box-pack:center;box-pack:center;}/*中*/
+.ub-pe{-webkit-box-pack:end;box-pack:end;}/*右*/
+.ub-pj{-webkit-box-pack:justify;box-pack:justify;}/*左右平分*/
+.ub-con{position:absolute;width:100%;height:100%;}
+div {outline: 0 !important;-webkit-text-size-adjust: none;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);position: relative;}
+.ut-s {text-overflow: ellipsis;overflow: hidden;white-space: nowrap !important;outline: 0 !important;}
+.ut-m {text-overflow: ellipsis;overflow: hidden;white-space: normal !important;outline: 0 !important;}
+.line2 {-webkit-line-clamp: 2;}
+.line3 { -webkit-line-clamp: 3;}
+.line1{ -webkit-line-clamp: 1;}
+.nav-btn {min-height: 2em;min-width: 4em;display: -webkit-box !important;display: box !important;position: relative;
+               -webkit-box-align: center;box-align: center;-webkit-box-pack: center;box-pack: center;}
+.ub-img{-webkit-background-size:contain;background-size:contain;background-repeat:no-repeat;
+	  background-position:center;}
+.tx-l {text-align: left;}
+.tx-r {text-align: right;}
+.tx-c {text-align: center;}
+.uba {border: 1px solid;}
+.uba1 {border: 2px solid;}
+.uba2 {border: 3px solid;}
+.ubt {border-top: 1px solid;}
+.ubb {border-bottom: 1px solid;}
+.ubl {border-left: 1px solid;}
+.ubr {border-right: 1px solid;}
+.uinput input, .uinput textarea {
+    margin: 0px;border: 0px;width: 100%;height: 100%;
+    -webkit-appearance: none;/*去除系统默认appearance的样式,常用于IOS下移除原生样式*/
+    padding:0;line-height: 1.2em;background: none;
+    text-decoration: none;font-size: 1em;display: block;}
+.bc-head{padding:.4em 0;}
+.btn-left{min-height: 2em;min-width: 4em;display: -webkit-box !important;display: box !important;position: relative;
+      -webkit-box-align: center;box-align: center;-webkit-box-pack: start;box-pack: start;}
+.uc-a {-webkit-border-radius: .6em;border-radius: .6em;}

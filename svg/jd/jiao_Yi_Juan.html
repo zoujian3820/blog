@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<title>付款通知</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/jquery-1.8.3.min.js"></script>
+<style>
+ /*header*/
+
+.color_white{color:white;}
+.bc-border{border-color: #cecece;}
+.uinn{padding:.8em 0;cursor: pointer;color:#fff;border-color: #fff;}
+.active_click{color:#e86200;border-color: #e86200;}
+.hidden2{color:#fff;}
+.wu{width:100%;margin:0 auto;}
+.wu div.text{font-size:.95em;text-align:center;color:#a4a4a4;line-height:1.6em;}
+.wu div.img{width:75%;margin:0 auto 5% auto;}
+.yong{width:100%;overflow:hidden;}
+.yong>a{width:75%;overflow:hidden;display:block;margin:0 auto 5% auto;}
+</style>
+</head>
+    <body style="background-color:#000;">
+     <!-- tab -->
+     <div class="ub ub-f1"style="background:#000;margin-bottom:8%;" id="tab">
+          <div class="ub ub-f1 ub-ac ub-pc ubb bc-border uinn active_click">未使用(0)</div>
+          <div class="ub ub-f1 ub-ac ub-pc ubb bc-border uinn">已使用(1)</div>
+          <div class="ub ub-f1 ub-ac ub-pc ubb bc-border uinn">已过期(0)</div>
+     </div>
+     
+<!-- 未使用 -->
+ <div class="hidden2">
+   <div class="yong">
+     <a href=""><img src="images/wei.png"/></a>
+     <a href=""><img src="images/wei.png"/></a>
+   </div>　
+
+  </div>
+
+
+<!-- 已使用 -->
+ <div class="hidden2" style="display:none;">
+   <div class="yong">
+     <a href=""><img src="images/yong.png"/></a>
+     <a href=""><img src="images/yong.png"/></a>
+   </div>　
+
+</div> 
+
+<!-- 已过期 -->
+ <div class="hidden2" style="display:none;">
+   <div class="wu">
+       <div class="img"><img src="images/wu.png"/> </div>
+	   <div class="text">没有交易券啦<br/>交易券做单，盈利归你的，亏损不用赔</div>
+   </div>
+</div> 
+ 
+    </body>
+  
+    <script>
+          $(function(){
+              $(document).on('click','#tab>div',function(){
+                      $('#tab>div').removeClass('active_click');
+                      $(this).addClass('active_click');
+                      $('.hidden2').css('display','none');
+                      $('.hidden2').eq($(this).index()).css('display','block');
+                })
+             })
+    </script>
+
+</html>

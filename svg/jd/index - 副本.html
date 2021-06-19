@@ -1,0 +1,564 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta name="author" content="m.jd.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="css/couponlist.css" charset="gbk"/>
+    <link rel="stylesheet" type="text/css" href="css/header.css"/>
+    <script src="js/zpcommon.min.js"></script>
+    <script type="text/javascript">window.jQuery = window.Zepto;</script>
+    <script src="js/monitoringtool.min.js" type="text/javascript"></script>
+</head>
+
+<body id="body">
+
+<a name="top"></a>
+<header></header>
+<div class='viewports' id="viewports">
+    <div class='mjd-container' id="mjdContainer">
+        <div class="mjd-header" id="mjdHeader">
+            <div id="layout_appdown_view" class="mjd-floor-item"></div>
+            <div class="mjd-floor-item header-relative">
+                <header>
+                    <!--<div id="m_common_header" style="min-height:45px;"></div>-->
+                    <div id="m_common_header" style="min-height:45px;">
+                        <header class="jd-header">
+                            <div class="jd-header-bar">
+                                <div report-eventid="MCommonHead_Back" id="m_common_header_goback"
+                                     class="jd-header-icon-back J_ping">
+                                    <span></span>
+                                </div>
+                                <div class="jd-header-title">领券中心</div>
+                                <div report-eventid="MCommonHead_NavigateButton" report-eventparam="" page_name=""
+                                     id="m_common_header_jdkey" class="jd-header-icon-shortcut J_ping">
+                                    <span></span>
+                                </div>
+                            </div>
+                            <!--<ul id="m_common_header_shortcut" class="jd-header-shortcut">-->
+                            <!--<li id="m_common_header_shortcut_m_index">-->
+                            <!--<a class="J_ping" report-eventid="MCommonHead_home" report-eventparam="" page_name="" href="//m.jd.com/index.html">-->
+                            <!--<span class="shortcut-home"></span>-->
+                            <!--<strong>首页</strong></a>-->
+                            <!--</li>-->
+                            <!--<li class="J_ping" report-eventid="MCommonHead_CategorySearch" report-eventparam="" page_name="" id="m_common_header_shortcut_category_search">-->
+                            <!--<a href="//so.m.jd.com/category/all.html">-->
+                            <!--<span class="shortcut-categories"></span>-->
+                            <!--<strong>分类搜索</strong></a>-->
+                            <!--</li>-->
+                            <!--<li class="J_ping" report-eventid="MCommonHead_Cart" report-eventparam="" page_name="" id="m_common_header_shortcut_p_cart">-->
+                            <!--<a href="//p.m.jd.com/cart/cart.action" id="html5_cart">-->
+                            <!--<span class="shortcut-cart"></span>-->
+                            <!--<strong>购物车</strong></a>-->
+                            <!--</li>-->
+                            <!--<li id="m_common_header_shortcut_h_home">-->
+                            <!--<a class="J_ping" report-eventid="MCommonHead_MYJD" report-eventparam="" page_name="" href="//home.m.jd.com/myJd/home.action">-->
+                            <!--<span class="shortcut-my-account"></span>-->
+                            <!--<strong>我的京东</strong></a>-->
+                            <!--</li>-->
+                            <!--</ul>-->
+                        </header>
+                    </div>
+                </header>
+            </div>
+            <div class="mjd-floor-item choose-head" id="chooseHead">
+                <div class="choose-pannel">
+                    <nav id="swip_head3" class="choose-nav-ht">
+                        <div id="fixed-nav" class="choose-nav">
+                            <ul class="choose-nav-wrap half-bottom-line"
+                                style="-webkit-transform:translateX(0px);transform:translateX(0px);">
+                                <li class="choose-nav-iteam tab-jingxuan active"><p><span class="pos-re"
+                                                                                          cateid="0">精选</span>|</p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="19">手机数码</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="16">家用电器</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="15">食品饮料</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="14">母婴用品</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="11">电脑办公</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="10">服饰内衣</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="12">个护化妆</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="13">运动户外</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="87">图书音像</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="17">鞋靴箱包</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="88">生活旅行</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="20">家居家纺</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="82">珠宝钟表</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="84">汽车用品</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="18">全球购</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="95">医药保健</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="77">宠物园艺</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="105">生鲜</span></p></li>
+                                <li class="choose-nav-iteam"><p><span class="pos-re" cateid="2">计生情趣</span></p></li>
+                                <li class="choose-nav-iteam li-space"></li>
+                                <li class="choose-nav-iteam li-space"></li>
+                                <li class="nv-bg"><span></span></li>
+                                <input type="hidden" id="beginTab" beginTabId="$categoryId" beginTabIndex="1">
+                            </ul>
+                            <input type="hidden" id="firstCatergryId" value="0">
+                            <input type="hidden" id="lastCatergryId" value="2"></div>
+                    </nav>
+                </div>
+                <div class="choose-pannel-open" style="display: none">
+                    <div class="choose-title displayNone" id="choosePannel7">全部20个分类</div>
+                    <div class="list-pannel" id="choosePannel6">
+                        <ul>
+                            <li class="active" cateid="0"><span><i></i>精选</span></li>
+                            <li class="" cateid="19"><span><i></i>手机数码</span></li>
+                            <li class="" cateid="16"><span><i></i>家用电器</span></li>
+                            <li class="" cateid="15"><span><i></i>食品饮料</span></li>
+                            <li class="" cateid="14"><span><i></i>母婴用品</span></li>
+                            <li class="" cateid="11"><span><i></i>电脑办公</span></li>
+                            <li class="" cateid="10"><span><i></i>服饰内衣</span></li>
+                            <li class="" cateid="12"><span><i></i>个护化妆</span></li>
+                            <li class="" cateid="13"><span><i></i>运动户外</span></li>
+                            <li class="" cateid="87"><span><i></i>图书音像</span></li>
+                            <li class="" cateid="17"><span><i></i>鞋靴箱包</span></li>
+                            <li class="" cateid="88"><span><i></i>生活旅行</span></li>
+                            <li class="" cateid="20"><span><i></i>家居家纺</span></li>
+                            <li class="" cateid="82"><span><i></i>珠宝钟表</span></li>
+                            <li class="" cateid="84"><span><i></i>汽车用品</span></li>
+                            <li class="" cateid="18"><span><i></i>全球购</span></li>
+                            <li class="" cateid="95"><span><i></i>医药保健</span></li>
+                            <li class="" cateid="77"><span><i></i>宠物园艺</span></li>
+                            <li class="" cateid="105"><span><i></i>生鲜</span></li>
+                            <li class="" cateid="2"><span><i></i>计生情趣</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="choose-pannel-btn">
+                  <span class="btn-pannel btn-line">
+                      |<em class="btn-icon btn-down" id="choosePannel5">
+                      <img src="Picture/icon-btn-roll.png">
+                  </em>
+                  </span>
+                </div>
+                <div class="choose-pannel-jx">
+                    <div class="tab-jingxuan active">
+                        <span class="pos-re" cateid="0">精选</span>|
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mjd-content" id="mjdContent">
+            <div class="floor-container" id="lunboPic"></div>
+            <ul class="coupon-list" id="couponListUl">
+                <li class="coupon-blue">
+                    <a class="coupon-a">
+                        <div class="coupon-left">
+                            <div class="triangle-border-left">
+                                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                            <div class="img-div-backg">
+                                <div class="img-div">
+                                    <img src="Picture/59e9b067n724dec82.png">
+                                </div>
+                            </div>
+                            <div class="pro-content">
+                                <span class="pro-info">手机话费充值满90可用</span>
+                                <div class="pro-price">
+                                    <span class="big-price">2</span>
+                                    <span class="price-info">满90可用</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="coupon-right">-->
+                        <!--<div class="triangle-border-right">-->
+                        <!--<em class="circular0"></em>-->
+                        <!--<em class="circular1"></em>-->
+                        <!--<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>-->
+                        <!--</div>-->
+                        <!--<div class="change-block">-->
+                        <!--<div class="progress-bar-block">-->
+                        <!--<div class="progress-bar">-->
+                        <!--<span style="width:69%"></span>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--<span class="progress-text">已抢&nbsp;69%</span>-->
+                        <!--<span class="coupon-btn">立即领取</span></div>-->
+                        <!--</div>-->
+                        <div class="coupon-right">
+                            <div class="triangle-border-right">
+                                <em class="circular0"></em>
+                                <em class="circular1"></em>
+                                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                            <div class="change-block">
+                                <i class="had"></i>
+                                <span class="coupon-btn-yellow">去使用</span>
+                            </div>
+                        </div>
+                        <input type="hidden" class="jumpFlag" value="3">
+                        <input type="hidden" class="type" value="2">
+                        <input type="hidden" class="batchId" value="44177294">
+                        <input type="hidden" class="id" value="255282">
+                        <input type="hidden" class="key"
+                               value="2DF0EBE1EB12B27F39681DE370897F5A8520C4B5E58404A1AC673C59D3AC783450AC93F8FAD90D456227C60734534054">
+                        <input type="hidden" class="roleId" value="A1321DEF4A6766B3AF1193217E9993EC">
+                        <input type="hidden" class="sortType" value="1">
+                        <input type="hidden" class="denomination" value="2">
+                        <input type="hidden" class="quota" value="90">
+                        <input type="hidden" class="quotaString" value="满90可用">
+                        <input type="hidden" class="jumpUrl" value="">
+                        <input type="hidden" class="shopId" value="">
+                        <input type="hidden" class="denomination" value="2"></a>
+                </li>
+                <li class="coupon-blue">
+                    <a class="coupon-a">
+                        <div class="coupon-left">
+                            <div class="triangle-border-left">
+                                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                            <div class="img-div-backg">
+                                <div class="img-div">
+                                    <img src="Picture/577dd103n67caec65.jpg">
+                                </div>
+                            </div>
+                            <div class="pro-content">
+                                <span class="pro-info">【自营】可购买冰洗冷部分商品</span>
+                                <div class="pro-price">
+                                    <span class="big-price">300</span>
+                                    <span class="price-info">满2000可用</span></div>
+                            </div>
+                        </div>
+                        <div class="coupon-right">
+                            <div class="triangle-border-right">
+                                <em class="circular0"></em>
+                                <em class="circular1"></em>
+                                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                            <div class="change-block">
+                                <div class="progress-bar-block">
+                                    <div class="progress-bar">
+                                        <span style="width:19%"></span>
+                                    </div>
+                                </div>
+                                <span class="progress-text">已抢&nbsp;19%</span>
+                                <span class="coupon-btn">立即领取</span></div>
+                        </div>
+                        <input type="hidden" class="jumpFlag" value="9">
+                        <input type="hidden" class="type" value="2">
+                        <input type="hidden" class="batchId" value="44466934">
+                        <input type="hidden" class="id" value="259374">
+                        <input type="hidden" class="key"
+                               value="15B901B917722C21A777AE47B3611B34EB754FBBC7DCBB8081C92988A111698050AC93F8FAD90D456227C60734534054">
+                        <input type="hidden" class="roleId" value="32CC339B7D7F7ABE85931B19649ABE28">
+                        <input type="hidden" class="sortType" value="1">
+                        <input type="hidden" class="denomination" value="300">
+                        <input type="hidden" class="quota" value="2000">
+                        <input type="hidden" class="quotaString" value="满2000可用">
+                        <input type="hidden" class="jumpUrl" value="">
+                        <input type="hidden" class="shopId" value="">
+                        <input type="hidden" class="denomination" value="300"></a>
+                </li>
+                <li class="coupon-blue">
+                    <a class="coupon-a">
+                        <div class="coupon-left">
+                            <div class="triangle-border-left">
+                                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                            <div class="img-div-backg">
+                                <div class="img-div">
+                                    <img src="Picture/58de0a78nd5ee4c03.jpg"></div>
+                            </div>
+                            <div class="pro-content">
+                                <span class="pro-info">【COACH】仅可购买奢侈品指定商品</span>
+                                <div class="pro-price">
+                                    <span class="big-price">200</span>
+                                    <span class="price-info">满1199可用</span></div>
+                            </div>
+                        </div>
+                        <div class="coupon-right">
+                            <div class="triangle-border-right">
+                                <em class="circular0"></em>
+                                <em class="circular1"></em>
+                                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                            <div class="change-block">
+                                <div class="progress-bar-block">
+                                    <div class="progress-bar">
+                                        <span style="width:69%"></span>
+                                    </div>
+                                </div>
+                                <span class="progress-text">已抢&nbsp;69%</span>
+                                <span class="coupon-btn">立即领取</span></div>
+                        </div>
+                        <input type="hidden" class="jumpFlag" value="1">
+                        <input type="hidden" class="type" value="2">
+                        <input type="hidden" class="batchId" value="44392306">
+                        <input type="hidden" class="id" value="254361">
+                        <input type="hidden" class="key"
+                               value="55E2DC84472F0F1ABF4B6DFDE01D13A198CF878457831BB58436C7B946193E6A50AC93F8FAD90D456227C60734534054">
+                        <input type="hidden" class="roleId" value="99E6A50E261A49BF90590C6086AFF8BB">
+                        <input type="hidden" class="sortType" value="1">
+                        <input type="hidden" class="denomination" value="200">
+                        <input type="hidden" class="quota" value="1199">
+                        <input type="hidden" class="quotaString" value="满1199可用">
+                        <input type="hidden" class="jumpUrl" value="https://sale.jd.com/m/act/NAK6SRpe8f0lC.html">
+                        <input type="hidden" class="shopId" value="">
+                        <input type="hidden" class="denomination" value="200"></a>
+                </li>
+                <li class="coupon-blue">
+                    <a class="coupon-a">
+                        <div class="coupon-left">
+                            <div class="triangle-border-left">
+                                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                            <div class="img-div-backg">
+                                <div class="img-div">
+                                    <img src="Picture/59c33825n2e35b038.jpg"></div>
+                            </div>
+                            <div class="pro-content">
+                                <span class="pro-info">仅可购买自营ThinkPad笔记本指定商品</span>
+                                <div class="pro-price">
+                                    <span class="big-price">300</span>
+                                    <span class="price-info">满6000可用</span></div>
+                            </div>
+                        </div>
+                        <div class="coupon-right">
+                            <div class="triangle-border-right">
+                                <em class="circular0"></em>
+                                <em class="circular1"></em>
+                                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                            <div class="change-block">
+                                <div class="progress-bar-block">
+                                    <div class="progress-bar">
+                                        <span style="width:61%"></span>
+                                    </div>
+                                </div>
+                                <span class="progress-text">已抢&nbsp;61%</span>
+                                <span class="coupon-btn">立即领取</span>
+                            </div>
+                        </div>
+                        <input type="hidden" class="jumpFlag" value="9">
+                        <input type="hidden" class="type" value="2">
+                        <input type="hidden" class="batchId" value="44452734">
+                        <input type="hidden" class="id" value="257062">
+                        <input type="hidden" class="key"
+                               value="ED89EB756535D165607C2D3BD50A25C81F05F56B3F1D1BB357A851ABF9F2997950AC93F8FAD90D456227C60734534054">
+                        <input type="hidden" class="roleId" value="18D08B14BA7EA135A85EE079626EF678">
+                        <input type="hidden" class="sortType" value="1">
+                        <input type="hidden" class="denomination" value="300">
+                        <input type="hidden" class="quota" value="6000">
+                        <input type="hidden" class="quotaString" value="满6000可用">
+                        <input type="hidden" class="jumpUrl" value="">
+                        <input type="hidden" class="shopId" value="">
+                        <input type="hidden" class="denomination" value="300"></a>
+                </li>
+                <li class="coupon-blue">
+                    <a class="coupon-a">
+                        <div class="coupon-left">
+                            <div class="triangle-border-left">
+                                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                            <div class="img-div-backg">
+                                <div class="img-div">
+                                    <img src="Picture/59df8fdfneadae8b2.jpg"></div>
+                            </div>
+                            <div class="pro-content">
+                                <span class="pro-info">优子居旗舰店卷后低至9.9</span>
+                                <div class="pro-price">
+                                    <span class="big-price">20</span>
+                                    <span class="price-info">满29可用</span></div>
+                            </div>
+                        </div>
+                        <div class="coupon-right">
+                            <div class="triangle-border-right">
+                                <em class="circular0"></em>
+                                <em class="circular1"></em>
+                                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                            <div class="change-block">
+                                <div class="progress-bar-block">
+                                    <div class="progress-bar">
+                                        <span style="width:47%"></span>
+                                    </div>
+                                </div>
+                                <span class="progress-text">已抢&nbsp;47%</span>
+                                <span class="coupon-btn">立即领取</span></div>
+                        </div>
+                        <input type="hidden" class="jumpFlag" value="1">
+                        <input type="hidden" class="type" value="2">
+                        <input type="hidden" class="batchId" value="49933145">
+                        <input type="hidden" class="id" value="242959">
+                        <input type="hidden" class="key"
+                               value="8F16F5BAAC22EC519357B5F2CA8252704D9D06215550E8CCF8EA8AA1284984A150AC93F8FAD90D456227C60734534054">
+                        <input type="hidden" class="roleId" value="DA75D495BE50E21E116A7682E369BBA4">
+                        <input type="hidden" class="sortType" value="1">
+                        <input type="hidden" class="denomination" value="20">
+                        <input type="hidden" class="quota" value="29">
+                        <input type="hidden" class="quotaString" value="满29可用">
+                        <input type="hidden" class="jumpUrl" value="https://sale.jd.com/m/act/aGMVhbnZHtqYlzFP.html">
+                        <input type="hidden" class="shopId" value="">
+                        <input type="hidden" class="denomination" value="20"></a>
+                </li>
+                <li class="coupon-blue">
+                    <a class="coupon-a">
+                        <div class="coupon-left">
+                            <div class="triangle-border-left">
+                                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                            <div class="img-div-backg">
+                                <div class="img-div">
+                                    <img src="Picture/59e73267n16477e21.jpg"></div>
+                            </div>
+                            <div class="pro-content">
+                                <span class="pro-info">自营粮油调味部分商品</span>
+                                <div class="pro-price">
+                                    <span class="big-price">30</span>
+                                    <span class="price-info">满199可用</span></div>
+                            </div>
+                        </div>
+                        <div class="coupon-right">
+                            <div class="triangle-border-right">
+                                <em class="circular0"></em>
+                                <em class="circular1"></em>
+                                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                            <div class="change-block">
+                                <div class="progress-bar-block">
+                                    <div class="progress-bar">
+                                        <span style="width:53%"></span>
+                                    </div>
+                                </div>
+                                <span class="progress-text">已抢&nbsp;53%</span>
+                                <span class="coupon-btn">立即领取</span></div>
+                        </div>
+                        <input type="hidden" class="jumpFlag" value="1">
+                        <input type="hidden" class="type" value="2">
+                        <input type="hidden" class="batchId" value="44287774">
+                        <input type="hidden" class="id" value="249622">
+                        <input type="hidden" class="key"
+                               value="ED4715CDB49B75006190C2E63FB802DE2A84ED68124B5E72C249093F4D49E5F450AC93F8FAD90D456227C60734534054">
+                        <input type="hidden" class="roleId" value="0D74C3B86574EA962468CA78BFA01E62">
+                        <input type="hidden" class="sortType" value="1">
+                        <input type="hidden" class="denomination" value="30">
+                        <input type="hidden" class="quota" value="199">
+                        <input type="hidden" class="quotaString" value="满199可用">
+                        <input type="hidden" class="jumpUrl"
+                               value="https://pro.m.jd.com/mall/active/VjvyJ95ZsMbFnid29hwhmZDjSaV/index.html">
+                        <input type="hidden" class="shopId" value="">
+                        <input type="hidden" class="denomination" value="30"></a>
+                </li>
+                <li class="coupon-blue">
+                    <a class="coupon-a">
+                        <div class="coupon-left">
+                            <div class="triangle-border-left">
+                                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                            <div class="img-div-backg">
+                                <div class="img-div">
+                                    <img src="Picture/59ef41a1n18debbb0.jpg"></div>
+                            </div>
+                            <div class="pro-content">
+                                <span class="pro-info">购买品质腕表可用</span>
+                                <div class="pro-price">
+                                    <span class="big-price">100</span>
+                                    <span class="price-info">满499可用</span></div>
+                            </div>
+                        </div>
+                        <div class="coupon-right">
+                            <div class="triangle-border-right">
+                                <em class="circular0"></em>
+                                <em class="circular1"></em>
+                                <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                            <div class="change-block">
+                                <div class="progress-bar-block">
+                                    <div class="progress-bar">
+                                        <span style="width:36%"></span>
+                                    </div>
+                                </div>
+                                <span class="progress-text">已抢&nbsp;36%</span>
+                                <span class="coupon-btn">立即领取</span></div>
+                        </div>
+                        <input type="hidden" class="jumpFlag" value="1">
+                        <input type="hidden" class="type" value="2">
+                        <input type="hidden" class="batchId" value="44524866">
+                        <input type="hidden" class="id" value="257052">
+                        <input type="hidden" class="key"
+                               value="245273E2D7F0510B28EB26619C824F7296C5B9D912CDD41542434BF0AFAF3D2650AC93F8FAD90D456227C60734534054">
+                        <input type="hidden" class="roleId" value="6F7F4ABD3FCA15E849C6EECF238C377B">
+                        <input type="hidden" class="sortType" value="1">
+                        <input type="hidden" class="denomination" value="100">
+                        <input type="hidden" class="quota" value="499">
+                        <input type="hidden" class="quotaString" value="满499可用">
+                        <input type="hidden" class="jumpUrl"
+                               value="https://pro.m.jd.com/mall/active/jXx8fYQmUHqG4jRnjv38iFD7idZ/index.html">
+                        <input type="hidden" class="shopId" value="">
+                        <input type="hidden" class="denomination" value="100"></a>
+                </li>
+            </ul>
+            <input type="hidden" class="sid" value="">
+            <input type="hidden" class="openR" value="true">
+            <input type="hidden" class="requestServerName" value="coupon.m.jd.com">
+            <input type="hidden" class="requestScheme" value="http">
+            <input type="hidden" class="okUrl" value="//shop.m.jd.com/?shopId=%s">
+            <input type="hidden" class="appBanner-bg" value="">
+            <input type="hidden" class="appBanner-content1" value="">
+            <input type="hidden" class="appBanner-content2" value="">
+            <input type="hidden" class="appBanner-fontSizeOne" value="">
+            <input type="hidden" class="appBanner-fontSizeTwo" value="">
+            <input type="hidden" class="appBanner-colorOne" value="">
+            <input type="hidden" class="appBanner-colorTwo" value="">
+            <input type="hidden" class="appBanner-logo" value="">
+            <input type="hidden" class="appBanner-icon" value="">
+            <input type="hidden" class="appBanner-iconColor" value="">
+            <input type="hidden" class="isOpenAppBanner" value="false">
+            <input type="hidden" class="mDownLayer" value="true">
+            <input type="hidden" class="jxSetTopCoupon" value="">
+            <input type="hidden" class="jumpToSo" value="true">
+            <div class="is-loading-b" style="display: none">
+                <em></em>
+                <span>加载中...</span></div>
+            <div class="no-coupon" style="display:none">
+                <span class="new-logo2"></span>
+                <p>抱歉，没有符合条件的数据</p>
+            </div>
+            <div class="click-change" id="clickChange" style="display:block">
+                <span>点击</span>切换下一品类
+            </div>
+        </div>
+        <div class="bottom-to-top" id="indexToTop" style="display: none;">
+            <img src="Picture/scroll-to-top-icon.png" style="width: 100%;"></div>
+    </div>
+</div>
+<!-- 验证码弹层 -->
+<div class="captchas-tip" style="display: none;">
+    <div class="tip-title">输入验证码</div>
+    <div class="captchas-info">
+        <input id="captchas-input" class="captchas-input" type="text" placeholder="请输入验证码">
+        <input id="captchas-codekey" class="captchas-codekey" type="hidden">
+        <a href="javascript:void(0)" onclick="com_jd_passport_m_validateCode('captchas-img','captchas-codekey','6');">
+            <img id="captchas-img" class="captchas-img" src=""></a>
+    </div>
+    <div class="tip-warn"></div>
+    <div class="captchas-btns">
+        <a href="javascript:;" class="tip-btn btn-cancel">取消</a>
+        <a href="javascript:;" class="tip-btn btn-ensure">立即领取</a></div>
+</div>
+
+<!-- 黑色弹层 -->
+<!--<div class="popup"></div>-->
+<!--<div class="popup02"></div>-->
+<!--<div class="popup03"></div>-->
+<!--<div class="popup04"></div>-->
+<script type="text/javascript" src="js/coupon.min.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.choose-pannel-open').show();
+        var chooseArg = {};
+
+        chooseArg["couponMain"] = {};
+
+        M.setRunMod(['couponMain']);
+        M.runner(chooseArg);
+    });
+</script>
+<!--<script src="js/m_common_merge2.1.js"></script>-->
+</body>
+
+</html>
