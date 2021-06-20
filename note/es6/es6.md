@@ -12,7 +12,7 @@
  * @Author: mrzou
  * @Date: 2021-04-12 12:45:22
  * @LastEditors: mrzou
- * @LastEditTime: 2021-06-20 18:57:37
+ * @LastEditTime: 2021-06-20 20:04:50
  * @Description: file content
 -->
 
@@ -33,6 +33,24 @@
 
   // 引用module文件 的 app.js
   const React, {Component} from 'react'
+
+
+
+  // q1重名了 用 as 启用别名 q2 避免冲突
+  import {q1, ta} from "./m1.js";
+  import {q1 as q2, tu} from "./m2.js";
+
+  // 简便形式  针对默认暴露
+    // m3.js
+    export default {
+      school: 'ATGUIGU',
+      change: function(){
+          console.log("我们可以改变你!!");
+      }
+    }
+    // 引用 m3.js
+    import m3 from "./m3.js";
+    import { default as m3 } from "./m3.js";
   ```
 
 ## 解构
@@ -614,3 +632,102 @@ xiaomi.gps(); // 我可以gps定位
 
 xiaomi.photo(); // 我可以拍照
 ```
+
+## 数值扩展
+
+ES6 提供了二进制和八进制数值的新的写法，分别用前缀 0b 和 0o 表示。
+Number.isFinite() 用来检查一个数值是否为有限的
+Number.isNaN() 用来检查一个值是否为 NaN
+ES6 将全局方法 parseInt 和 parseFloat，移植到 Number 对象上面，使用不变。
+
+Math.trunc 用于去除一个数的小数部分，返回整数部分
+Number.isInteger() 用来判断一个数值是否为整数
+
+```js
+//0. Number.EPSILON 是 JavaScript 表示的最小精度
+//EPSILON 属性的值接近于 2.2204460492503130808472633361816E-16
+function equal(a, b) {
+  if (Math.abs(a - b) < Number.EPSILON) {
+    return true;
+  } else {
+    return false;
+  }
+}
+console.log(0.1 + 0.2 === 0.3); // false
+console.log(equal(0.1 + 0.2, 0.3)); // true
+
+//1. 二进制和八进制
+let b = 0b1010; // 2进制
+let o = 0o777; // 8进制 //
+let d = 100; // 10进制
+let x = 0xff; // 16进制
+console.log(x);
+
+//2. Number.isFinite  检测一个数值是否为有限数
+console.log(Number.isFinite(100)); // true
+console.log(Number.isFinite(100 / 0)); // false
+console.log(Number.isFinite(Infinity)); // false
+
+//3. Number.isNaN 检测一个数值是否为 NaN
+console.log(Number.isNaN(123)); // false
+
+//4. Number.parseInt Number.parseFloat字符串转整数
+console.log(Number.parseInt("868love")); //868
+console.log(Number.parseFloat("3.14神奇")); //3.14
+
+//5. Number.isInteger 判断一个数是否为整数
+console.log(Number.isInteger(5)); // true
+console.log(Number.isInteger(2.5)); // false
+
+//6. Math.trunc 将数字的小数部分抹掉
+console.log(Math.trunc(3.5)); // 3
+
+//7. Math.sign 判断一个数到底为正数 负数 还是零
+console.log(Math.sign(100)); // 1
+console.log(Math.sign(0)); // 0
+console.log(Math.sign(-20000)); // -1
+```
+
+## 对象扩展
+
+ES6 新增了一些 Object 对象的方法
+
+1. Object.is 比较两个值是否严格相等，与『===』行为基本一致（+0 与 NaN）
+2. Object.assign 对象的合并，将源对象的所有可枚举属性，复制到目标对象
+3. **proto**、setPrototypeOf、 setPrototypeOf 可以直接设置对象的原型
+
+```js
+//1. Object.is 判断两个值是否完全相等
+console.log(Object.is(120, 120)); // === true
+console.log(Object.is(NaN, NaN)); // === true
+console.log(NaN === NaN); // ===  false
+
+//2. Object.assign 对象的合并
+const config1 = {
+  host: "aaa",
+  port: 101,
+  test: "tt1",
+};
+const config2 = {
+  host: "xxx",
+  port: 102,
+  test2: "tt2",
+};
+console.log(Object.assign(config1, config2)); //返回 { host: "xxx", port: 102, test: "tt1", test2: "tt2" }
+// config1: { host: "xxx", port: 102, test: "tt1", test2: "tt2" }
+
+//3. Object.setPrototypeOf 设置原型对象  Object.getPrototypeof
+const abs = {
+  name: "广州",
+};
+const cities = {
+  adrs: ["北京", "上海", "深圳"],
+};
+
+Object.setPrototypeOf(abs, cities);
+
+console.log(Object.getPrototypeOf(abs));
+console.log(abs);
+```
+
+![setPrototypeOf](./images/setPrototypeOf.png)
