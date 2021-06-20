@@ -12,7 +12,7 @@
  * @Author: mrzou
  * @Date: 2021-04-12 12:45:22
  * @LastEditors: mrzou
- * @LastEditTime: 2021-06-20 02:02:23
+ * @LastEditTime: 2021-06-20 18:10:59
  * @Description: file content
 -->
 
@@ -271,4 +271,221 @@ console.log(iterator.next()); // {value: undefined, done: true}
 // for(let v of gen()){
 //     console.log(v); // 分 4 打印出上面的结果, 并执行 console.log
 // }
+```
+
+**生成器函数参数传递**
+
+```js
+function* gen(arg) {
+  console.log(arg, "001");   // AAA 001
+let one = yield 111;         // {value: 111, done: false}
+  console.log(one, "002");   // BBB 002
+  let two = yield 222;       // {value: 222, done: false}
+  console.log(two, "003");   // CCC 003
+  let three = yield 333;     // {value: 333, done: false}
+  console.log(three, "004"); // DDD 004
+                             // 已经执行完，没有yield语法了 {value: undefined, done: true}
+}
+
+//执行获取迭代器对象
+let iterator = gen("AAA");
+console.log(iterator.next()); // {value: 111, done: false}
+// next方法可以传入实参 并作为上一个 yield 的返回值
+console.log(iterator.next("BBB")); // {value: 222, done: false}
+console.log(iterator.next("CCC")); // {value: 333, done: false}
+console.log(iterator.next("DDD")); // {value: undefined, done: true}
+
+// 执行上面代码  得到结果如下:
+AAA 001
+{value: 111, done: false}
+BBB 002
+{value: 222, done: false}
+CCC 003
+{value: 333, done: false}
+DDD 004
+{value: undefined, done: true}
+```
+
+**生成器函数实例**
+
+- demo1
+
+  ```js
+  // 异步编程  文件操作 网络操作(ajax, request) 数据库操作
+  // 1s 后控制台输出 111  2s后输出 222  3s后输出 333
+  // 回调地狱
+  // setTimeout(() => {
+  //     console.log(111);
+  //     setTimeout(() => {
+  //         console.log(222);
+  //         setTimeout(() => {
+  //             console.log(333);
+  //         }, 3000);
+  //     }, 2000);
+  // }, 1000);
+
+  function one() {
+    setTimeout(() => {
+      console.log(111);
+      iterator.next(); // 向下调用
+    }, 1000);
+  }
+
+  function two() {
+    setTimeout(() => {
+      console.log(222);
+      iterator.next(); // 向下调用
+    }, 2000);
+  }
+
+  function three() {
+    setTimeout(() => {
+      console.log(333);
+      iterator.next(); // 向下调用 此时 反回 {done: true} 则结束生成器调用
+    }, 3000);
+  }
+
+  function* gen() {
+    yield one();
+    yield two();
+    yield three();
+  }
+
+  //调用生成器函数
+  let iterator = gen();
+  iterator.next();
+  ```
+
+- demo2
+
+  ```js
+  //模拟获取  用户数据  订单数据  商品数据
+  function getUsers(preData) {
+    setTimeout(() => {
+      let data = "通过preData，获取到的用户数据";
+      //调用 next 方法, 并且将数据传入
+      iterator.next(data);
+    }, 1000);
+  }
+
+  function getOrders(preData) {
+    setTimeout(() => {
+      let data = "通过preData，获取到的订单数据";
+      iterator.next(data);
+    }, 1000);
+  }
+
+  function getGoods(preData) {
+    setTimeout(() => {
+      let data = "通过preData，获取到的商品数据";
+      iterator.next(data); // 执行完，则结束生成器调用
+    }, 1000);
+  }
+
+  function* gen(arg) {
+    let users = yield getUsers(arg);
+    let orders = yield getOrders(users);
+    let goods = yield getGoods(orders);
+    console.log(goods); // 通过preData，获取到的商品数据
+  }
+
+  //调用生成器函数
+  let iterator = gen({ userId: 888 });
+  iterator.next();
+  ```
+
+## Set
+
+ES6 提供了新的数据结构 Set（集合）。它类似于数组，但成员的值都是唯一的，
+集合实现了 iterator 接口，所以可以使用『扩展运算符』和『for…of…』进
+行遍历，集合的属性和方法：
+
+1. size 返回集合的元素个数
+2. add 增加一个新元素，返回当前集合
+3. delete 删除元素，返回是否成功的 boolean 值
+4. has 检测集合中是否包含某个元素，返回 boolean 值
+5. clear 清空集合，返回 undefined
+
+```js
+//声明一个 set
+let s1 = new Set(["小明", "小李", "小杰"]);
+let s2 = new Set(["小明", "小李", "小杰", "小枫", "小萍"]);
+
+// 由于成员的值都是唯一的  所以可用来  去重
+[...new Set(["aa", "bb", "aa", "bb"])]; // ['aa', 'bb']
+
+// 返回集合的元素个数
+console.log(s2.size); // 5
+//添加新的元素
+s2.add("小倩"); // 新增加一个 并返回当前集合
+//删除元素
+s2.delete("小杰"); // true
+//检测是否存在某个值
+console.log(s2.has("小李"));
+//清空集合
+console.log(s2.clear()); // undefined
+
+console.log(s2); // 空集合
+
+// 集合实现了iterator接口 所以可以用 for of遍历
+for (let v of s1) {
+  console.log(v); // 依次打印 "小明"  "小李"  "小杰"
+}
+```
+
+## Map
+
+ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合。
+但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。
+Map 也实现了 iterator 接口，所以可以使用『扩展运算符』和『for…of…』进行遍历。
+Map 的属性和方法：
+
+1. size 返回 Map 的元素个数
+2. set 增加一个新元素，返回当前 Map
+3. get 返回键名对象的键值
+4. has 检测 Map 中是否包含某个元素，返回 boolean 值
+5. clear 清空集合，返回 undefined
+
+```js
+//声明 Map
+let m = new Map();
+
+//添加元素
+m.set(666, "mrzou"); // key 可以为 数字
+m.set("address", "广州"); // key 也可以为 字符串
+
+m.set("change", function () {
+  console.log("我们可以改变你!!");
+});
+let key = {
+  age: 18,
+};
+// key 也可以为 对象
+m.set(key, ["北京", "上海", "深圳"]); // set 返回当前最新的Map
+
+const sym = Symbol("a");
+m.set(sym, "Symbol"); // key 也可以为 Symbol
+
+//size
+console.log(m.size); // 3
+
+//删除
+m.delete(666); // true
+
+//获取
+console.log(m.get("change")); // function(){console.log("我们可以改变你!!");}
+console.log(m.get(key)); // ["北京", "上海", "深圳"]
+console.log(m.get(sym)); // Symbol
+
+//遍历
+for (let v of m) {
+  // 依次以 数组形式 返回
+  // ['address', '广州']
+  // ['change', function(){}]
+  // [{age:18}, ["北京", "上海", "深圳"]]
+  console.log(v);
+}
+
+//清空
+m.clear();
 ```
