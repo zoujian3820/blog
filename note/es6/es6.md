@@ -12,7 +12,7 @@
  * @Author: mrzou
  * @Date: 2021-04-12 12:45:22
  * @LastEditors: mrzou
- * @LastEditTime: 2021-06-20 18:10:59
+ * @LastEditTime: 2021-06-20 18:57:37
  * @Description: file content
 -->
 
@@ -488,4 +488,129 @@ for (let v of m) {
 
 //清空
 m.clear();
+```
+
+## class 类
+
+ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对
+象的模板。通过 class 关键字，可以定义类。基本上，ES6 的 class 可以看作只是
+一个语法糖，它的绝大部分功能，ES5 都可以做到，新的 class 写法只是让对象
+原型的写法更加清晰、更像面向对象编程的语法而已。
+
+知识点：
+
+1. class 声明类
+2. constructor 定义构造函数初始化
+3. extends 继承父类
+4. super 调用父级构造方法
+5. static 定义静态方法和属性
+6. 父类方法可以重写
+
+- 静态成员
+
+```js
+// es5写法
+function Phone() {}
+
+Phone.name = "手机";
+Phone.change = function () {
+  console.log("我可以改变世界");
+};
+Phone.prototype.size = "5.5inch";
+
+let nokia = new Phone();
+
+console.log(nokia.name);
+nokia.change();
+console.log(nokia.size);
+
+// es6写法
+class Phone2 {
+  //静态属性
+  static name = "手机";
+  static change() {
+    console.log("我可以改变世界");
+  }
+}
+
+let nokia = new Phone2();
+console.log(nokia.name);
+console.log(Phone.name);
+```
+
+- es5 写法对象继承
+
+```js
+function Phone(brand, price) {
+  this.brand = brand;
+  this.price = price;
+}
+
+Phone.prototype.call = function () {
+  console.log("我可以打电话");
+};
+
+//智能手机
+function SmartPhone(brand, price, color, size) {
+  Phone.call(this, brand, price);
+  this.color = color;
+  this.size = size;
+}
+
+//设置子级构造函数的原型
+SmartPhone.prototype = new Phone();
+SmartPhone.prototype.constructor = SmartPhone;
+
+//声明子类的方法
+SmartPhone.prototype.photo = function () {
+  console.log("我可以拍照");
+};
+
+const chuizi = new SmartPhone("锤子", 2499, "黑色", "5.5inch");
+
+console.log(chuizi);
+```
+
+- es6 写法对象继承
+
+```js
+class Phone {
+  //构造方法
+  constructor(brand, price) {
+    this.brand = brand;
+    this.price = price;
+  }
+  //父类的成员属性
+  call() {
+    console.log("我可以打电话!!");
+  }
+  gps() {
+    console.log("我可以gps定位");
+  }
+}
+
+class SmartPhone extends Phone {
+  //构造方法
+  constructor(brand, price, color, size) {
+    super(brand, price); // Phone.call(this, brand, price)
+    this.color = color;
+    this.size = size;
+  }
+
+  // 原型方法
+  photo() {
+    console.log("我可以拍照");
+  }
+  // 重写 替换父类的call方法
+  call() {
+    console.log("我可以进行视频通话");
+  }
+}
+
+const xiaomi = new SmartPhone("小米", 799, "黑色", "4.7inch");
+// console.log(xiaomi);
+xiaomi.call(); // 我可以进行视频通话
+xiaomi.gps(); // 我可以gps定位
+
+xiaomi.photo(); // 我可以拍照
 ```
