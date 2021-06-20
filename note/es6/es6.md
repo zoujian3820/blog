@@ -12,46 +12,46 @@
  * @Author: mrzou
  * @Date: 2021-04-12 12:45:22
  * @LastEditors: mrzou
- * @LastEditTime: 2021-06-20 20:04:50
+ * @LastEditTime: 2021-06-20 20:08:50
  * @Description: file content
 -->
 
 ## 模块引用
 
-- 分别暴露引用
-
-  ```javascript
-  // module.js
-  const React = {a:1, b:2}
-  export class Component {
-    state = {xxx: 22}
-  }
-
-  React.Component = Component
-
-  export default React
-
-  // 引用module文件 的 app.js
-  const React, {Component} from 'react'
-
-
-
-  // q1重名了 用 as 启用别名 q2 避免冲突
-  import {q1, ta} from "./m1.js";
-  import {q1 as q2, tu} from "./m2.js";
-
-  // 简便形式  针对默认暴露
-    // m3.js
-    export default {
-      school: 'ATGUIGU',
-      change: function(){
-          console.log("我们可以改变你!!");
-      }
+```html
+<script type="module">
+  // module.js  分别暴露引用
+    const React = {a:1, b:2}
+    export class Component {
+      state = {xxx: 22}
     }
-    // 引用 m3.js
-    import m3 from "./m3.js";
-    import { default as m3 } from "./m3.js";
-  ```
+
+    React.Component = Component
+
+    export default React
+
+    // 引用module文件 的 app.js
+    const React, {Component} from 'react'
+
+
+    // q1重名了 用 as 启用别名 q2 避免冲突
+    import * as m1 from "./m1.js";
+    import {q1, ta} from "./m1.js";
+    import {q1 as q2, tu} from "./m2.js";
+
+    // 简便形式  针对默认暴露
+      // m3.js
+      export default {
+        school: 'ATGUIGU',
+        change: function(){
+            console.log("我们可以改变你!!");
+        }
+      }
+      // 引用 m3.js
+      import m3 from "./m3.js";
+      import { default as m3 } from "./m3.js";
+</script>
+```
 
 ## 解构
 
