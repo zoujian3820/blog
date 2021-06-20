@@ -12,7 +12,7 @@
  * @Author: mrzou
  * @Date: 2021-04-12 12:45:22
  * @LastEditors: mrzou
- * @LastEditTime: 2021-06-20 20:08:50
+ * @LastEditTime: 2021-06-21 00:56:47
  * @Description: file content
 -->
 
@@ -466,6 +466,11 @@ Map 的属性和方法：
 
 ```js
 //声明 Map
+new Map([
+  [1, 2],
+  ["aa", { a: 56 }],
+]);
+
 let m = new Map();
 
 //添加元素
@@ -731,3 +736,90 @@ console.log(abs);
 ```
 
 ![setPrototypeOf](./images/setPrototypeOf.png)
+
+## ECMASript 7 新特性
+
+Array.prototype.includes
+Includes 方法用来检测数组中是否包含某个元素，返回布尔类型值
+
+指数操作符
+在 ES7 中引入指数运算符「\*\*」，用来实现幂运算，功能与 Math.pow 结果相同
+
+```js
+// includes   indexOf
+const mingzhu = ["西游记", "红楼梦", "三国演义", "水浒传"];
+
+//判断
+console.log(mingzhu.includes("西游记")); // true
+console.log(mingzhu.includes("金瓶梅")); // false
+
+// **
+console.log(2 ** 3); // 8  2的3次方 此运算和使用 Math.pow 是等效的
+console.log(Math.pow(2, 3)); // 8
+```
+
+## ECMASript 8 新特性
+
+async 和 await 两种语法结合可以让异步代码像同步代码一样
+
+1. async 函数的返回值为 promise 对象，
+2. promise 对象的结果由 async 函数执行的返回值决定
+3. await 必须写在 async 函数中
+4. await 右侧的表达式一般为 promise 对象
+5. await 返回的是 promise 成功的值
+6. await 的 promise 失败了, 就会抛出异常, 需要通过 try...catch 捕获处理
+
+Object.values 和 Object.entries
+
+1. Object.values()方法返回一个给定对象的所有可枚举属性值的数组
+2. Object.entries()方法返回一个给定对象自身可遍历属性 [key,value] 的数组
+
+Object.getOwnPropertyDescriptor 该方法返回指定对象所有自身属性的描述对象
+
+```js
+//声明对象
+const obj = {
+  name: "ggg",
+  cities: ["北京", "上海", "深圳"],
+  classifys: ["aa", "bb", "cc", "dd"],
+};
+
+//获取对象所有的键
+console.log(Object.keys(obj));
+// ['name', 'cities', 'classifys']
+
+//获取对象所有的值
+console.log(Object.values(obj));
+// ["ggg", ["北京", "上海", "深圳"], ["aa", "bb", "cc", "dd"]]
+
+//entries
+console.log(Object.entries(obj));
+// [["name","ggg"], ["cities",["北京","上海","深圳"]], ["classifys",["aa","bb","cc","dd"]]]
+
+//创建 Map
+const m = new Map(Object.entries(obj));
+// [[Entries]]
+// 0: {"name" => "ggg"}
+// 1: {"cities" => Array(3)}    // ["北京", "上海", "深圳"]
+// 2: {"classifys" => Array(4)} // ["aa", "bb", "cc", "dd"]
+// size: (...)                  // 3
+// __proto__: Map
+
+console.log(m.get("cities")); // ["北京", "上海", "深圳"]
+
+//对象属性的描述对象
+console.log(Object.getOwnPropertyDescriptors(obj));
+
+const obj = Object.create(null, {
+  name: {
+    // 这里设置的就是  对象属性的描述对象
+    value: "qqq", //设置值
+    //属性特性
+    writable: true, // 是否可写
+    configurable: true, // 是否可删除
+    enumerable: true, // 是否可枚举
+  },
+});
+```
+
+![getOwnPropertyDescriptors.png](./images/getOwnPropertyDescriptors.png)
