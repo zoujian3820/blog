@@ -2,7 +2,7 @@
  * @Author: mrzou
  * @Date: 2021-04-21 20:29:55
  * @LastEditors: mrzou
- * @LastEditTime: 2021-04-21 21:06:21
+ * @LastEditTime: 2021-06-22 23:41:24
  * @Description: file content
  */
 
@@ -13,74 +13,74 @@ const createAppApi = (render) => {
       mount(rootContainer) {
         // 1. vnode
         const vnode = {
-          tag: rootComponent,
-        };
+          tag: rootComponent
+        }
         // 2. render
-        render(vnode, rootContainer);
-      },
-    };
-    return app;
-  };
-};
+        render(vnode, rootContainer)
+      }
+    }
+    return app
+  }
+}
 
 // 创建 renderer
 const createRenderer = ({ querySelector, createElement, insert }) => {
   const render = (vnode, container) => {
-    patch(container._vnode || null, vnode, container);
-    container._vnode = vnode;
-  };
+    patch(container._vnode || null, vnode, container)
+    container._vnode = vnode
+  }
   const patch = (n1, n2, container) => {
     // 根组件配置
-    const rootComponent = n2.tag;
-    const ctx = rootComponent.data();
-    const vnode = rootComponent.render.call(ctx);
+    const rootComponent = n2.tag
+    const ctx = rootComponent.data()
+    const vnode = rootComponent.render.call(ctx)
 
     // vnode => dom
-    const parent = querySelector(container);
-    const child = createElement(vnode.tag);
+    const parent = querySelector(container)
+    const child = createElement(vnode.tag)
     //  children
-    if (typeof vnode.children === "string") {
-      child.textContent = vnode.children;
+    if (typeof vnode.children === 'string') {
+      child.textContent = vnode.children
     } else {
       // todo
     }
-    insert(child, parent);
-  };
+    insert(child, parent)
+  }
   return {
     render,
-    createApp: createAppApi(render),
-  };
-};
+    createApp: createAppApi(render)
+  }
+}
 
 // render
 const renderer = createRenderer({
   querySelector(sel) {
-    return document.querySelector(sel);
+    return document.querySelector(sel)
   },
   createElement(tag) {
-    return document.createElement(tag);
+    return document.createElement(tag)
   },
   insert(child, parent) {
-    parent.appendChild(child);
-  },
-});
+    parent.appendChild(child)
+  }
+})
 
 const Vue = {
   createApp(options) {
-    return renderer.createApp(options);
-  },
-};
+    return renderer.createApp(options)
+  }
+}
 
 Vue.createApp({
   data() {
     return {
-      counter: 0,
-    };
+      counter: 0
+    }
   },
   render() {
     return {
-      tag: "p",
-      children: this.counter + "",
-    };
-  },
-}).mount("#app");
+      tag: 'p',
+      children: this.counter + ''
+    }
+  }
+}).mount('#app')
