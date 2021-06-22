@@ -2,7 +2,7 @@
  * @Author: mrzou
  * @Date: 2021-04-21 20:29:55
  * @LastEditors: mrzou
- * @LastEditTime: 2021-06-22 23:41:24
+ * @LastEditTime: 2021-06-23 00:31:15
  * @Description: file content
  */
 
@@ -84,3 +84,4 @@ Vue.createApp({
     }
   }
 }).mount('#app')
+
