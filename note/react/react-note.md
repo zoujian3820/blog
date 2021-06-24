@@ -81,9 +81,11 @@
     changeWeather = () => {
       console.log(this.state, this.props);
     };
-
+  
     //对标签属性prop进行类型、必要性的限制
     static propTypes = {
+      // import PropTypes from 'prop-types';
+      // PropTypes react 15版本及之前都在 React.PropTypes 上维护，从16开始这个被分离出去，放到了 prop-types 包中, 使用时要引入这个包
       name: PropTypes.string.isRequired, //限制name必传，且为字符串
       sex: PropTypes.string, //限制sex为字符串
       age: PropTypes.number, //限制age为数值
@@ -94,6 +96,17 @@
       sex: "男", //sex默认值为男
       age: 18, //age默认值为18
     };
+
+    render() {
+      const {name, age, sex} = this.props
+      return (
+        <ul>
+          <li>姓名: {name}</li>
+          <li>性别: {sex}</li>
+          <li>年龄: {age}</li>
+        </ul>
+      )
+    }
   }
   ReactDOM.render(<Weather name="kk" />, document.getElementById("test"));
   ```
