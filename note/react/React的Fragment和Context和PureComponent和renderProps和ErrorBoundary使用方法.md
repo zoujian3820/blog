@@ -42,6 +42,15 @@
 
 #### Context 实现 袓组件与后代组件 通讯 (类似 Vue 中的 provide inject 依赖注入)
 
+>使用注意事项
+>不要用对象字面量形式传参<Provider value={{something: "something"}}><Toolbar /></Provider>
+
+>要使用<Provider value={ something }><Toolbar /></Provider>对象引用的方式传参
+>因为Provide传递的参数一但发生变化，将导致所有子组件都发生更新，且只会做数据的浅比较，<br/>如：对象只做引用地址的相等比较 obj === obj2 
+>所以上面 {something: "something"} === {something: "something"} 永远不相等，则组件就会每次都更新
+
+>Context被归类为高级部分(Advanced)，属于 React 的高级 API，建议不要滥用， 滥用将导致页面的多余更新
+
 - 使用类组件 Context 实现 袓组件与后代组件 通讯
 
   ```jsx
@@ -112,7 +121,8 @@
 
 - 使用函数式组件 Context 实现 袓组件与后代组件 通讯
   - 父组件 通过 MyContext.Provider组件 传值 和上面是一样的写法 只有接收上有所不同 下面就是接收的 demo
-  - 使用 Consumer 类组件与函数组件都可以用 但 contextType 只有类组件可用
+  - 1.使用 MyContext.Consumer 在类组件与函数组件都可以用 但 contextType 只有类组件可用
+  - 2.使用 React.useContext 使用介绍放在了[react-hook.md](./react-hook.md)中，只能用在 function 组件中 或 自定义hook中
   ```jsx
   export function C() {
     return (
