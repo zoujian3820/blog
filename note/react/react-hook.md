@@ -12,7 +12,7 @@
  * @Author: mrzou
  * @Date: 2021-05-07 12:53:20
  * @LastEditors: mrzou
- * @LastEditTime: 2021-05-11 12:56:05
+ * @LastEditTime: 2021-06-27 00:46:10
  * @Description: file content
 -->
 ### setState更新状态的2种写法
@@ -53,6 +53,7 @@
   - State Hook: React.useState()
   - Effect Hook: React.useEffect()
   - Ref Hook: React.useRef()
+  - React.useContext
 
   #### State Hook 在函数组件中 模似类组件的 setState
   - React.useState
@@ -142,4 +143,70 @@
           </div>
         )
       }
+    ```
+
+  #### React.useContext
+    接收一个 context 对象（React.createContext 的返回值）并返回该 context 的当前值。当前的 context 值由上层组件中距离当前组件最近的 <MyContext.Provider value={data}></MyContext.Provider> 的 value prop值决定。只能用在 function 组件中。
+
+    当组件上层最近的 <MyContext.Provider> 更新时，该 Hook 会触发重新渲染，并使用最新传递给 MyContext provider 的 context value 值。即使祖先使用 React.memo 或 shouldComponentUpdate，也会在组件本身使用 useContext 时重新渲染。
+
+    别忘记 useContext 的参数必须是 context 对象本身useContext(MyContext) 相当于 class 组件中的 static contextType = MyContext 或者 <MyContext.Consumer>{value => /* 基于 context 值进行渲染*/}</MyContext.Consumer>。  
+
+    ```jsx
+    import React, { useContext, Component } from "react";
+    export const ThemeContext = React.createContext({themeColor: 'pink'});
+    export const UserContext = React.createContext();
+
+    export function UseContextPage(props) {
+      const themeContext = useContext(ThemeContext);
+      const {themeColor} = themeContext;
+      const userContext = useContext(UserContext);
+
+      // userContext 可以使用多个 Context 只需把相当应的 Context名称传入即可
+      // 然后在祖、父级调用MyContext.Provider组件传参
+      console.log(themeColor, 'xxxx', userContext.name)
+      return (
+        <div className="border">
+          <h3 className={themeColor}>UseContextPage {themeColor}</h3>
+          <p>{userContext.name}</p>
+        </div>
+      );
+    }
+
+    export default class ContextPage extends Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          theme: {
+            themeColor: "red33"
+          },
+          user: {
+            name: "xiaoming"
+          }
+        };
+      }
+
+      changeColor = () => {
+        const {themeColor} = this.state.theme;
+        this.setState({
+          theme: {
+            themeColor: themeColor === "red" ? "green" : "red"
+          }
+        });
+      };
+
+      render() {
+        const {theme, user} = this.state;
+        return (
+          <>
+            <UserContext.Provider value={user}>
+              <ThemeContext.Provider value={theme}>
+                <UseContextPage />
+              </ThemeContext.Provider>
+            </UserContext.Provider>
+            <button onClick={this.changeColor}>change color</button>
+          </>
+        );
+      }
+    }
     ```

@@ -49,7 +49,7 @@
 
   // 创建context对象
   const MyContext = React.createContext();
-  // const { Provide } = MyContext
+  // const { Provider } = MyContext
 
   export class A extends Component {
     state = { username: "mz", age: 18 };
@@ -59,12 +59,12 @@
         <div className="parent">
           <h3>我是A组件</h3>
           <div>我的用户名是：{username}</div>
-          // 用 context的Provide组件包裹 B 组件 给其传递参数 // 这样
+          // 用 context的Provider组件包裹 B 组件 给其传递参数 // 这样
           B组件本身和他内部所有的子组件 都可以 通过声明接收 context 来获取到
           username 这个值 // 且 属性名必须为 value 其他名称无效
-          <MyContext.Provide value={{ username, age }}>
+          <MyContext.Provider value={{ username, age }}>
             <B />
-          </MyContext.Provide>
+          </MyContext.Provider>
         </div>
       );
     }
@@ -108,7 +108,7 @@
 
 - 使用函数式组件 Context 实现 袓组件与后代组件 通讯
   - 父组件 通过 Context 传值 和上面是一样的写法 只有接收上有所不同 下面就是接收的 demo
-  - 使用 Consumer 类组件与函数组件都可以用 但 Provide 只有类组件可用
+  - 使用 Consumer 类组件与函数组件都可以用 但 Provider 只有类组件可用
   ```jsx
   export function C() {
     return (
