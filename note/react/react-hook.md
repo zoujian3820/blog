@@ -12,7 +12,7 @@
  * @Author: mrzou
  * @Date: 2021-05-07 12:53:20
  * @LastEditors: mrzou
- * @LastEditTime: 2021-06-27 00:46:10
+ * @LastEditTime: 2021-06-27 00:59:43
  * @Description: file content
 -->
 ### setState更新状态的2种写法
@@ -146,7 +146,8 @@
     ```
 
   #### React.useContext
-    接收一个 context 对象（React.createContext 的返回值）并返回该 context 的当前值。当前的 context 值由上层组件中距离当前组件最近的 <MyContext.Provider value={data}></MyContext.Provider> 的 value prop值决定。只能用在 function 组件中。
+    接收一个 context 对象（React.createContext 的返回值）并返回该 context 的当前值。当前的 context 值由上层组件中距离当前组件最近的 <MyContext.Provider value={data}></MyContext.Provider> 的 value prop值决定。
+    只能用在 function 组件中 或 自定义hook中
 
     当组件上层最近的 <MyContext.Provider> 更新时，该 Hook 会触发重新渲染，并使用最新传递给 MyContext provider 的 context value 值。即使祖先使用 React.memo 或 shouldComponentUpdate，也会在组件本身使用 useContext 时重新渲染。
 
