@@ -59,9 +59,9 @@
         <div className="parent">
           <h3>我是A组件</h3>
           <div>我的用户名是：{username}</div>
-          // 用 context的Provider组件包裹 B 组件 给其传递参数 // 这样
-          B组件本身和他内部所有的子组件 都可以 通过声明接收 context 来获取到
-          username 这个值 // 且 属性名必须为 value 其他名称无效
+          // 用 context的Provider组件包裹 B 组件 给其传递参数
+          // 这样B组件本身和他内部所有的子组件 都可以 通过contextType 声明接收 context 来获取到username 这个值
+          // 且 属性名必须为 value 其他名称无效
           <MyContext.Provider value={{ username, age }}>
             <B />
           </MyContext.Provider>
@@ -72,7 +72,11 @@
 
   export class B extends Component {
     // 声明 contextType 静态属性   值为你要接收的 Context 名称
-    static contextType = MyContext;
+    // 只能在类组件中使用 且类组件中只能同时使用一个 contextType
+    // 多个使用 则后者覆盖前者
+
+    // static contextType = MyXxxxxxx;
+    static contextType = MyContext; // MyContext 将覆盖前者 MyXxxxxxx
 
     render() {
       // 获取传过来的 Context 值
@@ -107,8 +111,8 @@
   ```
 
 - 使用函数式组件 Context 实现 袓组件与后代组件 通讯
-  - 父组件 通过 Context 传值 和上面是一样的写法 只有接收上有所不同 下面就是接收的 demo
-  - 使用 Consumer 类组件与函数组件都可以用 但 Provider 只有类组件可用
+  - 父组件 通过 MyContext.Provider组件 传值 和上面是一样的写法 只有接收上有所不同 下面就是接收的 demo
+  - 使用 Consumer 类组件与函数组件都可以用 但 contextType 只有类组件可用
   ```jsx
   export function C() {
     return (
