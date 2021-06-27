@@ -212,6 +212,71 @@ class Demo extends React.Component {
   }
 }
 ```
+- 在函数组件中使用 ref 并且父组件是类组件 又需要调子组件的内部方法
+  - 可在 (note\react\案例\react组件化使用类组件与函数组件实现一个form表单_src) 中查看demo
+```js
+import React from "react";
+import _Form from "./Form";
+import Field from "./Field";
+import useForm from "./useForm";
+
+// 在函数组件中不能直接从props中使用ref
+// 所以需使用 React.forwardRef 做转发处理
+const Form = React.forwardRef(_Form);
+Form.Field = Field;
+Form.useForm = useForm;
+
+export {Field, useForm};
+export default Form;
+
+
+
+export default class MyRCFieldForm extends Component {
+  formRef = React.createRef();
+  componentDidMount() {
+    console.log("form", this.formRef.current); //sy-log
+    this.formRef.current.setFieldsValue({username: "default"});
+  }
+  render() {
+    return (
+      <>
+        <Form
+          ref={this.formRef}
+          <Field name="username" rules={[nameRules]}>
+            <Input placeholder="Username" />
+          </Field>
+        </Form>
+      </>
+    );
+  }
+}
+
+
+import React from "react";
+import useForm from "./useForm";
+import FieldContext from "./FieldContext";
+
+// 2、通过Provider进行值的传递
+export default function Form({children, form, onFinish, onFinishFailed}, ref) {
+  const [formInstance] = useForm(form);
+  // 通过 React.forwardRef 转发处理后，获取到的 ref
+  // 将 formInstance 方法通过 ref 传递给父组件调用
+  React.useImperativeHandle(ref, () => formInstance);
+
+  formInstance.setCallbacks({ onFinish, onFinishFailed });
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        formInstance.submit();
+      }}>
+      <FieldContext.Provider value={formInstance}>
+        {children}
+      </FieldContext.Provider>
+    </form>
+  );
+}
+```
 
 ## react 组件生命周期
 
