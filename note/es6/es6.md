@@ -1,10 +1,20 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
 - [模块引用](#%E6%A8%A1%E5%9D%97%E5%BC%95%E7%94%A8)
 - [解构](#%E8%A7%A3%E6%9E%84)
+- [js 新增的第七种数据类型 Symbol](#js-%E6%96%B0%E5%A2%9E%E7%9A%84%E7%AC%AC%E4%B8%83%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-symbol)
+  - [Symbol 内置属性](#symbol-%E5%86%85%E7%BD%AE%E5%B1%9E%E6%80%A7)
+- [迭代器](#%E8%BF%AD%E4%BB%A3%E5%99%A8)
+- [生成器](#%E7%94%9F%E6%88%90%E5%99%A8)
+- [Set](#set)
+- [Map](#map)
+- [class 类](#class-%E7%B1%BB)
+- [数值扩展](#%E6%95%B0%E5%80%BC%E6%89%A9%E5%B1%95)
+- [对象扩展](#%E5%AF%B9%E8%B1%A1%E6%89%A9%E5%B1%95)
+- [ECMASript 7 新特性](#ecmasript-7-%E6%96%B0%E7%89%B9%E6%80%A7)
+- [ECMASript 8 新特性](#ecmasript-8-%E6%96%B0%E7%89%B9%E6%80%A7)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
