@@ -20,6 +20,7 @@
 - [向路由组件传递参数](#%E5%90%91%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0)
 - [编程式路由导航](#%E7%BC%96%E7%A8%8B%E5%BC%8F%E8%B7%AF%E7%94%B1%E5%AF%BC%E8%88%AA)
 - [withRouter](#withrouter)
+- [传送门 createPortal](#%E4%BC%A0%E9%80%81%E9%97%A8-createportal)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -833,3 +834,31 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
   export default withRouter(Header);
   ```
+## 传送门 createPortal
+传送内容到指定节点
+```jsx
+import {Component} from "react"
+import {createPortal} from "react-dom"
+export default class Dialog extends Component {
+  constructor(props) {
+    super(props)
+    const doc = window.document
+    this.node = document.createElement('div')
+    doc.body.appendChild(this.node)
+  }
+  componentWillUnmount() {
+    if(this.node) {
+      window.document.body.removeChild(this.node)
+    }
+  }
+  render() {
+    // 将 dialog 这个div 传送到 this.node中
+    return createPortal(
+      <div className="dialog">
+        <h3>Dialog弹窗组件</h3>
+      </div>,
+      this.node
+    )
+  }
+}
+```

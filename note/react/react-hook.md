@@ -309,13 +309,81 @@ export function Comp(props) {
   ```
 
 #### React.useCallback
+把内联回调函数及依赖项数组作为参数传⼊ useCallback ，它将返回该回调函数的 memoized 版本，
+该回调函数仅在某个依赖项改变时才会更新。当你把回调函数传递给经过优化的并使⽤引⽤相等性去避
+免⾮必要渲染（例如 shouldComponentUpdate ）的⼦组件时，它将⾮常有⽤。
+```jsx
+import React, { useState, useCallback, PureComponent } from "react";
+export default function UseCallbackPage(props) {
+  const [count, setCount] = useState(0);
+  // 使用useCallback缓存函数
+  const addClick = useCallback(() => {
+    let sum = 0;
+    for (let i = 0; i < count; i++) {
+      sum += i;
+    }
+    return sum;
+  }, [count]);
+  const [value, setValue] = useState("");
+  return (
+    <div>
+      <h3>UseCallbackPage</h3>
+      <p>{count}</p>
+      <button onClick={() => setCount(count + 1)}>add</button>
+      <input value={value} onChange={event => setValue(event.target.value)} />
+      <Child addClick={addClick} />
+    </div>
+  );
+}
+class Child extends PureComponent {
+  render() {
+    console.log("child render");
+    const { addClick } = this.props;
+    return (
+      <div>
+        <h3>Child</h3>
+        <button onClick={() => console.log(addClick())}>add</button>
+      </div>
+    );
+  }
+}
+```
 #### React.useMemo
+把“创建”函数和依赖项数组作为参数传⼊ useMemo ，它仅会在某个依赖项改变时才重新计算
+memoized 值。这种优化有助于避免在每次渲染时都进⾏⾼开销的计算。
+```jsx
+import React, { useState, useMemo } from "react";
+export default function UseMemoPage(props) {
+  const [count, setCount] = useState(0);
+  const expensive = useMemo(() => {
+    console.log("compute");
+    let sum = 0;
+    for (let i = 0; i < count; i++) {
+      sum += i;
+    }
+    return sum;
+    //只有count变化，这⾥才重新执⾏
+  }, [count]);
+  const [value, setValue] = useState("");
+  return (
+    <div>
+      <h3>UseMemoPage</h3>
+      {/* 不使用useMemo时，直接执行函数 <p>expensive:{expensive()}</p> */ }
+      <p>expensive:{expensive}</p>
+      <p>{count}</p>
+      <button onClick={() => setCount(count + 1)}>add</button>
+      <input value={value} onChange={event => setValue(event.target.value)} />
+    </div>
+  );
+}
+```
 #### 函数组件中实现 forceUpdate()
 ```js
 function useForceUpdate() {
   // const [state, setState] = React.useState(0);
   const [_, setState] = React.useReducer((x) => x + 1, 0);
-
+  // 使用useCallback缓存函数，由于 没有依赖
+  // 使其每次反回的 都是第一次调用时的地址引用
   const update = React.useCallback(() => {
     // setState((prev) => prev + 1);
     // setState({});
