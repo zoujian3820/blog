@@ -5,7 +5,13 @@
 - [vue-router实现思路](#vue-router%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+## 区分路由组件（页面）和普通组件
+```js
+// 页面组件会在 router-view 组件中添加   
+// this.$vnode.data.routerView = true;
 
+this.$vnode.data.routerView ? '路由组件' : '一般组件'
+```
 ## vue-router实现思路
 - 插件insatll
     - Vue.prototype.$router
