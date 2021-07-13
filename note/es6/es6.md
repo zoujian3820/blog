@@ -1,7 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [模块引用](#%E6%A8%A1%E5%9D%97%E5%BC%95%E7%94%A8)
 - [解构](#%E8%A7%A3%E6%9E%84)
 - [js 新增的第七种数据类型 Symbol](#js-%E6%96%B0%E5%A2%9E%E7%9A%84%E7%AC%AC%E4%B8%83%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-symbol)
@@ -833,3 +832,85 @@ const obj = Object.create(null, {
 ```
 
 ![getOwnPropertyDescriptors.png](./images/getOwnPropertyDescriptors.png)
+
+## 可选链操作符
+
+可选链操作符( ?. )允许读取位于连接对象链深处的属性的值，而不必明确验证链中的每个引用是否有效。?. 操作符的功能类似于 . 链式操作符，不同之处在于，在引用为空(nullish ) (null 或者 undefined) 的情况下不会引起错误，该表达式短路返回值是 undefined。与函数调用一起使用时，如果给定的函数不存在，则返回 undefined。
+
+```js
+const adventurer = {
+  name: "Alice",
+  cat: {
+    name: "Dinah",
+  },
+};
+
+const dogName = adventurer.dog?.name;
+console.log(dogName);
+// expected output: undefined
+
+console.log(adventurer.someNonExistentMethod?.());
+// expected output: undefined
+
+// 短路计算
+let potentiallyNullObj = null;
+let x = 0;
+let prop = potentiallyNullObj?.[x++];
+
+console.log(x); // x 将不会被递增，依旧输出 0
+
+// 可以连续使用可选链读取多层嵌套结构
+let customer = {
+  name: "Carl",
+  details: {
+    age: 82,
+    location: "Paradise Falls", // details 的 address 属性未有定义
+  },
+};
+let customerCity = customer.details?.address?.city;
+
+// … 可选链也可以和函数调用一起使用
+let duration = vacations.trip?.getTime?.();
+```
+
+## 空值合并运算符
+
+空值合并操作符（??）是一个逻辑操作符，当左侧的操作数为 null 或者 undefined 时，返回其右侧操作数，否则返回左侧操作数。
+
+与逻辑或操作符（||）不同，逻辑或操作符会在左侧操作数为假值时返回右侧操作数。也就是说，如果使用 || 来为某些变量设置默认值，可能会遇到意料之外的行为。比如为假值（例如，'' 或 0）时。见下面的例子。
+
+```js
+const foo = null ?? "default string";
+console.log(foo);
+// expected output: "default string"
+
+const baz = 0 ?? 42;
+console.log(baz);
+// expected output: 0
+
+const abc = 0 || 42;
+console.log(abc);
+// expected output: 42
+```
+
+## ts 中的 非空断言操作符 !
+
+排除 null 和 undefined 断言一定有值
+
+```js
+// vnode.component!.proxy vue3中的使用  断言 component 非空 一定有值
+
+let name:string = 'abc'
+let nus:string;
+console.log(name.trim())
+//非空断言操作符 !  可以消除编辑器 当nus为undefined时候报错
+//使用时注意 保证nus不为undefined，否则运行时会报错
+console.log(nus!.trim())
+
+const myFunc = (maybeString: string | undefined | null) => {
+  const onlyString: string = maybeString; // Error
+  const ignoreUndefinedAndNull: string = maybeString!; // Ok
+}
+
+myFunc(null)
+```
