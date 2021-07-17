@@ -213,7 +213,8 @@ class Demo extends React.Component {
   }
 }
 ```
-- 在函数组件中使用 ref 并且父组件是类组件 又需要调子组件的内部方法
+- 在函数组件中使用 父组件通过ref传递的数据 并且父组件是类组件 又需要调子组件的内部方法
+- 首先ref 不能在props中获取
   - 可在 (note\react\案例\react组件化使用类组件与函数组件实现一个form表单_src) 中查看demo
 ```js
 import React from "react";
