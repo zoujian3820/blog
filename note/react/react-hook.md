@@ -399,6 +399,25 @@ const forceUpdate = useForceUpdate();
 ### 常用的react-redux Hooks
 - useDispatch 
 - useSelector
+```jsx
+import React, { useCallback } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+export default function UseSelectorPage() {
+  const count = useSelector(({count}) => count)
+  const dispatch = useDispatch()
+  const add = useCallback(() => {
+    dispatch({ type: 'ADD' })
+  }, [])
+  return (
+    <div>
+      <h3>UseSelectorPage</h3>
+      <p>{count}</p>
+      <button onClick={add}></button>
+    </div>
+  )
+}
+
+```
 - useStore 
 ### 常用的react-router / react-router-dom Hooks
 使用高阶函数withRouter能获取完整的路由信息

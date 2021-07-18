@@ -914,3 +914,43 @@ const myFunc = (maybeString: string | undefined | null) => {
 
 myFunc(null)
 ```
+
+## IntersectionObserver 交叉观察器
+网页开发时，常常需要了解某个元素是否进入了"视口"（viewport），即用户能不能看到它。
+
+传统的实现方法是，监听到scroll事件后，调用目标元素（绿色方块）的getBoundingClientRect()方法，得到它对应于视口左上角的坐标，再判断是否在视口之内。这种方法的缺点是，由于scroll事件密集发生，计算量很大，容易造成性能问题。
+
+目前有一个新的 IntersectionObserver API，可以自动"观察"元素是否可见，Chrome 51+ 已经支持。由于可见（visible）的本质是，目标元素与视口产生一个交叉区，所以这个 API 叫做"交叉观察器"。
+
+[更全面的解读，参考阮一峰老师的文章](https://www.ruanyifeng.com/blog/2016/11/intersectionobserver_api.html)
+
+- 实现图片懒加载
+```js
+let lazyImgBox = document.querySelector('.lazyImgBox'),
+    img = lazyImgBox.querySelector('img');
+
+const lazyImgFunc = function() {
+  if(img.isLoad) return;
+  img.src = img.getAttribute('data-img');
+  img.isLoad = true;
+  img.onload = () => {
+    img.style.opacity = 1;
+  }
+}
+
+// 图片懒加载 新方案 不兼容 IE(排除 edge)
+const ob = new IntersectionObserver(change => {
+  let {
+    isIntersecting,
+    target
+  } = change[0];
+  if(isIntersecting) {
+    lazyImgFunc();
+    ob.unobserve(target);
+  }
+}, {
+  threshold: [1]
+});
+
+ob.observe(layImgBox);
+```
