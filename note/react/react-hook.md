@@ -400,10 +400,18 @@ const forceUpdate = useForceUpdate();
 - useDispatch 
 - useSelector
 ```jsx
+// 配合 redux的Provide组件
+// 在 Provide的子组件中可使用 useSelector获取数据
 import React, { useCallback } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { Provider, useSelector, useDispatch } from 'react-redux'
+/*
+<Provider store={store}>
+  <ChildComponentUseReactRedux />
+</Provider>
+*/
+
 export default function UseSelectorPage() {
-  const count = useSelector(({count}) => count)
+  const count = useSelector(state => state.count)
   const dispatch = useDispatch()
   const add = useCallback(() => {
     dispatch({ type: 'ADD' })
@@ -417,6 +425,31 @@ export default function UseSelectorPage() {
   )
 }
 
+// 源码实现 useDispatch
+// 自定义hook
+export function useDispatch() {
+  const store = useContext(Context);
+  return store.dispatch;
+}
+// 源码实现 useSelector
+export function useSelector(selecor) {
+  const store = useContext(Context);
+  const selectedState = selecor(store.getState());
+
+  const forceUpdate = useForceUpdate();
+
+  useLayoutEffect(() => {
+    const unsubscribe = store.subscribe(() => {
+      // forceUpdate
+      forceUpdate();
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, [store]);
+
+  return selectedState;
+}
 ```
 - useStore 
 ### 常用的react-router / react-router-dom Hooks
