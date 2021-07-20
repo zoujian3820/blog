@@ -103,7 +103,7 @@ export default function combineReducers(reducers) {
     let hasChanged = false
     for(let key in reducers) {
       const reducer = reducers[key]
-      nextState[key] = reducer[state[key], action]
+      nextState[key] = reducer(state[key], action)
       hasChanged = hasChanged || nextState[key] !== state[key]
     }
     return nextState ? nextState : state
