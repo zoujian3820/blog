@@ -2,7 +2,7 @@
  * @Author: mrzou
  * @Date: 2021-07-10 19:33:00
  * @LastEditors: mrzou
- * @LastEditTime: 2021-07-11 20:55:19
+ * @LastEditTime: 2021-07-13 14:21:30
  * @Description: file content
  */
 // import React, {Component} from "react";
@@ -31,7 +31,7 @@ const jsx = (
     </>
   </div>
 );
-console.log('jsx****', jsx)
+console.log("jsx****", jsx);
 // 此处jsx 已经被转换成了 对象树 即虚拟dom
 // 如上面的
 ReactDOM.render(jsx, document.getElementById("root"));

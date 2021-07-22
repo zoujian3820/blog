@@ -1,6 +1,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
 - [路由 vue-router4.0 与 缓存 keep-alive 和 过度动画](#%E8%B7%AF%E7%94%B1-vue-router40-%E4%B8%8E-%E7%BC%93%E5%AD%98-keep-alive-%E5%92%8C-%E8%BF%87%E5%BA%A6%E5%8A%A8%E7%94%BB)
   - [快速起步](#%E5%BF%AB%E9%80%9F%E8%B5%B7%E6%AD%A5)
@@ -180,8 +181,8 @@ const routes = [
 
 ```js
 const courses = [
-  { id: 1, name: "web全栈架构师", price: 99 },
-  { id: 2, name: "web⾼级⼯程师", price: 99 },
+  { id: 1, name: "宝马", price: 999 },
+  { id: 2, name: "宝骏", price: 99 },
 ];
 ```
 
