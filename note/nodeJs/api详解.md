@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [NodeJs 常用api用法详解](#nodejs-%E5%B8%B8%E7%94%A8api%E7%94%A8%E6%B3%95%E8%AF%A6%E8%A7%A3)
+  - [promisify 工具函数把node的api调用，包装加工成promise风格返回](#promisify-%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0%E6%8A%8Anode%E7%9A%84api%E8%B0%83%E7%94%A8%E5%8C%85%E8%A3%85%E5%8A%A0%E5%B7%A5%E6%88%90promise%E9%A3%8E%E6%A0%BC%E8%BF%94%E5%9B%9E)
+  - [异步fs.readFile 、同步fs.readFileSync 以buffer形式读取文件](#%E5%BC%82%E6%AD%A5fsreadfile-%E5%90%8C%E6%AD%A5fsreadfilesync-%E4%BB%A5buffer%E5%BD%A2%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6)
+  - [读取fs.createReadStream  写入fs.createWriteStream 以数据流的方式读取写入文件](#%E8%AF%BB%E5%8F%96fscreatereadstream--%E5%86%99%E5%85%A5fscreatewritestream-%E4%BB%A5%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E6%96%B9%E5%BC%8F%E8%AF%BB%E5%8F%96%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 <!--
  * @Author: mrzou
  * @Date: 2021-07-18 21:36:38

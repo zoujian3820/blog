@@ -1,10 +1,10 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
 - [区分路由组件（页面）和普通组件](#%E5%8C%BA%E5%88%86%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6%E9%A1%B5%E9%9D%A2%E5%92%8C%E6%99%AE%E9%80%9A%E7%BB%84%E4%BB%B6)
-- [vue-router 实现思路](#vue-router%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF)
+- [区分组件是否开启了 keep-alive 缓存](#%E5%8C%BA%E5%88%86%E7%BB%84%E4%BB%B6%E6%98%AF%E5%90%A6%E5%BC%80%E5%90%AF%E4%BA%86-keep-alive-%E7%BC%93%E5%AD%98)
+- [vue-router 实现思路](#vue-router-%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

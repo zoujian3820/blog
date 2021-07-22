@@ -1,6 +1,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [模块引用](#%E6%A8%A1%E5%9D%97%E5%BC%95%E7%94%A8)
 - [解构](#%E8%A7%A3%E6%9E%84)
 - [js 新增的第七种数据类型 Symbol](#js-%E6%96%B0%E5%A2%9E%E7%9A%84%E7%AC%AC%E4%B8%83%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-symbol)
@@ -14,6 +15,10 @@
 - [对象扩展](#%E5%AF%B9%E8%B1%A1%E6%89%A9%E5%B1%95)
 - [ECMASript 7 新特性](#ecmasript-7-%E6%96%B0%E7%89%B9%E6%80%A7)
 - [ECMASript 8 新特性](#ecmasript-8-%E6%96%B0%E7%89%B9%E6%80%A7)
+- [可选链操作符](#%E5%8F%AF%E9%80%89%E9%93%BE%E6%93%8D%E4%BD%9C%E7%AC%A6)
+- [空值合并运算符](#%E7%A9%BA%E5%80%BC%E5%90%88%E5%B9%B6%E8%BF%90%E7%AE%97%E7%AC%A6)
+- [ts 中的 非空断言操作符 !](#ts-%E4%B8%AD%E7%9A%84-%E9%9D%9E%E7%A9%BA%E6%96%AD%E8%A8%80%E6%93%8D%E4%BD%9C%E7%AC%A6-)
+- [IntersectionObserver 交叉观察器](#intersectionobserver-%E4%BA%A4%E5%8F%89%E8%A7%82%E5%AF%9F%E5%99%A8)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
