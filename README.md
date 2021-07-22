@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-03-29 10:06:24
- * @LastEditTime: 2021-07-23 00:54:21
+ * @LastEditTime: 2021-07-23 01:01:48
  * @LastEditors: mrzou
  * @Description: In User Settings Edit
  * @FilePath: \blog\README.md
@@ -46,7 +46,9 @@ https://zoujian3820.github.io/blog/
 - [linux相关](note/linux/README.md)
 - [数据库](note/数据库/mysql.md)
 - [vue2.0源码](note/vue源码/vue.md)
-- [vue3.0源码](note/vue3源码/vue.md)
+- [vue3.0源码之初始化](note/vue3源码/vue.md)
+- [vue3.0源码之手写初始化 ](note/vue3源码/vue3-init.js)
+- [vue3.0源码之手写初始化与数据响应式和依赖收集与更新](note/vue3源码/初始化与数据响应式和依赖收集与更新.md)
 - [vue3](note/vue3使用/index.md)
 - [react](note/react/index.md)
 - [react-hook使用](note/react/react-hook.md)
