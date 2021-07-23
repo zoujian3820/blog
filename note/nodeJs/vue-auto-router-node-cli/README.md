@@ -11,15 +11,21 @@
  * @Author: mrzou
  * @Date: 2021-07-18 23:37:39
  * @LastEditors: mrzou
- * @LastEditTime: 2021-07-20 21:52:29
+ * @LastEditTime: 2021-07-23 12:21:08
  * @Description: file content
 -->
+
 ## 步骤
+
 ```bash
 npm init -y
 npm i commander download-git-repo ora handlebars figlet clear chalk open -s
 
 # npm link用来在本地项目和本地npm模块之间建立连接，可以在本地进行模块测试
+# 在需要调试的npm包目录下结构下的控制台输入npm link 这个命令会把当前包映射到本地的一个全局的npm包里面；
+# 在引用的目录结构下的控制台输入 npm link 包名称 这个命令会把本地引用的这个npm包的路径定位到全局的npm包下；
+# 全局的npm包相当于一个中转站，在编辑区域与引用区域之间中转。
+
 # 具体用法：
   # 1. 项目和模块在同一个目录下，可以使用相对路径
     # npm link ../module
@@ -33,6 +39,7 @@ npm link
 ```
 
 ## 注意点
+
 ```js
 #!/usr/bin/env node
 // 上面这条语句一定要置项，不要有空格注释什么的，否则会报错
