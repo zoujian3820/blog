@@ -781,7 +781,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 ## 编程式路由导航
 
-借助 this.prosp.history 对象上的 API 对操作路由跳转、前进、后退
+借助 this.props.history 对象上的 API 对操作路由跳转、前进、后退
 
 - this.prosp.history.push()
   ```javascript

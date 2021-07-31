@@ -1,0 +1,21 @@
+.scss{
+  background: red;
+  color: #fff;
+  padding: 10px;
+  width: 200px;
+  margin-top: 10px;
+}
+.iconfont{
+  background: rgb(255, 0, 255);
+  color:rgb(10, 238, 207);
+  padding: 5px;
+  font-size: 40px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+img{
+  display: block;
+  &.wawa{
+    max-width: 150px;
+  }
+}
