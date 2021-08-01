@@ -2,7 +2,7 @@
  * @Author: mrzou
  * @Date: 2021-07-31 20:04:54
  * @LastEditors: mrzou
- * @LastEditTime: 2021-08-01 19:17:08
+ * @LastEditTime: 2021-08-01 20:14:09
  * @Description: file content
  */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -183,11 +183,42 @@ module.exports = {
         test: /\.js$/,
         // 排除 node modules
         exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          // 自动修复eslint的错误
-          fix: true
-        }
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              // 预设：指示babel做怎么样的兼容性处理
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    // 按需加载
+                    useBuiltIns: 'usage',
+                    // 指定core-js版本
+                    corejs: {
+                      version: 3
+                    },
+                    // 指定兼容性做到哪个版本浏览器
+                    targets: {
+                      chrome: '60',
+                      firefox: '60',
+                      ie: '9',
+                      safari: '10',
+                      edge: '17'
+                    }
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            loader: 'eslint-loader',
+            options: {
+              // 自动修复eslint的错误
+              fix: true
+            }
+          }
+        ],
       }
     ]
   },

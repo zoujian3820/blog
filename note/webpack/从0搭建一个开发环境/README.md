@@ -2,7 +2,7 @@
  * @Author: mrzou
  * @Date: 2021-07-31 20:20:32
  * @LastEditors: mrzou
- * @LastEditTime: 2021-08-01 19:03:35
+ * @LastEditTime: 2021-08-01 20:20:06
  * @Description: file content
 -->
 ## install
@@ -31,6 +31,8 @@ yarn add optimize-css-assets-webpack-plugin --dev
 # 配置eslint语法检查 eslint默认只支持js 这里使用 airbnb 风格
 # eslint-config-airbnb-base 不包含react语法， eslint-config-airbnb则包含
 yarn add eslint-loader eslint eslint-config-airbnb-base  eslint-plugin-import --dev
+# 添加js兼容性处理 babel-loader @babel/preset-env
+yarn add babel-loader @babel/core @babel/preset-env @babel/polyfill core-js --dev
 ```
 ## 与webpack4差异
 - 图片的loader有新的替代，如果仍用旧的url-loader file-loader等要配置 type: 'javascript/auto'
@@ -114,6 +116,10 @@ output: {
   "extends": "airbnb-base",
   "env": {
     "browser": true
+  },
+  "parserOptions": {
+    // eslint 如果不认识新的语法 如 ?. 可选链操作符 则把ECMA Script版本改高点
+    "ecmaVersion": 2020
   }
 }
 
@@ -121,4 +127,44 @@ output: {
 // 下一行eslint所有规则都失效（下一行不进行eslint检查）
 // eslint-disable-next-line
 console.log(222) 
+```
+配置js兼容性处理
+```js
+/*
+  js兼容性处理：babel-loader @babel/core 
+    1. 基本js兼容性处理 --> @babel/preset-env
+      问题：只能转换基本语法，如promise高级语法不能转换
+    2. 全部js兼容性处理 --> @babel/polyfill  
+      问题：我只要解决部分兼容性问题，但是将所有兼容性代码全部引入，体积太大了~
+    3. 需要做兼容性处理的就做：按需加载  --> core-js
+*/  
+{
+  test: /\.js$/,
+  exclude: /node_modules/,
+  loader: 'babel-loader',
+  options: {
+    // 预设：指示babel做怎么样的兼容性处理
+    presets: [
+      [
+        '@babel/preset-env',
+        {
+          // 按需加载
+          useBuiltIns: 'usage',
+          // 指定core-js版本
+          corejs: {
+            version: 3
+          },
+          // 指定兼容性做到哪个版本浏览器
+          targets: {
+            chrome: '60',
+            firefox: '60',
+            ie: '9',
+            safari: '10',
+            edge: '17'
+          }
+        }
+      ]
+    ]
+  }
+}
 ```

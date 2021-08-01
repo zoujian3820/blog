@@ -13,6 +13,11 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.14.9",
+    "babel-loader": "^8.2.2",
+    "core-js": "^3.16.0",
     "css-loader": "^6.2.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
@@ -51,6 +56,9 @@
     "extends": "airbnb-base",
     "env": {
       "browser": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2020
     }
   }
 }
