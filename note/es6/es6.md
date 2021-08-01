@@ -29,7 +29,8 @@
  * @LastEditTime: 2021-06-21 00:56:47
  * @Description: file content
 -->
-
+## 目前已知的es6
+![手写已知es6](./images/手写已知es6.png)
 ## 模块引用
 
 ```html
