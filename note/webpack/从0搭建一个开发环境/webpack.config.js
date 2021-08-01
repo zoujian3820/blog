@@ -2,11 +2,21 @@
  * @Author: mrzou
  * @Date: 2021-07-31 20:04:54
  * @LastEditors: mrzou
- * @LastEditTime: 2021-08-01 01:32:54
+ * @LastEditTime: 2021-08-01 19:17:08
  * @Description: file content
  */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { resolve } = require('path')
+// 设置nodejs环境变量
+// 此处删除则 webpack 运行时默认走 production
+// 所以会导致 css兼容处理的 browserslist配置取 production
+// 进而导致 页面的热加载失效
+// 所以此处 后面应该放到 package.json中的启动脚本上配置
+// 此处的Node_ENV属于node的运行时环境变量 与 webpack的mode编绎模式要区分 不是一个东西
+process.env.NODE_ENV = 'development';
+
 module.exports = {
   entry: './src/js/index.js',
   output: {
@@ -18,12 +28,60 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        // 因为要把css抽成单个文件，所以不能用style-loader
+        // use: ['style-loader', 'css-loader']
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          // {
+          //   loader: 'postcss-loader',
+          //   options: {
+          //     ident: 'postcss',
+          //     plugins: [
+          //       // postcss的插件
+          //       require('postcss-preset-env')()
+          //     ]
+          //   }
+          // }
+          {
+            // https://webpack.docschina.org/loaders/postcss-loader/
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [require('postcss-preset-env')()]
+              }
+            }
+          }
+        ]
       },
       {
         test: /\.less$/,
         // 要使用多个loader处理用use
-        use: ['style-loader', 'css-loader', 'less-loader']
+        // 因为要把css抽成单个文件，所以不能用style-loader
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'less-loader',
+          // {
+          //   loader: 'postcss-loader',
+          //   options: {
+          //     ident: 'postcss',
+          //     plugins: [
+          //       // postcss的插件
+          //       require('postcss-preset-env')()
+          //     ]
+          //   }
+          // }
+          {
+            // https://webpack.docschina.org/loaders/postcss-loader/
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [require('postcss-preset-env')()]
+              }
+            }
+          }
+        ]
       },
       {
         test: /\.scss$/,
@@ -35,9 +93,30 @@ module.exports = {
           // 创建一个style标签并放入编绎完的css
           // 然后塞入页面的head标签中
           // 所以 style-loader 位置必须在css-loader前面
-          { loader: 'style-loader' },
+          // { loader: 'style-loader' },
+          MiniCssExtractPlugin.loader, // 因为要把css抽成单个文件，所以不能用style-loader
           { loader: 'css-loader' },
-          { loader: 'sass-loader' }
+          { loader: 'sass-loader' },
+          // {
+          //   loader: 'postcss-loader',
+          //   options: {
+          //     ident: 'postcss',
+          //     plugins: () => [
+          // postcss的插件  此种写法 在webpack5中不兼容 可在根目录下建 postcss.config.js
+          // 或者用下面的配置
+          //       require('postcss-preset-env')()
+          //     ]
+          //   }
+          // }
+          {
+            // https://webpack.docschina.org/loaders/postcss-loader/
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [require('postcss-preset-env')()]
+              }
+            }
+          }
         ]
       },
       // 问题：默认处理不了html中img图片
@@ -89,6 +168,26 @@ module.exports = {
         test: /\.html$/,
         // 处理html文件的img图片（负责引入img，从而能被url-loader进行处理）
         loader: 'html-loader'
+      },
+      /*
+        语法检查： eslint-loader  eslint
+          注意：只检查自己写的源代码，第三方的库是不用检查的
+          设置检查规则：
+            package.json中eslintConfig中设置~
+              "eslintConfig": {
+                "extends": "airbnb-base"
+              }
+            airbnb --> eslint-config-airbnb-base  eslint-plugin-import eslint
+      */
+      {
+        test: /\.js$/,
+        // 排除 node modules
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          // 自动修复eslint的错误
+          fix: true
+        }
       }
     ]
   },
@@ -100,7 +199,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       // 复制 './src/index.html' 文件，并自动引入打包输出的所有资源（JS/CSS）
       template: './src/index.html'
-    })
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'css/main.css'
+    }),
+    // 使用optimize-css-assets-webpack-plugin插件压缩css
+    new OptimizeCssAssetsPlugin()
   ],
   // 开发服务器 devServer：用来自动化（自动编译，自动打开浏览器，自动刷新浏览器~~）
   // 特点：只会在内存中编译打包，不会有任何输出
