@@ -1,3 +1,10 @@
+/*
+ * @Author: mrzou
+ * @Date: 2021-07-13 09:22:23
+ * @LastEditors: mrzou
+ * @LastEditTime: 2021-08-18 09:58:15
+ * @Description: file content
+ */
 import dva from "dva";
 import "./index.css";
 
@@ -5,7 +12,7 @@ import "./index.css";
 const createHistory = require("history").createBrowserHistory;
 
 export const app = dva({
-  history: createHistory()
+  history: createHistory(),
 });
 
 // 2. Plugins
