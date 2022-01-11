@@ -22,7 +22,7 @@ module.exports = {
   output: {
     filename: 'js/bundle.js',
     path: resolve(__dirname, 'build')
-  // assetModuleFilename: 'images/[name].[hash:6][ext][query]'
+    // assetModuleFilename: 'images/[name].[hash:6][ext][query]'
   },
   module: {
     rules: [
@@ -56,8 +56,10 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        // 要使用多个loader处理用use
+        // 要使用多个loader处理用use （use中执行顺序 从右到左 或者叫 从下到上 依次执行）
         // 因为要把css抽成单个文件，所以不能用style-loader
+        // style-loader 创建style标签，将js中的样式资源通过style标签，添加到页面head中
+        // css-loader  把css文件变成commonjs模块加载到js中，里面内容是样式字符串
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
@@ -223,10 +225,10 @@ module.exports = {
     ]
   },
   plugins: [
-  // plugins的配置
-  // html-webpack-plugin
-  // 功能：默认会创建一个空的HTML，自动引入打包输出的所有资源（JS/CSS）
-  // 需求：需要有结构的HTML文件
+    // plugins的配置
+    // html-webpack-plugin
+    // 功能：默认会创建一个空的HTML，自动引入打包输出的所有资源（JS/CSS）
+    // 需求：需要有结构的HTML文件
     new HtmlWebpackPlugin({
       // 复制 './src/index.html' 文件，并自动引入打包输出的所有资源（JS/CSS）
       template: './src/index.html'
@@ -241,10 +243,10 @@ module.exports = {
   // 特点：只会在内存中编译打包，不会有任何输出
   // 启动devServer指令为：npx webpack-dev-server
   devServer: {
-  // 项目构建后路径
-  // webpack-cli4.x 与 webpack-dev-server3.x 不兼容
-  // 要使用 npx webpack serve 执行
-  // 使用 npx webpack-dev-server 会报错
+    // 项目构建后路径
+    // webpack-cli4.x 与 webpack-dev-server3.x 不兼容
+    // 要使用 npx webpack serve 执行
+    // 使用 npx webpack-dev-server 会报错
 
     // contentBase: resolve(__dirname, 'build'),
     // contentBase已经弃用了，正确应该改为：
@@ -258,6 +260,6 @@ module.exports = {
     // 自动打开浏览器
     open: true
   },
-  mode: 'development'
-  // mode: 'production',
+  // mode: 'development'
+  mode: 'production'
 }
