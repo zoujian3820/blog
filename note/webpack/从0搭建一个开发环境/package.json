@@ -13,34 +13,34 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.14.8",
+    "@babel/core": "^7.16.7",
     "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.14.9",
-    "babel-loader": "^8.2.2",
-    "core-js": "^3.16.0",
-    "css-loader": "^6.2.0",
+    "@babel/preset-env": "^7.16.8",
+    "babel-loader": "^8.2.3",
+    "core-js": "^3.20.2",
+    "css-loader": "^6.5.1",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-loader": "^4.0.2",
-    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-import": "^2.25.2",
     "file-loader": "^6.2.0",
-    "html-loader": "^2.1.2",
-    "html-webpack-plugin": "^5.3.2",
-    "less": "^4.1.1",
-    "less-loader": "^10.0.1",
-    "mini-css-extract-plugin": "^2.1.0",
-    "node-sass": "^6.0.1",
+    "html-loader": "^3.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "mini-css-extract-plugin": "^2.4.6",
+    "node-sass": "^7.0.1",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
-    "postcss-loader": "^6.1.1",
-    "postcss-preset-env": "^6.7.0",
-    "sass": "^1.37.0",
-    "sass-loader": "^12.1.0",
+    "postcss-loader": "^6.2.1",
+    "postcss-preset-env": "^7.2.0",
+    "sass": "^1.47.0",
+    "sass-loader": "^12.4.0",
     "scss-loader": "^0.0.1",
-    "style-loader": "^3.2.1",
+    "style-loader": "^3.3.1",
     "url-loader": "^4.1.1",
-    "webpack": "^5.47.1",
-    "webpack-cli": "^4.7.2",
-    "webpack-dev-server": "^3.11.2"
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.2"
   },
   "browserslist": {
     "production": [
@@ -57,8 +57,29 @@
     "env": {
       "browser": true
     },
+    "rules": {
+      "eol-last": [0],
+      "semi": [2, "never"],
+      "indent": [2, 2],
+      "no-new": [0],
+      "no-debugger": [0],
+      "global-require": 0,
+      "comma-dangle": ["error", {
+        "arrays": "never",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }]
+    },
     "parserOptions": {
       "ecmaVersion": 2020
     }
-  }
+  },
+  "eslintIgnore": [
+    "dist/*",
+    "node_modules/*",
+    "build/*",
+    "*.md"
+  ]
 }

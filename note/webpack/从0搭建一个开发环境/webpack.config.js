@@ -15,14 +15,14 @@ const { resolve } = require('path')
 // 进而导致 页面的热加载失效
 // 所以此处 后面应该放到 package.json中的启动脚本上配置
 // 此处的Node_ENV属于node的运行时环境变量 与 webpack的mode编绎模式要区分 不是一个东西
-process.env.NODE_ENV = 'development';
+process.env.NODE_ENV = 'development'
 
 module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/bundle.js',
-    path: resolve(__dirname, 'build'),
-    // assetModuleFilename: 'images/[name].[hash:6][ext][query]'
+    path: resolve(__dirname, 'build')
+  // assetModuleFilename: 'images/[name].[hash:6][ext][query]'
   },
   module: {
     rules: [
@@ -218,15 +218,15 @@ module.exports = {
               fix: true
             }
           }
-        ],
+        ]
       }
     ]
   },
   plugins: [
-    // plugins的配置
-    // html-webpack-plugin
-    // 功能：默认会创建一个空的HTML，自动引入打包输出的所有资源（JS/CSS）
-    // 需求：需要有结构的HTML文件
+  // plugins的配置
+  // html-webpack-plugin
+  // 功能：默认会创建一个空的HTML，自动引入打包输出的所有资源（JS/CSS）
+  // 需求：需要有结构的HTML文件
     new HtmlWebpackPlugin({
       // 复制 './src/index.html' 文件，并自动引入打包输出的所有资源（JS/CSS）
       template: './src/index.html'
@@ -241,11 +241,16 @@ module.exports = {
   // 特点：只会在内存中编译打包，不会有任何输出
   // 启动devServer指令为：npx webpack-dev-server
   devServer: {
-    // 项目构建后路径
-    // webpack-cli4.x 与 webpack-dev-server3.x 不兼容
-    // 要使用 npx webpack serve 执行
-    // 使用 npx webpack-dev-server 会报错
-    contentBase: resolve(__dirname, 'build'),
+  // 项目构建后路径
+  // webpack-cli4.x 与 webpack-dev-server3.x 不兼容
+  // 要使用 npx webpack serve 执行
+  // 使用 npx webpack-dev-server 会报错
+
+    // contentBase: resolve(__dirname, 'build'),
+    // contentBase已经弃用了，正确应该改为：
+    static: {
+      directory: resolve(__dirname, 'build')
+    },
     // 启动gzip压缩
     compress: true,
     // 端口号
@@ -254,5 +259,5 @@ module.exports = {
     open: true
   },
   mode: 'development'
-  // mode: 'production'
+  // mode: 'production',
 }
