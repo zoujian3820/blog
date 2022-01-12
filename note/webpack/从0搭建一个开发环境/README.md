@@ -10,7 +10,7 @@
 npm install -g yarn
 npm install -g yrm
 
-yarn add webpack webpack-cli --dev
+yarn add webpack webpack-cli webpack-dev-server --dev
 yarn add css-loader style-loader --dev
 
 yarn add sass node-sass sass-loader scss-loader --dev
