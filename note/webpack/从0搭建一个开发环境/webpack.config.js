@@ -15,7 +15,7 @@ const { resolve } = require('path')
 // 进而导致 页面的热加载失效
 // 所以此处 后面应该放到 package.json中的启动脚本上配置
 // 此处的Node_ENV属于node的运行时环境变量 与 webpack的mode编绎模式要区分 不是一个东西
-process.env.NODE_ENV = 'development'
+// process.env.NODE_ENV = 'development'
 
 module.exports = {
   entry: './src/js/index.js',
@@ -48,6 +48,9 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
+                // 给 postcss-loader 找到package.json中的browserslist配置
+                // 通过配置加载指定的兼容样式
+                // https://github.com/browserslist/browserslist
                 plugins: [require('postcss-preset-env')()]
               }
             }
@@ -231,7 +234,14 @@ module.exports = {
     // 需求：需要有结构的HTML文件
     new HtmlWebpackPlugin({
       // 复制 './src/index.html' 文件，并自动引入打包输出的所有资源（JS/CSS）
-      template: './src/index.html'
+      template: './src/index.html',
+      // 压缩html代码
+      minify: {
+        // 移除空格
+        collapseWhitespace: true,
+        // 移除注释
+        removeComments: true
+      }
     }),
     new MiniCssExtractPlugin({
       filename: 'css/main.css'
@@ -260,6 +270,13 @@ module.exports = {
     // 自动打开浏览器
     open: true
   },
+  performance: {
+    // https://webpack.js.org/configuration/performance/#root
+    maxEntrypointSize: 10000000,
+    maxAssetSize: 30000000
+  },
+  target: 'web',
+  devtool: 'sourcemap',
   // mode: 'development'
   mode: 'production'
 }
