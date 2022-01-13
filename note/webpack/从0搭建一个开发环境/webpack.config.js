@@ -341,6 +341,7 @@ module.exports = {
     port: 3000,
     // 自动打开浏览器
     open: true
+    // hot: true
   },
   performance: {
     // https://webpack.js.org/configuration/performance/#root

@@ -33,3 +33,12 @@ aa(6, 60).then((res) => {
   // eslint-disable-next-line
   console.log("可选链操作符测试", objzz?.zzz?.sdfsdf?.ccc)
 })()
+
+function myFunction() {
+  const node = document.createElement('li')
+  const textnode = document.createTextNode('绿水青山')
+  node.appendChild(textnode)
+  document.getElementById('app').appendChild(node)
+}
+
+myFunction()
