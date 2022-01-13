@@ -276,7 +276,7 @@ module.exports = {
     maxAssetSize: 30000000
   },
   target: 'web',
-  devtool: 'sourcemap',
+  devtool: 'source-map',
   // mode: 'development'
   mode: 'production'
 }
