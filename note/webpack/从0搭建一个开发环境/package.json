@@ -58,19 +58,34 @@
       "browser": true
     },
     "rules": {
-      "eol-last": [0],
-      "semi": [2, "never"],
-      "indent": [2, 2],
-      "no-new": [0],
-      "no-debugger": [0],
+      "eol-last": [
+        0
+      ],
+      "semi": [
+        2,
+        "never"
+      ],
+      "indent": [
+        2,
+        2
+      ],
+      "no-new": [
+        0
+      ],
+      "no-debugger": [
+        0
+      ],
       "global-require": 0,
-      "comma-dangle": ["error", {
-        "arrays": "never",
-        "objects": "never",
-        "imports": "never",
-        "exports": "never",
-        "functions": "never"
-      }]
+      "comma-dangle": [
+        "error",
+        {
+          "arrays": "never",
+          "objects": "never",
+          "imports": "never",
+          "exports": "never",
+          "functions": "never"
+        }
+      ]
     },
     "parserOptions": {
       "ecmaVersion": 2020
