@@ -347,7 +347,6 @@ module.exports = {
     maxEntrypointSize: 10000000,
     maxAssetSize: 30000000
   },
-  target: 'web',
   devtool: 'source-map',
   // mode: 'development'
   mode: 'production'
