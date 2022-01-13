@@ -1,6 +1,24 @@
 ## vue3地址 https://github.com/vuejs/vue-next
 ## vue3体验
 - options写法：
+
+onRenderTracked  状态跟踪   它会跟踪页面上所有响应式变量和方法的状态，也就是我们用return返回去的值，它都会跟踪
+
+onRenderTriggered  状态触发   它不会跟踪每一个值，而是给你变化值的信息，并且新值和旧值都会给你明确的展示出来  
+
+|      vue3       |     vue2      |
+| :-------------: | :-----------: |
+|     created     |    created    |
+|   beforeMount   |  beforeMount  |
+|     mounted     |    mounted    |
+|  beforeUpdate   | beforeUpdate  |
+|     update      |    update     |
+|  beforeUnmount  | beforeDestroy |
+|     unmount     |   destroyed   |
+|  errorCaptured  | errorCaptured |
+|  renderTracked  |       -       |
+| renderTriggered |       -       |
+
   ```html
   <div id="app">
     <h3>{{title}}</h3>
@@ -17,24 +35,66 @@
     app.mount('#app')
   </script>
   ```
+
 - composition写法：
-https://v3.cn.vuejs.org/guide/composition-api-introduction.html#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BB%84%E5%90%88%E5%BC%8F-api
+|       vue3        |     vue2      |
+| :---------------: | :-----------: |
+|       setup       | beforeCreate  |
+|       setup       |    created    |
+|   onBeforeMount   |  beforeMount  |
+|     onMounted     |    mounted    |
+|  onBeforeUpdate   | beforeUpdate  |
+|     onUpdate      |    update     |
+|  onBeforeUnmount  | beforeDestroy |
+|     onUnmount     |   destroyed   |
+|  onErrorCaptured  | errorCaptured |
+|  onRenderTracked  |       -       |
+| onRenderTriggered |       -       |
+
+- https://v3.cn.vuejs.org/guide/composition-api-introduction.html#%E4%BB%80%E4%B9%88%E6%98%AF%E7%BB%84%E5%90%88%E5%BC%8F-api
+
   ```html
   <div id="app">
     <h3>{{state.title}}</h3>
   </div> 
   <script src="http://unpkg.com/vue@next"></script> 
   <script>
-    const {createApp, reactive, h} = Vue
+    const {createApp, reactive, h, toRefs, ref, computed, watchEffect, watch} = Vue
+    effect
     const app = createApp({
-      setup() {
+      setup(props, {attrs, slots, emit}) {
+        const count = ref(0);
+        const setCount = (v) => {
+          count.value = v
+        }
+        const data2 = reactive({ a: 2, b: 9, t: 9 })
+        const doubleCount = computed(() => count.value * 2);
+
+        watchEffect(() => {
+          // 立即执行， 并打印出 0
+          console.log(count.value);
+        });
+        setTimeout(() => {
+          // 1s后 触发更新，上面打印出 1
+          count.value++;
+        }, 100);
+
+        watch(count, (count, prevCount) => {
+          // to do...
+        });
         return {
-          state: reactive({ title: 'vue3 demo 22' })
+          state: reactive({ title: 'vue3 demo 22' }),
+          count,
+          setCount
+          doubleCount
+          ...toRefs(data2)
         }
       },
+      /*
       render() {
         return h('a', {href: 'xxxx'})
       }
+      */
     })
     app.mount('#app')
   </script>
@@ -52,7 +112,7 @@ https://v3.cn.vuejs.org/guide/composition-api-introduction.html#%E4%BB%80%E4%B9%
     }
     const A = compose((x)=> x+2, (x)=> x+1)
     A(1) // 4
-
+    
     const compose2 = (...[first,...other]) => (...args) => {
       let ret = first(...args)
       other.forEach(fn => {
@@ -60,34 +120,34 @@ https://v3.cn.vuejs.org/guide/composition-api-introduction.html#%E4%BB%80%E4%B9%
       })
       return ret
     }
-
+    
     const A2 = compose2((x)=> x+2, (x)=> x+1)
     A2(1) // 4
-
+    
     // 柯里化之前
     function add(x, y) {
       return x + y;
     }
-
+    
     add(1, 2) // 3
-
+    
     // 柯里化之后
     function addX(y) {
       return function (x) {
         return x + y;
       };
     }
-
+    
     addX(2)(1) // 3
     ```
   - 利于tree-shaking（静态方法移除，改为实例方法）
-
+  
   - API简化、⼀致性：render函数，sync修饰符，指令定义钩子一致等
     - vue2指令：https://cn.vuejs.org/v2/guide/custom-directive.html
     - vue3指令: https://v3.cn.vuejs.org/api/application-api.html#directive
-
+  
     - vue2 render函数: https://cn.vuejs.org/v2/guide/render-function.html#createElement-%E5%8F%82%E6%95%B0
-
+  
   - 复⽤性：composition api
   - 性能优化：响应式、编译优化
   ```js
@@ -117,7 +177,7 @@ https://v3.cn.vuejs.org/guide/composition-api-introduction.html#%E4%BB%80%E4%B9%
       }
     })
   }
-
+  
   // 数组响应化：覆盖数组原型⽅法，额外增加通知逻辑
   const originalProto = Array.prototype
   const arrayProto = Object.create(originalProto)
@@ -164,20 +224,22 @@ https://v3.cn.vuejs.org/guide/composition-api-introduction.html#%E4%BB%80%E4%B9%
     })
     return observed
   }
-
+  
   // 测试
   const state = reactive({ foo: 'foo' })
+  
   // 获取
-  state.foo // ok
+  state.foo 
   // 设置已存在属性
-  state.foo = 'fooooooo' // ok
+  state.foo = 'lala' 
   // 设置不存在属性
-  state.dong = 'dong' // ok
+  state.mc = 'mmm' 
   // 删除属性
-  delete state.dong // ok
+  delete state.mc
   ```
   - 编译优化  dev-compiler
     - 静态节点提升
     - 补丁标记和动态属性记录 (patchFlag dynamicProps)
     - 缓存事件处理程序
     - 块 block (dynamicChildren)
+

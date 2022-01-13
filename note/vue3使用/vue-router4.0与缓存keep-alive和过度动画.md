@@ -98,13 +98,13 @@ CourseList 现在需要⾃⼰获取并维护课程数据，并且不再需要传
 定义接⼝，api/course.js
 
 ```js
-const courses = ["web全栈架构师", "web⾼级⼯程师"];
+const courses = ["xxxxxx", "bbbbbb"];
 export function getCourses() {
   return Promise.resolve(courses);
 }
 ```
 
-跳转新增课程，CourseList.vue
+跳转新增，CourseList.vue
 
 ```jsx
 <p>

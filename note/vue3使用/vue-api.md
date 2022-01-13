@@ -67,6 +67,9 @@
 |  onRenderTracked  |       -       |
 | onRenderTriggered |       -       |
 
+onRenderTracked  状态跟踪   它会跟踪页面上所有响应式变量和方法的状态，也就是我们用return返回去的值，它都会跟踪
+
+onRenderTriggered  状态触   它不会跟踪每一个值，而是给你变化值的信息，并且新值和旧值都会给你明确的展示出来
 ### api 使用
 
 有两种方式：一种是 vue2 的方式，一种是 Composition API
