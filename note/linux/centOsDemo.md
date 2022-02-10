@@ -109,8 +109,8 @@ lsb_release -a
        curl -L https://get.daocloud.io/docker/compose/releases/download/1.24.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
        ```
        
-    ### [sudo chmod +x 命令作用，给文件加执行权限](https://blog.csdn.net/u012106306/article/details/80436911)
-    ```
+    **[sudo chmod +x 命令作用，给文件加执行权限](https://blog.csdn.net/u012106306/article/details/80436911)**
+    ```bash
     // 对docker-compose脚本增加执行权限
     sudo chmod +x /usr/local/bin/docker-compose
 
@@ -226,7 +226,7 @@ lsb_release -a
 
 ## 7. 虚拟机
 
-### window10
+### window10 通过Hyper-V虚拟机安装linux
 > 电脑上无Hyper-V时[去安装](Hyper-V.md)
 
 > 有Hyper-V时 [去新建虚拟机 -> 在windows管理工具或直接搜索 Hyper-V 再点击打开](Hyper-V.md)
