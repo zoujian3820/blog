@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [升级package.json中所有依赖的版本](#%E5%8D%87%E7%BA%A7packagejson%E4%B8%AD%E6%89%80%E6%9C%89%E4%BE%9D%E8%B5%96%E7%9A%84%E7%89%88%E6%9C%AC)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ### 升级package.json中所有依赖的版本
 - 安装 ncu
   ```bash

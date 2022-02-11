@@ -14,7 +14,7 @@
     - [1. Robo 3T 1.3.1 点击左上角电脑标识 -> create](#1-robo-3t-131-%E7%82%B9%E5%87%BB%E5%B7%A6%E4%B8%8A%E8%A7%92%E7%94%B5%E8%84%91%E6%A0%87%E8%AF%86---create)
     - [2. Studio 3T 点击左上角圆柱Connect标识 -> New Connection](#2-studio-3t-%E7%82%B9%E5%87%BB%E5%B7%A6%E4%B8%8A%E8%A7%92%E5%9C%86%E6%9F%B1connect%E6%A0%87%E8%AF%86---new-connection)
   - [7. 虚拟机](#7-%E8%99%9A%E6%8B%9F%E6%9C%BA)
-    - [window10](#window10)
+    - [window10 通过Hyper-V虚拟机安装linux](#window10-%E9%80%9A%E8%BF%87hyper-v%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85linux)
   - [8. 在centos上布署nodeJs项目和静态网站](#8-%E5%9C%A8centos%E4%B8%8A%E5%B8%83%E7%BD%B2nodejs%E9%A1%B9%E7%9B%AE%E5%92%8C%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
