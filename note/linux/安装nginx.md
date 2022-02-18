@@ -14,6 +14,7 @@
 
 
 ## nginx 服务器命令 
+
 |nginx服务器命令 |注释|
 |:----|:-------|
 |启动nginx|               service nginx start|
