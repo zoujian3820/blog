@@ -36,11 +36,19 @@ function trigger(target, key) {
       effectsToRun.add(effectFn)
     }
   })
-  effectsToRun.forEach(effectFn => effectFn()) // 新增
+  effectsToRun.forEach(effectFn => {
+    // 如果一个副作用函数存在调度器，则调用该调度器，并将副作用函数作为参数传递
+    if (effectFn.options.scheduler) { // 新增
+      effectFn.options.scheduler(effectFn) // 新增
+    } else {
+      // 否则直接执行副作用函数（之前的默认行为）
+      effectFn() // 新增
+    }
+  })
   // effects && effects.forEach(effectFn => effectFn()) // 删除
 }
 
-const data = { text: 'hello world', foo: 1 }
+const data = {text: 'hello world', foo: 1}
 const obj = new Proxy(data, {
   // 拦截读取操作
   get(target, key) {
@@ -69,7 +77,7 @@ function cleanup(effectFn) {
   effectFn.deps.length = 0
 }
 
-function effect(fn) {
+function effect(fn, options = {}) {
   const effectFn = () => {
     cleanup(effectFn)
     // 当调用 effect 注册副作用函数时，将副作用函数赋值给 activeEffect
@@ -81,6 +89,8 @@ function effect(fn) {
     effectStack.pop() // 新增
     activeEffect = effectStack[effectStack.length - 1] // 新增
   }
+  // 将 options 挂载到 effectFn 上
+  effectFn.options = options // 新增
   // activeEffect.deps 用来存储所有与该副作用函数相关的依赖集合
   effectFn.deps = []
   // 执行副作用函数
@@ -88,9 +98,15 @@ function effect(fn) {
 }
 
 effect(() => {
-  console.log(obj.foo, 'zzzz', +new Date())
-  obj.foo++
-  console.log(obj.foo, 'qqqq', +new Date())
+  // console.log(obj.foo, 'zzzz', +new Date())
+  // obj.foo++
+  // console.log(obj.foo, 'qqqq', +new Date())
+  console.log(obj.foo)
+}, {
+  scheduler(fn) {
+    setTimeout(fn)
+  }
 })
 
 obj.foo++
+console.log('结束了')
