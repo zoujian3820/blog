@@ -97,6 +97,28 @@ function effect(fn, options = {}) {
   effectFn()
 }
 
+// 定义一个任务队列，Set本身具有去重，同一个effectFn只会增加一次
+const jobQueue = new Set()
+// 使用 Promise.resolve() 创建一个 promise 实例，我们用它将一个任务添加到微任务队列
+const p = Promise.resolve()
+// 一个标志代表是否正在刷新队列
+let isFlushing = false
+
+function flushJob() {
+  // 如果队列正在刷新，则什么都不做
+  if (isFlushing) return
+  // 设置为 true，代表正在刷新
+  isFlushing = true
+  // 在微任务队列中刷新 jobQueue 队列
+  p.then(() => {
+    jobQueue.forEach(job => job())
+  }).finally(() => {
+    // 结束后重置 isFlushing
+    isFlushing = false
+  })
+}
+
+
 effect(() => {
   // console.log(obj.foo, 'zzzz', +new Date())
   // obj.foo++
@@ -104,9 +126,16 @@ effect(() => {
   console.log(obj.foo)
 }, {
   scheduler(fn) {
-    setTimeout(fn)
+    // setTimeout(fn)
+
+    // fn() 不用以下队列处理 直接执行，会log三次分别为 1 2 3
+    // 每次调度时，将副作用函数添加到 jobQueue 队列中
+    jobQueue.add(fn)
+    // 调用 flushJob 刷新队列，执行出的结果，只log两次 1 3 也就是Vue中连续多次修改响应式数据但只会触发一次更新
+    flushJob()
   }
 })
 
 obj.foo++
-console.log('结束了')
+obj.foo++
+// console.log('结束了')
