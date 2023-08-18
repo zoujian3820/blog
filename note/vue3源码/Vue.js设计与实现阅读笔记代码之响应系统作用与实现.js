@@ -51,12 +51,15 @@ function trigger(target, key) {
 const data = {bar: 2, foo: 1}
 const obj = new Proxy(data, {
   // 拦截读取操作
-  get(target, key) {
+  get(target, key, receiver) {
     // 将副作用函数 activeEffect 添加到存储副作用函数的桶中
     track(target, key)
     // 返回属性值
-    return target[key]
-  }, // 拦截设置操作
+    // return target[key]
+    // 使用 Reflect.get 返回读取到的属性值 receiver，它代表谁在读取属性
+    return Reflect.get(target, key, receiver)
+  },
+  // 拦截设置操作
   set(target, key, newVal) {
     // 设置属性值
     target[key] = newVal
