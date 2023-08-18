@@ -192,7 +192,6 @@ function computed(getter) {
         // 将 dirty 设置为 false，下一次访问直接使用缓存到 value 中的值
         dirty = false
       }
-      console.log('activeEffect', effectFn && effectFn.options)
       // 当读取 value 时，手动调用 track 函数进行追踪
       // 此时computed内的effectFn已执行完，
       // activeEffect为上一个effectFn（调取computed值之前的effectFn）并追踪此时的activeEffect
@@ -214,4 +213,71 @@ effect(() => {
   // 在该副作用函数中读取 sumRes.value
   console.log('computed:', sumRes.value)
 })
+obj.foo++
+
+
+function traverse(value, seen = new Set()) {
+  // 如果要读取的数据是原始值，或者已经被读取过了，那么什么都不做
+  if (typeof value !== 'object' || value === null ||
+    seen.has(value)) return
+  // 将数据添加到 seen 中，代表遍历地读取过了，避免循环引用引起的死循环
+  seen.add(value)
+  // 暂时不考虑数组等其他结构
+  // 假设 value 就是一个对象，使用 for...in 读取对象的每一个值，并递归地调用 traverse 进行处理
+  for (const k in value) {
+    traverse(value[k], seen)
+  }
+  return value
+}
+
+
+function watch(source, cb, options = {}) {
+  let getter
+  if (typeof source === 'function') {
+    getter = source
+  } else {
+    getter = () => traverse(source)
+  }
+
+  let oldValue, newValue
+  const job = () => {
+    newValue = effectFn()
+    cb(newValue, oldValue)
+    oldValue = newValue
+  }
+
+  const effectFn = effect(
+    // 执行 getter
+    () => getter(),
+    {
+      lazy: true,
+      scheduler: () => {
+        // 'sync' 的实现机制，即同步执行
+        // 对于 options.flush 的值为 'pre' 的情况我们暂时还没有办法模拟
+        // 因为这涉及组件的更新时机，其中 'pre' 和 'post' 原本的语义指的就是组件更新前和更新后，
+        // 在调度函数中判断 flush 是否为 'post'，如果是，将其放到微任务队列中执行
+        if (options.flush === 'post') {
+          const p = Promise.resolve()
+          p.then(job)
+        } else {
+          job()
+        }
+      }
+    }
+  )
+
+  if (options.immediate) {
+    job()
+  } else {
+    oldValue = effectFn()
+  }
+}
+
+watch(obj, () => {
+  console.log('变化了')
+}, {
+  // 回调函数会在 watch 创建时立即执行一次
+  flush: 'post' // 还可以指定为 'pre' | 'sync'
+})
+
 obj.foo++
