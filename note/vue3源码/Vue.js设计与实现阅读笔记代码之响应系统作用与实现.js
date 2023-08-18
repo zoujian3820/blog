@@ -202,18 +202,18 @@ function computed(getter) {
   return obj
 }
 
-const sumRes = computed(() => obj.foo + obj.bar)
+// const sumRes = computed(() => obj.foo + obj.bar)
 
-console.log(sumRes.value) // 3
-obj.foo++
-console.log(sumRes.value) // 4
+// console.log(sumRes.value) // 3
+// obj.foo++
+// console.log(sumRes.value) // 4
 
 
-effect(() => {
-  // 在该副作用函数中读取 sumRes.value
-  console.log('computed:', sumRes.value)
-})
-obj.foo++
+// effect(() => {
+//   // 在该副作用函数中读取 sumRes.value
+//   console.log('computed:', sumRes.value)
+// })
+// obj.foo++
 
 
 function traverse(value, seen = new Set()) {
@@ -240,9 +240,23 @@ function watch(source, cb, options = {}) {
   }
 
   let oldValue, newValue
+  // cleanup 用来存储用户注册的过期回调
+  let cleanup
+
+  // 定义 onInvalidate 函数
+  function onInvalidate(fn) {
+    // 将过期回调存储到 cleanup 中
+    cleanup = fn
+  }
+
   const job = () => {
     newValue = effectFn()
-    cb(newValue, oldValue)
+    // 在调用回调函数 cb 之前，先调用过期回调
+    if (cleanup) {
+      cleanup()
+    }
+    // 将 onInvalidate 作为回调函数的第三个参数，以便用户
+    cb(newValue, oldValue, onInvalidate)
     oldValue = newValue
   }
 
@@ -273,11 +287,40 @@ function watch(source, cb, options = {}) {
   }
 }
 
-watch(obj, () => {
-  console.log('变化了')
-}, {
-  // 回调函数会在 watch 创建时立即执行一次
-  flush: 'post' // 还可以指定为 'pre' | 'sync'
+// watch(obj, () => {
+//   console.log('变化了')
+// }, {
+//   // 回调函数会在 watch 创建时立即执行一次
+//   flush: 'post' // 还可以指定为 'pre' | 'sync'
+// })
+//
+// obj.foo++
+
+
+function sleep(t = 200) {
+  return new Promise((resolve) => setTimeout(() => resolve({ success: true, list: [] }), t))
+}
+
+let finalData
+watch(obj, async (newValue, oldValue, onInvalidate) => {
+  // 定义一个标志，代表当前副作用函数是否过期，默认为 false，代表没有过期
+  let expired = false
+  // 调用 onInvalidate() 函数注册一个过期回调
+  onInvalidate(() => {
+    // 当过期时，将 expired 设置为 true
+    expired = true
+  })
+
+  // 发送网络请求
+  // const res = await fetch('/path/to/request')
+  const res = await sleep()
+
+  console.log('expired', expired, expired ? '副作用过期了，数据不是最新的，不可用' : '副作用未过期，数据是最新的，可用', res)
+  // 只有当该副作用函数的执行没有过期时，才会执行后续操作。
+  if (!expired) {
+    finalData = res
+  }
 })
 
+obj.foo++
 obj.foo++
