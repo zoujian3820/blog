@@ -24,11 +24,11 @@ function track(target, key) {
   activeEffect.deps.push(deps) // 新增
 }
 
-function trigger(target, key) {
+function trigger(target, key, type) {
   const depsMap = bucket.get(target)
   if (!depsMap) return
+  // 取得与 key 相关联的副作用函数
   const effects = depsMap.get(key)
-
   const effectsToRun = new Set() // 新增
   effects && effects.forEach(effectFn => {
     // 如果 trigger 触发执行的副作用函数与当前正在执行的副作用函数相同，则不触发执行
@@ -36,6 +36,20 @@ function trigger(target, key) {
       effectsToRun.add(effectFn)
     }
   })
+
+  console.log('proxy_type:', type, key)
+  // 当操作类型为 ADD 或 DELETE 时，需要触发与 ITERATE_KEY 相关联的副作用函数重新执行
+  if (type === 'ADD' || type === 'DELETE') {
+    // 取得与 ITERATE_KEY 相关联的副作用函数
+    const iterateEffects = depsMap.get(ITERATE_KEY)
+    // 将与 ITERATE_KEY 相关联的副作用函数也添加到 effectsToRun
+    iterateEffects && iterateEffects.forEach(effectFn => {
+      if (effectFn !== activeEffect) {
+        console.log('ITERATE_KEY trigger 执行')
+        effectsToRun.add(effectFn)
+      }
+    })
+  }
   effectsToRun.forEach(effectFn => {
     // 如果一个副作用函数存在调度器，则调用该调度器，并将副作用函数作为参数传递
     if (effectFn.options.scheduler) { // 新增
@@ -48,7 +62,13 @@ function trigger(target, key) {
   // effects && effects.forEach(effectFn => effectFn()) // 删除
 }
 
-const data = {bar: 2, foo: 1}
+const data = {
+  bar: 2, foo: 1, get value() {
+    // 这里的 this 指向的是谁？
+    return this.foo
+  }
+}
+const ITERATE_KEY = Symbol()
 const obj = new Proxy(data, {
   // 拦截读取操作
   get(target, key, receiver) {
@@ -58,14 +78,40 @@ const obj = new Proxy(data, {
     // return target[key]
     // 使用 Reflect.get 返回读取到的属性值 receiver，它代表谁在读取属性
     return Reflect.get(target, key, receiver)
-  },
-  // 拦截设置操作
-  set(target, key, newVal) {
+  }, // 拦截设置操作
+  set(target, key, newVal, receiver) {
+    console.log('key__', key)
+    // 如果属性不存在，则说明是在添加新属性，否则是设置已有属性
+    const type = Object.prototype.hasOwnProperty.call(target, key) ? 'SET' : 'ADD'
     // 设置属性值
-    target[key] = newVal
-    // 把副作用函数从桶里取出并执行
-    trigger(target, key)
+    const res = Reflect.set(target, key, newVal, receiver)
+    // 把副作用函数从桶里取出并执行 将 type 作为第三个参数传递给 trigger 函数
+    trigger(target, key, type)
+    return res
+  },
+  deleteProperty(target, key) {
+    // 检查被操作的属性是否是对象自己的属性
+    const hadKey = Object.prototype.hasOwnProperty.call(target, key)
+    // 使用 Reflect.deleteProperty 完成属性的删除
+    const res = Reflect.deleteProperty(target, key)
+    if (res && hadKey) {
+      // 只有当被删除的属性是对象自己的属性并且成功删除时，才触发更新
+      trigger(target, key, 'DELETE')
+    }
+    return res
+  },
+  has(target, key) {
+    console.log('proxy--has')
+    track(target, key)
+    return Reflect.has(target, key)
+  },
+  ownKeys(target) {
+    console.log('proxy--ownKeys')
+    // 将副作用函数与 ITERATE_KEY 关联
+    track(target, ITERATE_KEY)
+    return Reflect.ownKeys(target)
   }
+
 })
 
 function cleanup(effectFn) {
@@ -112,9 +158,7 @@ function effect(fn, options = {}) {
   }
   // 将副作用函数作为返回值返回
   return effectFn // 新增
-
 }
-
 
 // 定义一个任务队列，Set本身具有去重，同一个effectFn只会增加一次
 const jobQueue = new Set()
@@ -179,8 +223,7 @@ function computed(getter) {
   // dirty 标志，用来标识是否需要重新计算值，为 true 则意味着“脏”，需要计算
   let dirty = true
   const effectFn = effect(getter, {
-    lazy: true,
-    // 添加调度器，在调度器中将 dirty 重置为 true
+    lazy: true, // 添加调度器，在调度器中将 dirty 重置为 true
     scheduler() {
       dirty = true
       // 当计算属性依赖的响应式数据变化时，手动调用 trigger 函数触发响应
@@ -221,8 +264,7 @@ function computed(getter) {
 
 function traverse(value, seen = new Set()) {
   // 如果要读取的数据是原始值，或者已经被读取过了，那么什么都不做
-  if (typeof value !== 'object' || value === null ||
-    seen.has(value)) return
+  if (typeof value !== 'object' || value === null || seen.has(value)) return
   // 将数据添加到 seen 中，代表遍历地读取过了，避免循环引用引起的死循环
   seen.add(value)
   // 暂时不考虑数组等其他结构
@@ -263,12 +305,9 @@ function watch(source, cb, options = {}) {
     oldValue = newValue
   }
 
-  const effectFn = effect(
-    // 执行 getter
-    () => getter(),
-    {
-      lazy: true,
-      scheduler: () => {
+  const effectFn = effect(// 执行 getter
+    () => getter(), {
+      lazy: true, scheduler: () => {
         // 'sync' 的实现机制，即同步执行
         // 对于 options.flush 的值为 'pre' 的情况我们暂时还没有办法模拟
         // 因为这涉及组件的更新时机，其中 'pre' 和 'post' 原本的语义指的就是组件更新前和更新后，
@@ -280,8 +319,7 @@ function watch(source, cb, options = {}) {
           job()
         }
       }
-    }
-  )
+    })
 
   if (options.immediate) {
     job()
@@ -301,7 +339,7 @@ function watch(source, cb, options = {}) {
 
 
 function sleep(t = 200) {
-  return new Promise((resolve) => setTimeout(() => resolve({ success: true, list: [] }), t))
+  return new Promise((resolve) => setTimeout(() => resolve({success: true, list: []}), t))
 }
 
 let finalData
@@ -327,3 +365,12 @@ watch(obj, async (newValue, oldValue, onInvalidate) => {
 
 obj.foo++
 obj.foo++
+
+
+effect(() => {
+  // for...in 循环
+  for (const key in obj) {
+    console.log('k:', key) // foo
+  }
+})
+obj.xxx = 3
