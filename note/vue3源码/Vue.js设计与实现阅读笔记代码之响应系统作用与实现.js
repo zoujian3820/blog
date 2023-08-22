@@ -69,50 +69,68 @@ const data = {
   }
 }
 const ITERATE_KEY = Symbol()
-const obj = new Proxy(data, {
-  // 拦截读取操作
-  get(target, key, receiver) {
-    // 将副作用函数 activeEffect 添加到存储副作用函数的桶中
-    track(target, key)
-    // 返回属性值
-    // return target[key]
-    // 使用 Reflect.get 返回读取到的属性值 receiver，它代表谁在读取属性
-    return Reflect.get(target, key, receiver)
-  }, // 拦截设置操作
-  set(target, key, newVal, receiver) {
-    console.log('key__', key)
-    // 如果属性不存在，则说明是在添加新属性，否则是设置已有属性
-    const type = Object.prototype.hasOwnProperty.call(target, key) ? 'SET' : 'ADD'
-    // 设置属性值
-    const res = Reflect.set(target, key, newVal, receiver)
-    // 把副作用函数从桶里取出并执行 将 type 作为第三个参数传递给 trigger 函数
-    trigger(target, key, type)
-    return res
-  },
-  deleteProperty(target, key) {
-    // 检查被操作的属性是否是对象自己的属性
-    const hadKey = Object.prototype.hasOwnProperty.call(target, key)
-    // 使用 Reflect.deleteProperty 完成属性的删除
-    const res = Reflect.deleteProperty(target, key)
-    if (res && hadKey) {
-      // 只有当被删除的属性是对象自己的属性并且成功删除时，才触发更新
-      trigger(target, key, 'DELETE')
-    }
-    return res
-  },
-  // has(target, key) {
-  //   console.log('proxy--has')
-  //   track(target, key)
-  //   return Reflect.has(target, key)
-  // },
-  ownKeys(target) {
-    console.log('proxy--ownKeys')
-    // 将副作用函数与 ITERATE_KEY 关联
-    track(target, ITERATE_KEY)
-    return Reflect.ownKeys(target)
-  }
 
-})
+function reactive(obj) {
+  return new Proxy(obj, {
+    // 拦截读取操作
+    get(target, key, receiver) {
+      // 代理对象可以通过 raw 属性访问原始数据
+      if (key === 'raw') {
+        return target
+      }
+
+      // 将副作用函数 activeEffect 添加到存储副作用函数的桶中
+      track(target, key)
+      // 返回属性值
+      // return target[key]
+      // 使用 Reflect.get 返回读取到的属性值 receiver，它代表谁在读取属性
+      return Reflect.get(target, key, receiver)
+    }, // 拦截设置操作
+    set(target, key, newVal, receiver) {
+      // 先获取旧值
+      const oldVal = target[key]
+      // 如果属性不存在，则说明是在添加新属性，否则是设置已有属性
+      const type = Object.prototype.hasOwnProperty.call(target, key) ? 'SET' : 'ADD'
+      // 设置属性值
+      const res = Reflect.set(target, key, newVal, receiver)
+      // target === receiver.raw 说明 receiver 就是 target 的代理对象
+      // 代理对象可以通过 raw属性读取原始数据
+      if (target === receiver.raw) {
+        console.log('gggg')
+        // 把副作用函数从桶里取出并执行 将 type 作为第三个参数传递给 trigger 函数
+        if (oldVal !== newVal && (oldVal === oldVal || newVal === newVal)) {
+          trigger(target, key, type)
+        }
+      }
+      return res
+    },
+    deleteProperty(target, key) {
+      // 检查被操作的属性是否是对象自己的属性
+      const hadKey = Object.prototype.hasOwnProperty.call(target, key)
+      // 使用 Reflect.deleteProperty 完成属性的删除
+      const res = Reflect.deleteProperty(target, key)
+      if (res && hadKey) {
+        // 只有当被删除的属性是对象自己的属性并且成功删除时，才触发更新
+        trigger(target, key, 'DELETE')
+      }
+      return res
+    },
+    // has(target, key) {
+    //   console.log('proxy--has')
+    //   track(target, key)
+    //   return Reflect.has(target, key)
+    // },
+    ownKeys(target) {
+      console.log('proxy--ownKeys')
+      // 将副作用函数与 ITERATE_KEY 关联
+      track(target, ITERATE_KEY)
+      return Reflect.ownKeys(target)
+    }
+
+  })
+}
+
+const obj = reactive(data)
 
 function cleanup(effectFn) {
   // 遍历 effectFn.deps 数组
@@ -374,3 +392,49 @@ effect(() => {
   }
 })
 obj.xxx = 3
+
+;(() => {
+  const obj = {}
+  const proto = {bar: 1}
+  const child = reactive(obj)
+  const parent = reactive(proto)
+  // 使用 parent 作为 child 的原型
+  Object.setPrototypeOf(child, parent)
+
+  effect(() => {
+    console.log('z:', child.bar) // 1
+  })
+  // 修改 child.bar 的值
+  // 如果set没加if (target === receiver.raw)判断过滤原型引起的更新，会导致副作用函数重新执行两次
+  child.bar = 2
+
+  /* 解析：
+    当我们设置 child.bar的值时，会执行 child 代理对象的 set 拦截函数：
+    // child 的 set 拦截函数
+    set(target, key, value, receiver) {
+      // target 是原始对象 obj
+      // receiver 是代理对象 child
+    }
+    此时的 target 是原始对象 obj，receiver 是代理对象child，我们发现 receiver 其实就是 target 的代理对象。
+    但由于 obj 上不存在 bar 属性，所以会取得 obj 的原型parent，并执行 parent 代理对象的 set 拦截函数：
+    // parent 的 set 拦截函数
+    set(target, key, value, receiver) {
+      // target 是原始对象 proto
+      // receiver 仍然是代理对象 child
+    }
+    针对以上问题，如何确定 receiver 是不是 target 的代理对象，这需要我们为 get 拦截函数添加一个能力，
+     new Proxy(obj, {
+      get(target, key, receiver) {
+        // 代理对象可以通过 raw 属性访问原始数据
+        if (key === 'raw') {
+          return target
+        }
+        // 省略其他代码...
+      }
+     })
+     通raw我们自定义的物殊属性，可以读取到原始数据，例如：
+     child.raw === obj // true
+     parent.raw === proto // true
+     然后在Proxy set中通过if (target === receiver.raw)判断，来过滤原型引起的更新
+  * */
+})();
