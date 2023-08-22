@@ -100,11 +100,11 @@ const obj = new Proxy(data, {
     }
     return res
   },
-  has(target, key) {
-    console.log('proxy--has')
-    track(target, key)
-    return Reflect.has(target, key)
-  },
+  // has(target, key) {
+  //   console.log('proxy--has')
+  //   track(target, key)
+  //   return Reflect.has(target, key)
+  // },
   ownKeys(target) {
     console.log('proxy--ownKeys')
     // 将副作用函数与 ITERATE_KEY 关联
