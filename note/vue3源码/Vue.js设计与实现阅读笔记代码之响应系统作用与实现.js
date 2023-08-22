@@ -70,7 +70,8 @@ const data = {
 }
 const ITERATE_KEY = Symbol()
 
-function reactive(obj) {
+// 封装 createReactive 函数，接收一个参数 isShallow，代表是否为浅响应，默认为 false，即非浅响应
+function createReactive(obj, isShallow = false) {
   return new Proxy(obj, {
     // 拦截读取操作
     get(target, key, receiver) {
@@ -83,8 +84,18 @@ function reactive(obj) {
       track(target, key)
       // 返回属性值
       // return target[key]
-      // 使用 Reflect.get 返回读取到的属性值 receiver，它代表谁在读取属性
-      return Reflect.get(target, key, receiver)
+
+      if (isShallow) {
+        return res
+      }
+
+      // 得到原始值结果, 使用 Reflect.get 返回读取到的属性值 receiver，它代表谁在读取属性
+      const res = Reflect.get(target, key, receiver)
+      if (typeof res === 'object' && res !== null) {
+        // 调用 reactive 将结果包装成响应式数据并返回
+        return reactive(res)
+      }
+      return res
     }, // 拦截设置操作
     set(target, key, newVal, receiver) {
       // 先获取旧值
@@ -129,6 +140,24 @@ function reactive(obj) {
 
   })
 }
+
+function reactive(obj) {
+  return createReactive(obj)
+}
+// shallowReactive，即浅响应。所谓浅响应，指的是只有对象的第一层属性是响应的
+function shallowReactive(obj) {
+  return createReactive(obj, true)
+}
+/*
+ const obj = shallowReactive({ foo: { bar: 1 } })
+ effect(() => {
+  console.log(obj.foo.bar)
+ })
+ // obj.foo 是响应的，可以触发副作用函数重新执行
+ obj.foo = { bar: 2 }
+ // obj.foo.bar 不是响应的，不能触发副作用函数重新执行
+ obj.foo.bar = 3
+* */
 
 const obj = reactive(data)
 
