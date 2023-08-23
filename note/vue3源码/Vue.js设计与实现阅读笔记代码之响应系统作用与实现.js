@@ -70,8 +70,10 @@ const data = {
 }
 const ITERATE_KEY = Symbol()
 
-// 封装 createReactive 函数，接收一个参数 isShallow，代表是否为浅响应，默认为 false，即非浅响应
-function createReactive(obj, isShallow = false) {
+// 封装 createReactive 函数
+// 第二个参数 isShallow，代表是否为浅响应，默认为 false，即非浅响应
+// 第三个参数 isReadonly，代表是否只读，默认为 false，即非只读
+function createReactive(obj, isShallow = false, isReadonly = false) {
   return new Proxy(obj, {
     // 拦截读取操作
     get(target, key, receiver) {
@@ -80,24 +82,36 @@ function createReactive(obj, isShallow = false) {
         return target
       }
 
-      // 将副作用函数 activeEffect 添加到存储副作用函数的桶中
-      track(target, key)
+      // 非只读的时候才需要建立响应联系
+      if (!isReadonly) {
+        // 将副作用函数 activeEffect 添加到存储副作用函数的桶中
+        track(target, key)
+      }
       // 返回属性值
       // return target[key]
 
+      // 得到原始值结果, 使用 Reflect.get 返回读取到的属性值 receiver，它代表谁在读取属性
+      const res = Reflect.get(target, key, receiver)
       if (isShallow) {
         return res
       }
 
-      // 得到原始值结果, 使用 Reflect.get 返回读取到的属性值 receiver，它代表谁在读取属性
-      const res = Reflect.get(target, key, receiver)
       if (typeof res === 'object' && res !== null) {
-        // 调用 reactive 将结果包装成响应式数据并返回
-        return reactive(res)
+        return isReadonly
+          // 如果数据为只读，则调用 readonly 对值进行包装
+          ? readonly(res)
+          // 否则调用 reactive 将结果包装成响应式数据并返回
+          : reactive(res)
       }
       return res
     }, // 拦截设置操作
     set(target, key, newVal, receiver) {
+      // 如果是只读的，则打印警告信息并返回
+      if (isReadonly) {
+        console.warn(`属性 ${key} 是只读的`)
+        return true
+      }
+
       // 先获取旧值
       const oldVal = target[key]
       // 如果属性不存在，则说明是在添加新属性，否则是设置已有属性
@@ -116,6 +130,11 @@ function createReactive(obj, isShallow = false) {
       return res
     },
     deleteProperty(target, key) {
+      // 如果是只读的，则打印警告信息并返回
+      if (isReadonly) {
+        console.warn(`属性 ${key} 是只读的`)
+        return true
+      }
       // 检查被操作的属性是否是对象自己的属性
       const hadKey = Object.prototype.hasOwnProperty.call(target, key)
       // 使用 Reflect.deleteProperty 完成属性的删除
@@ -144,10 +163,20 @@ function createReactive(obj, isShallow = false) {
 function reactive(obj) {
   return createReactive(obj)
 }
+
 // shallowReactive，即浅响应。所谓浅响应，指的是只有对象的第一层属性是响应的
 function shallowReactive(obj) {
   return createReactive(obj, true)
 }
+// 创建深只读的代理对象
+function readonly(obj) {
+  return createReactive(obj, false, true /* 只读 */)
+}
+// 创建浅只读的代理对象
+function shallowReadonly(obj) {
+  return createReactive(obj, true /* shallow */, true)
+}
+
 /*
  const obj = shallowReactive({ foo: { bar: 1 } })
  effect(() => {
