@@ -9,7 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const { resolve } = require('path')
-// const TerserWebpackPlugin = require('terser-webpack-plugin')
+const TerserWebpackPlugin = require('terser-webpack-plugin')
 // 设置nodejs环境变量
 // 此处删除则 webpack 运行时默认走 production
 // 所以会导致 css兼容处理的 browserslist配置取 production
@@ -19,7 +19,9 @@ const { resolve } = require('path')
 // process.env.NODE_ENV = 'development'
 
 module.exports = {
-  entry: './src/js/index.js',
+  entry: {
+    aa: './src/js/index.js'
+  },
   output: {
     filename: 'js/[name].[contenthash:10].js',
     path: resolve(__dirname, 'build'),
@@ -222,13 +224,13 @@ module.exports = {
               ]
             }
           },
-          {
-            loader: 'eslint-loader',
-            options: {
-              // 自动修复eslint的错误
-              fix: true
-            }
-          }
+          // {
+          //   loader: 'eslint-loader',
+          //   options: {
+          //     // 自动修复eslint的错误
+          //     fix: true
+          //   }
+          // }
         ]
       }
     ]
@@ -280,23 +282,23 @@ module.exports = {
     },
     minimizer: [
       // 配置生产环境的压缩方案：js和css
-      // new TerserWebpackPlugin({
-      //   // 开启多进程打包
-      //   parallel: true,
-      //   terserOptions: {
-      //     // 删除注释
-      //     output: {
-      //       comments: false,
-      //     },
-      //     compress: {
-      //       // 去除debug、console
-      //       warnings: true,
-      //       drop_debugger: true,
-      //       drop_console: true,
-      //       pure_funcs: ["console.log"], // 移除console
-      //     },
-      //   },
-      // }),
+      new TerserWebpackPlugin({
+        // 开启多进程打包
+        parallel: true,
+        terserOptions: {
+          // 删除注释
+          output: {
+            comments: false
+          },
+          compress: {
+            // 去除debug、console
+            warnings: true,
+            drop_debugger: true,
+            drop_console: true,
+            pure_funcs: ['console.log'] // 移除console
+          }
+        }
+      })
     ]
   },
   plugins: [

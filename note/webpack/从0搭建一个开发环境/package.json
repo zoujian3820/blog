@@ -37,6 +37,7 @@
     "sass-loader": "^12.4.0",
     "scss-loader": "^0.0.1",
     "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.0",
     "url-loader": "^4.1.1",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1",
@@ -51,50 +52,5 @@
       "iOS 7",
       "last 3 iOS versions"
     ]
-  },
-  "eslintConfig": {
-    "extends": "airbnb-base",
-    "env": {
-      "browser": true
-    },
-    "rules": {
-      "eol-last": [
-        0
-      ],
-      "semi": [
-        2,
-        "never"
-      ],
-      "indent": [
-        2,
-        2
-      ],
-      "no-new": [
-        0
-      ],
-      "no-debugger": [
-        0
-      ],
-      "global-require": 0,
-      "comma-dangle": [
-        "error",
-        {
-          "arrays": "never",
-          "objects": "never",
-          "imports": "never",
-          "exports": "never",
-          "functions": "never"
-        }
-      ]
-    },
-    "parserOptions": {
-      "ecmaVersion": 2020
-    }
-  },
-  "eslintIgnore": [
-    "dist/*",
-    "node_modules/*",
-    "build/*",
-    "*.md"
-  ]
+  }
 }

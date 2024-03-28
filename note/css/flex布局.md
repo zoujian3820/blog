@@ -1,3 +1,20 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [flex 弹性盒子（新）](#flex-%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90%E6%96%B0)
+  - [开启 Flex 弹性盒子](#%E5%BC%80%E5%90%AF-flex-%E5%BC%B9%E6%80%A7%E7%9B%92%E5%AD%90)
+  - [flex-grow(default:0) 按比例分配父级剩余空间，默认为 0](#flex-growdefault0-%E6%8C%89%E6%AF%94%E4%BE%8B%E5%88%86%E9%85%8D%E7%88%B6%E7%BA%A7%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4%E9%BB%98%E8%AE%A4%E4%B8%BA-0)
+  - [flex-basis (default:auto) 在分配剩余空间前，预约初始的默认空间（宽度）](#flex-basis-defaultauto-%E5%9C%A8%E5%88%86%E9%85%8D%E5%89%A9%E4%BD%99%E7%A9%BA%E9%97%B4%E5%89%8D%E9%A2%84%E7%BA%A6%E5%88%9D%E5%A7%8B%E7%9A%84%E9%BB%98%E8%AE%A4%E7%A9%BA%E9%97%B4%E5%AE%BD%E5%BA%A6)
+  - [flex-shrink (default:1)](#flex-shrink-default1)
+  - [flex-flow](#flex-flow)
+  - [flex-wrap](#flex-wrap)
+  - [flex-direction](#flex-direction)
+  - [align-items](#align-items)
+  - [justify-content](#justify-content)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 <!--
  * @Author: mrzou
  * @Date: 2021-07-23 14:34:08

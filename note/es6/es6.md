@@ -2,6 +2,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [目前已知的es6](#%E7%9B%AE%E5%89%8D%E5%B7%B2%E7%9F%A5%E7%9A%84es6)
 - [模块引用](#%E6%A8%A1%E5%9D%97%E5%BC%95%E7%94%A8)
 - [解构](#%E8%A7%A3%E6%9E%84)
 - [js 新增的第七种数据类型 Symbol](#js-%E6%96%B0%E5%A2%9E%E7%9A%84%E7%AC%AC%E4%B8%83%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-symbol)

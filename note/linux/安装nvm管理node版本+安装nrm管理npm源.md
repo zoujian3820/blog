@@ -5,6 +5,7 @@
 - [安装nvm管理node版本](#%E5%AE%89%E8%A3%85nvm%E7%AE%A1%E7%90%86node%E7%89%88%E6%9C%AC)
   - [window装nvm](#window%E8%A3%85nvm)
   - [linux安装nvm](#linux%E5%AE%89%E8%A3%85nvm)
+- [npm查找配置文件地址](#npm%E6%9F%A5%E6%89%BE%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%9C%B0%E5%9D%80)
 - [安装 nrm](#%E5%AE%89%E8%A3%85-nrm)
   - [window安装nrm](#window%E5%AE%89%E8%A3%85nrm)
   - [linux安装nrm](#linux%E5%AE%89%E8%A3%85nrm)
@@ -15,10 +16,13 @@
 
 ### window装nvm
   - 找到安装目录下的settings.txt文件
+    ```
+    nvm root
+    ```
   - 打开文件在后面添加如下配置，使用淘宝镜像
     ```
-    node_mirror: https://npm.taobao.org/mirrors/node/
-    npm_mirror: https://npm.taobao.org/mirrors/npm/
+    node_mirror: https://npmmirror.com/mirrors/node/
+    npm_mirror: https://npmmirror.com/mirrors/npm/
     ```
   - 列出Node.js的所有版本
     ```
@@ -47,7 +51,7 @@ nvm list-remote node
 
 nvm使用taobao镜像
 ```
-echo -e "\nexport NVM_NODEJS_ORG_MIRROR=http://npm.taobao.org/mirrors/node" >> ~/.bashrc
+echo -e "\nexport NVM_NODEJS_ORG_MIRROR=http://npmmirror.com/mirrors/node" >> ~/.bashrc
 
 source ~/.bashrc
 ```
@@ -101,6 +105,13 @@ nvm use v10.20.0
 nvm alias default v10.20.0
 ```
 
+## npm查找配置文件地址
+  ```
+  npm config get userconfig
+  // npm 查找最新包版本
+  npm search vue
+  ```
+
 ## 安装 nrm 
 
 ### window安装nrm
@@ -136,7 +147,7 @@ nvm alias default v10.20.0
 ### linux安装nrm
 
 ```
-npm config set registry https://registry.npm.taobao.org
+npm config set registry https://registry.npmmirror.com
 npm install -g nrm
 
 // 创建软链接, 全局访问（相当于windows添加到环境变量path中）

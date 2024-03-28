@@ -1,23 +1,24 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-**Table of Contents** _generated with [DocToc](https://github.com/thlorenz/doctoc)_
 
-- [setState 更新状态的 2 种写法](#setstate%E6%9B%B4%E6%96%B0%E7%8A%B6%E6%80%81%E7%9A%842%E7%A7%8D%E5%86%99%E6%B3%95)
-- [路由组件的 lazy 懒加载](#%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6%E7%9A%84lazy%E6%87%92%E5%8A%A0%E8%BD%BD)
-- [React Hook/Hooks 是什么?](#react-hookhooks%E6%98%AF%E4%BB%80%E4%B9%88)
-- [自定义 hook](#%E8%87%AA%E5%AE%9A%E4%B9%89hook)
-- [常用的 React Hooks](#%E5%B8%B8%E7%94%A8%E7%9A%84react-hooks)
+- [setState 更新状态的 2 种写法](#setstate-%E6%9B%B4%E6%96%B0%E7%8A%B6%E6%80%81%E7%9A%84-2-%E7%A7%8D%E5%86%99%E6%B3%95)
+- [路由组件的 lazy 懒加载](#%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6%E7%9A%84-lazy-%E6%87%92%E5%8A%A0%E8%BD%BD)
+- [React Hook/Hooks 是什么?](#react-hookhooks-%E6%98%AF%E4%BB%80%E4%B9%88)
+- [自定义 hook](#%E8%87%AA%E5%AE%9A%E4%B9%89-hook)
+- [常用的 React Hooks](#%E5%B8%B8%E7%94%A8%E7%9A%84-react-hooks)
   - [useState 在函数组件中 模似类组件的 setState](#usestate-%E5%9C%A8%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E4%B8%AD-%E6%A8%A1%E4%BC%BC%E7%B1%BB%E7%BB%84%E4%BB%B6%E7%9A%84-setstate)
   - [useReducer](#usereducer)
-  - [useLayoutEffect 特性 与 useEffect 相同，但它会在所有的 DOM 变更之后 同步执行回调 比 useEffect 更早](#uselayouteffect%E7%89%B9%E6%80%A7-%E4%B8%8E-useeffect-%E7%9B%B8%E5%90%8C%E4%BD%86%E5%AE%83%E4%BC%9A%E5%9C%A8%E6%89%80%E6%9C%89%E7%9A%84-dom-%E5%8F%98%E6%9B%B4%E4%B9%8B%E5%90%8E-%E5%90%8C%E6%AD%A5%E6%89%A7%E8%A1%8C%E5%9B%9E%E8%B0%83-%E6%AF%94-useeffect-%E6%9B%B4%E6%97%A9)
-  - [useRef 可以在函数组件中 模似类组件的 ref 功能与 React.createRef()一样](#useref-%E5%8F%AF%E4%BB%A5%E5%9C%A8%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E4%B8%AD-%E6%A8%A1%E4%BC%BC%E7%B1%BB%E7%BB%84%E4%BB%B6%E7%9A%84ref--%E5%8A%9F%E8%83%BD%E4%B8%8Ereactcreateref%E4%B8%80%E6%A0%B7)
+  - [useEffect 可以在函数组件中 模似类组件的生命周期](#useeffect-%E5%8F%AF%E4%BB%A5%E5%9C%A8%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E4%B8%AD-%E6%A8%A1%E4%BC%BC%E7%B1%BB%E7%BB%84%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F)
+  - [useLayoutEffect 特性 与 useEffect 相同，但它会在所有的 DOM 变更之后 同步执行回调 比 useEffect 更早](#uselayouteffect-%E7%89%B9%E6%80%A7-%E4%B8%8E-useeffect-%E7%9B%B8%E5%90%8C%E4%BD%86%E5%AE%83%E4%BC%9A%E5%9C%A8%E6%89%80%E6%9C%89%E7%9A%84-dom-%E5%8F%98%E6%9B%B4%E4%B9%8B%E5%90%8E-%E5%90%8C%E6%AD%A5%E6%89%A7%E8%A1%8C%E5%9B%9E%E8%B0%83-%E6%AF%94-useeffect-%E6%9B%B4%E6%97%A9)
+  - [useRef 可以在函数组件中 模似类组件的 ref 功能与 React.createRef()一样](#useref-%E5%8F%AF%E4%BB%A5%E5%9C%A8%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E4%B8%AD-%E6%A8%A1%E4%BC%BC%E7%B1%BB%E7%BB%84%E4%BB%B6%E7%9A%84-ref-%E5%8A%9F%E8%83%BD%E4%B8%8E-reactcreateref%E4%B8%80%E6%A0%B7)
   - [React.useContext](#reactusecontext)
   - [React.useCallback](#reactusecallback)
   - [React.useMemo](#reactusememo)
+  - [React.memo 相当于函数组件的 PureComponent](#reactmemo-%E7%9B%B8%E5%BD%93%E4%BA%8E%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E7%9A%84-purecomponent)
   - [函数组件中实现 forceUpdate()](#%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E4%B8%AD%E5%AE%9E%E7%8E%B0-forceupdate)
-- [常用的 react-redux Hooks](#%E5%B8%B8%E7%94%A8%E7%9A%84react-redux-hooks)
-- [常用的 react-router / react-router-dom Hooks](#%E5%B8%B8%E7%94%A8%E7%9A%84react-router--react-router-dom-hooks)
+- [常用的 react-redux Hooks](#%E5%B8%B8%E7%94%A8%E7%9A%84-react-redux-hooks)
+- [常用的 react-router / react-router-dom Hooks](#%E5%B8%B8%E7%94%A8%E7%9A%84-react-router--react-router-dom-hooks)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

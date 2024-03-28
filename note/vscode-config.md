@@ -81,6 +81,7 @@
   - 创建新文件时，会在顶部自动生成一些信息，如Author Date LastEditTime
 - 非常好用的图片压缩插件tinyPng
   - 官网地址注册地址https://tinypng.com/developers
+  https://tinypng.com/developers/reference
   - 需配置api key才使用
   
     ![gist id](../images/vscode/tinypng.png)

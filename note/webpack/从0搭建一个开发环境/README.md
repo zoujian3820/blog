@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [install](#install)
+- [与webpack4差异](#%E4%B8%8Ewebpack4%E5%B7%AE%E5%BC%82)
+- [其他的loader配置](#%E5%85%B6%E4%BB%96%E7%9A%84loader%E9%85%8D%E7%BD%AE)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 <!--
  * @Author: mrzou
  * @Date: 2021-07-31 20:20:32

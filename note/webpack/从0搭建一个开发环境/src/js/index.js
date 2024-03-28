@@ -9,6 +9,9 @@
 import '../font/iconfont.css'
 import '../css/less.less'
 import '../css/scss.scss'
+import(/* webpackChunkName: "dashboard" */ "../test/index.js").then((a) => {
+  console.log(a);
+});
 
 const aa = function aa(s, x) {
   return new Promise((resolve) => {
