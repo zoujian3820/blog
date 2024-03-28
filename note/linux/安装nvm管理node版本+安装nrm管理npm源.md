@@ -34,7 +34,7 @@
 
 使用git将源码克隆到本地的~/.nvm目录下，并检查最新版本
 ```
-git clone https://github.com/cnpm/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`
+git clone https://gitee.com/Mrzou1688/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`
 ```
 
 激活NVM
@@ -147,6 +147,7 @@ nvm alias default v10.20.0
 ### linux安装nrm
 
 ```
+
 npm config set registry https://registry.npmmirror.com
 npm install -g nrm
 

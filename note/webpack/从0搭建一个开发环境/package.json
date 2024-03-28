@@ -11,7 +11,6 @@
   },
   "author": "mrzou",
   "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@babel/polyfill": "^7.12.1",
