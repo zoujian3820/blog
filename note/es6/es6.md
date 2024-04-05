@@ -288,17 +288,17 @@ console.log(obj2[keys.fun]()); // 666
 function* gen() {
   console.log(111); // 第1次调next 执行这个 并反回 {value: "aaa", done: false}
   yield "aaa";
-  console.log(222); // 第2次调next 执行这个 并反回 {value: "aaa", done: false}
+  console.log(222); // 第2次调next 执行这个 并反回 {value: "bbb", done: false}
   yield "bbb";
-  console.log(333); // 第3次调next 执行这个 并反回 {value: "aaa", done: false}
+  console.log(333); // 第3次调next 执行这个 并反回 {value: "ccc", done: false}
   yield "ccc";
   console.log(444); // 第4次调next 执行这个 并反回 {value: undefined, done: true}
 }
 
 let iterator = gen();
 console.log(iterator.next()); // {value: "aaa", done: false}
-console.log(iterator.next()); // {value: "aaa", done: false}
-console.log(iterator.next()); // {value: "aaa", done: false}
+console.log(iterator.next()); // {value: "bbb", done: false}
+console.log(iterator.next()); // {value: "ccc", done: false}
 console.log(iterator.next()); // {value: undefined, done: true}
 
 //遍历
