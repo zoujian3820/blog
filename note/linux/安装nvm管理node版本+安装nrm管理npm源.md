@@ -22,7 +22,11 @@
   - 打开文件在后面添加如下配置，使用淘宝镜像
     ```
     node_mirror: https://npmmirror.com/mirrors/node/
+    https://registry.npmmirror.com/binary.html?path=node/
+
     npm_mirror: https://npmmirror.com/mirrors/npm/
+    https://registry.npmmirror.com/binary.html?path=npm/
+
     ```
   - 列出Node.js的所有版本
     ```
@@ -54,6 +58,16 @@ nvm使用taobao镜像
 echo -e "\nexport NVM_NODEJS_ORG_MIRROR=http://npmmirror.com/mirrors/node" >> ~/.bashrc
 
 source ~/.bashrc
+
+# 如果改用了以上淘宝镜像后，出现以下问题
+root@onecloud:~# nvm list-remote node
+            N/A
+
+请按以下调整
+vi ~/.bashrc 后按键盘 i 键，然后按 shift + insert 键粘贴以下配置
+export NVM_NODEJS_ORG_MIRROR=http://nodejs.org/dist
+然后，按esc键 再按 : + w + q 键, 保存退出
+再更新一次  执行  source ~/.bashrc 
 ```
 
 配置环境变量
