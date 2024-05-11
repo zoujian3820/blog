@@ -113,11 +113,17 @@ nvm ls
 nvm use v10.20.0
 ```
 
-终端重启后nvm使用的node版本被重置解决办法
+用nvm安装的nodejs 运行时报  /usr/bin/env: ‘node’: Permission denied 或 终端重启后nvm使用的node版本被重置解决办法
 
 ```
 nvm alias default v10.20.0
 ```
+
+在centos上用nvm安装18及以上版本，安装完直接运行会失败，需要安装gcc，或直接安装18.0以下版本
+```
+yum install gcc-c++
+```
+   
 
 ## npm查找配置文件地址
   ```
