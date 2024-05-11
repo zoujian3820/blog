@@ -63,6 +63,7 @@
   ```
 
 - 安装mysql
+
   ![rpm02](./image/rpm02.png)
   ![rpm03](./image/rpm03.png)
   ![openssl](./image/openssl.png)
