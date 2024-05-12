@@ -357,14 +357,14 @@ yum install -y nginx
      - 二、缺少index.html或者index.php文件，就是配置文件中index index.html index.htm这行中的指定的文件。   
         ```
        server {
-                   listen       80;   // 你网站运行时监听的端口
-                   server_name  192.168.2.196;  // 表示你网站在浏览器中打开时输入的ip（云服务器公网ip, 虚拟机则用ifconfig查看本地ip）  有域名的填域名, 如(tangmaomao.top)
-               
-                   location / {
-                       root   //www/demo; // 配置你项目地址的路径，从根目录开始（我的www目录在/根目录下， 在cd / 中）
-                       index  index.html index.htm; // 配置默认打开的文件名 如index.php index.html 等
-                   }
-               }
+            listen       80;   // 你网站运行时监听的端口
+            server_name  192.168.2.196;  // 表示你网站在浏览器中打开时输入的ip（云服务器公网ip, 虚拟机则用ifconfig查看本地ip）  有域名的填域名, 如(tangmaomao.top)
+        
+            location / {
+                root   /www/demo; // 配置你项目地址的路径，从根目录开始（我的www目录在/根目录下， 在cd / 中）
+                index  index.html index.htm; // 配置默认打开的文件名 如index.php index.html 等
+            }
+        }
        
        // 如果在/www/demo下面没有 index.php 或 index.html的文件  会报403 forbidden
        ```
