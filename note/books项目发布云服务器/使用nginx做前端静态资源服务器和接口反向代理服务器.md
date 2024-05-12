@@ -297,3 +297,8 @@ nginx -s reload
 ```
 
 此时，你就可以在浏览器, 输入你的云主机公网ip(有域名就输域名) 访问你的网站了，项目就发布完了
+
+### nginx 其他资料
+[nginx另一篇安装使用文章](../linux/安装nginx.md)
+
+[Nginx配置静态资源文件404NotFound问题解决方法及alias用法](../linux/Nginx配置静态资源文件404NotFound问题解决方法及alias用法.md)
