@@ -298,6 +298,125 @@ nginx -s reload
 
 此时，你就可以在浏览器, 输入你的云主机公网ip(有域名就输域名) 访问你的网站了，项目就发布完了
 
+
+### nginx上配置多个端口，多个项目
+注意配置前，查看主配置文件 nginx.conf 中的 user 配置， 默认是nginx用户， 
+
+需要修改为root用户， 否则修改或添加引入文件后，会失效报403等
+
+请修改为： user root;
+
+```bash
+# 在nginx.conf的核心配置文件中的 http项配置中，
+# 方案一：添加多个 server 配置即可
+# 方案二：者引入多个配置文件
+# 如下
+http {
+  # nginx默认的 server配置不动它
+  server {
+    listen       80;
+    listen       [::]:80;
+    server_name  _;
+    root         /usr/share/nginx/html;
+
+    # Load configuration files for the default server block.
+    include /etc/nginx/default.d/*.conf;
+
+    error_page 404 /404.html;
+      location = /404.html {
+    }
+
+    error_page 500 502 503 504 /50x.html;
+      location = /50x.html {
+    }
+  }
+  # 方案一：直接在先前的 server 后面 添加一个我们自己的配置，端口什么的都可以修改
+  server {
+    listen       81;
+    listen       [::]:81;
+    server_name  _;
+    root         /opt/booksFrontend/dist;
+
+    location /dang {
+      proxy_pass  http://xx.xx.xx.xx:8002;
+    }
+  }
+  # 方案二： 引入配置文件的方式, 直接在 http 项配置中，添加 include 字段即可，如下
+  include /opt/booksFrontend/books.nginx.conf; # books.nginx.conf文件中的配置内容就是，方案一的配置
+}
+```
+配完后先 `killall -9 nginx` 杀死nginx一次, 因会多跑出好多进程
+
+如下命令可以查看到
+```bash
+ps -e | grep nginx
+
+netstat -ltunp | grep nginx
+```
+
+全杀一遍
+```bash
+killall -9 nginx
+```
+再开启执行 
+```bash
+nginx
+
+```
+
+
+### nginx开启gzip压缩
+
+参考资料  https://www.cnblogs.com/Renyi-Fan/p/11047490.html#_label4_0
+
+```bash
+server{
+  gzip on;
+  gzip_buffers 32 4K;
+  gzip_comp_level 6;
+  gzip_min_length 100; // 以k为单位
+  gzip_types application/javascript text/css text/xml;
+  gzip_disable "MSIE [1-6]\."; #配置禁用gzip条件，支持正则。此处表示ie6及以下不启用gzip（因为ie低版本不支持）
+  gzip_vary on;
+}
+```
+
+各配置项的含义
+
+```bash
+# $gzip_ratio计算请求的压缩率，$body_bytes_sent请求体大小
+log_format  main  '$remote_addr - $remote_user [$time_local] "$host" - "$request" '
+                    '$gzip_ratio - $body_bytes_sent - $request_time';
+
+gzip on; # 开启gzip压缩输出
+gzip_buffers 32 4K; # 设置压缩所需要的缓冲区大小
+gzip_comp_level 6; # gzip 压缩级别，1-9，数字越大压缩的越好，也越占用CPU时间
+gzip_min_length 1k; # 启用gzip压缩的最小文件，小于设置值的文件将不会压缩, 当返回内容大于此值时才会使用gzip进行压缩,以K为单位,当值为0时，所有页面都进行压缩。
+gzip_http_version 1.1; # 设置gzip压缩针对的HTTP协议版本
+
+# 进行压缩的文件类型，其中的值可以在 mime.types 文件中找到。默认就已经包含textml，所以下面就不用再写了，写上去也不会有问题，但是会有一个warn。
+gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png application/vnd.ms-fontobject font/ttf font/opentype font/x-woff image/svg+xml;
+
+gzip_vary on; # 是否传输gzip压缩标志 (是否在http header中添加 Content-Encoding: gzip 建议开启)
+gzip_disable "MSIE [1-6]\."; # 对于IE6及以下不支持，不启用gzip压缩
+
+# Nginx作为反向代理服务器时启用，决定开启或关闭后端服务器返回的结果是否压缩（是否进行gzip压缩）。
+# off – 关闭所有的代理结果数据压缩
+# expired – 如果header中包含”Expires”头信息，启用压缩
+# no-cache – 如果header中包含”Cache-Control:no-cache”头信息，启用压缩
+# no-store – 如果header中包含”Cache-Control:no-store”头信息，启用压缩
+# private – 如果header中包含”Cache-Control:private”头信息，启用压缩
+# no_last_modified – 启用压缩，如果header中包含”Last_Modified”头信息，启用压缩
+# no_etag – 启用压缩，如果header中包含“ETag”头信息，启用压缩
+# auth – 启用压缩，如果header中包含“Authorization”头信息，启用压缩
+# any – 无条件压缩所有结果数据
+gzip_proxied auth;
+
+gzip_static on; # 开启后，文件压缩后将被缓存，下次请求时如果文件未修改，直接返回缓存文件
+gzip_temp_path /var/temp/; # 存放临时文件的路径，默认在内存中
+```
+
+
 ### nginx 其他资料
 [nginx另一篇安装使用文章](../linux/安装nginx.md)
 
