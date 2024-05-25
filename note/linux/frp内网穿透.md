@@ -256,7 +256,19 @@ systemctl daemon-reload
 ```bash
 systemctl start frpc
 ```
+查看frps执行状态
+```bash
+systemctl status frpc
+```
 开机启动
 ```bash
 systemctl enable frpc
+```
+
+查看frpc进程
+```bash
+#查看进程
+netstat -tunlp | grep frpc
+#杀死进程
+killall -9 frpc
 ```
