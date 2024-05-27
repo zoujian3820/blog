@@ -1,0 +1,59 @@
+## 玩客云刷新linux的armbian系统及安装casaos
+
+[参考bilibili视频](https://www.bilibili.com/video/BV19c411679K/?uid=42563139633431313637394B&vd_source=53a301bd6bb35fdbcea1a52265e4cf51)
+
+刷机包都在这里
+
+[刷机工具Amlogic_USB_Burning_Tool_v2.1.3](./source/玩客云刷Armbian/刷机工具Amlogic_USB_Burning_Tool_v2.1.3.zip)
+
+[插线直刷包Armbian_23.05.0_需要解压一下](./source/玩客云刷Armbian/需解压_插线直刷包Armbian_23.05.0-trunk_Onecloud_bullseye_current_6.1.27.burn.img.xz)
+
+[写入U盘包Armbian_23.05.0_需要解压一下](./source/玩客云刷Armbian/需解压_写入U盘包Armbian_23.05.0-trunk_Onecloud_bullseye_current_6.1.27.img.xz)
+
+
+先用window上安装刷机工具, 安装好后，用管理员身份打开运行，然后导入Armbian镜像包以.img结尾的镜像文件，上面提供的是压缩文件要先解压出来
+
+我的是买的二手，已刷过机的，所以不用去做主板短接了，
+
+直接用usb双公线一头接入电脑，一头接入玩客云靠近hdmi接口的那个usb
+
+然后用针 按压住玩客云上的reset键，然后接入玩客云的电源线通电，
+
+等玩客云的指示灯开始闪烁，松开reset键
+
+然后看电脑上的刷机工具（烧录软件）界面上，是否出现新识别的设备，
+
+如果出现，则说明识别成功，直接点击  开始  刷机
+
+刷完机后，拔掉usb，拔掉电源线
+
+先去插上网线后，再通电
+
+然后去路由器后台，找到 onecloud 设备的 ip地址
+
+然后用工具登录，这里推荐用 Xshell 可从这里下载 [Xshell+Xftp真正破解版](./source/玩客云刷Armbian/Xshell+Xftp真正破解版.zip)
+
+登录用路由上的局域网 ip地址，端口是22
+
+初始用户及密码是  `root 和 1234`
+
+armbian系统刚刷完时，会叫你设置root密码及新增一个用户
+
+armbian系统修改密码
+```bash
+# root用户改密码
+passwd root    #然后按提示输入新的密码两次
+
+# 非root用户改密码
+passwd 用户名  #然后按提示输入新的密码两次
+
+```
+
+
+安装casaos速度会很慢，最好翻个墙
+```bash
+curl -fsSL https://get.casaos.io | sudo bash
+
+# 上面官方地址安装不了的可以试下这个，会快很多这个不用翻墙哈
+curl -fsSL https://get.icewhale.io | sudo bash
+```
