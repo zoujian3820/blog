@@ -54,8 +54,14 @@ passwd 用户名  #然后按提示输入新的密码两次
 
 安装casaos速度会很慢，最好翻个墙
 ```bash
+wget -qO- https://get.casaos.io | sudo bash
+# 或
 curl -fsSL https://get.casaos.io | sudo bash
 
 # 上面官方地址安装不了的可以试下这个，会快很多这个不用翻墙哈
 curl -fsSL https://get.icewhale.io | sudo bash
+```
+卸载casaos
+```
+casaos-uninstall
 ```
