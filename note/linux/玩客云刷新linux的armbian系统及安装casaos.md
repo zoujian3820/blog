@@ -4,11 +4,13 @@
 
 刷机包都在这里
 
-[刷机工具Amlogic_USB_Burning_Tool_v2.1.3](./source/玩客云刷Armbian/刷机工具Amlogic_USB_Burning_Tool_v2.1.3.zip)
+百度网盘链接: https://pan.baidu.com/s/1G55jGcc7si6xjabGOiQ4hQ?pwd=sxkn 提取码: sxkn
 
-[插线直刷包Armbian_23.05.0_需要解压一下](./source/玩客云刷Armbian/需解压_插线直刷包Armbian_23.05.0-trunk_Onecloud_bullseye_current_6.1.27.burn.img.xz)
+`刷机工具Amlogic_USB_Burning_Tool_v2.1.3`
 
-[写入U盘包Armbian_23.05.0_需要解压一下](./source/玩客云刷Armbian/需解压_写入U盘包Armbian_23.05.0-trunk_Onecloud_bullseye_current_6.1.27.img.xz)
+`插线直刷包Armbian_23.05.0_需要解压一下`
+
+`写入U盘包Armbian_23.05.0_需要解压一下`
 
 
 先用window上安装刷机工具, 安装好后，用管理员身份打开运行，然后导入Armbian镜像包以.img结尾的镜像文件，上面提供的是压缩文件要先解压出来
@@ -31,7 +33,7 @@
 
 然后去路由器后台，找到 onecloud 设备的 ip地址
 
-然后用工具登录，这里推荐用 Xshell 可从这里下载 [Xshell+Xftp真正破解版](./source/玩客云刷Armbian/Xshell+Xftp真正破解版.zip)
+然后用工具登录，这里推荐用 Xshell6破解免安装版 安装包也在上面的 [百度网盘链接](https://pan.baidu.com/s/1G55jGcc7si6xjabGOiQ4hQ?pwd=sxkn) 中
 
 登录用路由上的局域网 ip地址，端口是22
 
