@@ -178,6 +178,22 @@ transport.tls.enable = false   #是否和服务端之间启用TLS连接
 transport.tls.disableCustomTLSFirstByte = false
 #默认为true，当配置为true时，无法和vhostHTTPSPort端口复用
 
+# 客户端Web界面配置
+webServer.addr = "0.0.0.0" # 默认为 127.0.0.1，如果需要公网访问，需要修改为 0.0.0.0
+webServer.port = 7002 #Web页面端口号
+webServer.user = "你的帐号名：admin"   #Web页面账号
+webServer.password = "你的密码：123456"   #Web页面密码
+
+[[proxies]]
+name = "wankeyun-frpc-client"
+type = "tcp" #隧道类型，可填tcp, http, https ...  tcp类型的项目可以直接配多个，因为可以指定服务端监听的端口
+localIP = "127.0.0.1" #本地IP地址，如果是本机就127.0.0.1
+localPort = 7002 #本地端口，本地ssh登录，用的是22端口
+remotePort = 7002 #服务端映射到外网的端口，外网ssh登录时，用这个端口访问
+transport.useEncryption = true   #传输加密，加密算法采用 aes-128-cfb
+transport.useCompression = true   #传输压缩，压缩算法采用 snappy
+
+
 [[proxies]]
 name = "wankeyun-ssh"
 type = "tcp" #隧道类型，可填tcp, http, https ...  tcp类型的项目可以直接配多个，因为可以指定服务端监听的端口
@@ -214,9 +230,12 @@ cd /opt/frp_0.58.0_linux_arm
 ./frps -c frpc.toml
 
 #启动后，没报错，且能打开服务端web页面，就算成功了
-浏览器访问：http://云服务器ip地址:服务端vhostHTTPPort端口
+浏览器访问：http://云服务器ip地址:7002
 如果能正常看到你客户端（家里电脑上）跑的项目时，客户端安装就成功了
 ```
+如果你配置了本地的http的web项目的话
+
+此时浏览器访问：http://云服务器ip地址:服务端vhostHTTPPort端口，就能看到了
 
 #### 能正常启动后，配置客户端开机自启后台运行
 ```bash
