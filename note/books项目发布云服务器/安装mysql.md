@@ -125,7 +125,7 @@ cat /var/log/mysqld.log | grep -i password
 登录并修改mysql的root密码
   ```
   # 进入mysql
-  mysql -u root -p # 密码为上面的默认密码 qhNEb*srF1Uq
+  mysql -h localhost -u root -p # 密码为上面的默认密码 qhNEb*srF1Uq
 
   # 修改密码
   ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '1234';

@@ -14,7 +14,7 @@
 ```
 host  localhost | 127.0.0.1
 user  root
-pass  38*****178@QQ.com
+pass  x_G@967=Iuy # 示例
 ```
 - 登录mysql
     - mysql -u root -p
