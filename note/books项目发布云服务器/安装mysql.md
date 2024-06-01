@@ -175,6 +175,18 @@ set global validate_password.length=4;
 # 修改密码
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '1234';
 
+# 到客户端登录root用户
+mysql -h localhost -u root -p
+
+输完密码后，报错如下：
+Host 'xx.xx.xx.xx' is not allowed to connect to this MySQL server
+
+到服务器上登录root用户然后，执行如下命令：
+use mysql;
+select host from user where user = 'root';
+原因是root用户限制了只能在当前的ip内访问的，需要修改他的访问域。
+update user set host='%' where user='root';
+
 # 创建用户
 CREATE USER 'admin' IDENTIFIED WITH mysql_native_password BY '1234';
 # 给新用户赋权限
