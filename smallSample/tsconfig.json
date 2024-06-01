@@ -1,0 +1,44 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    // "module": "CommonJS",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"], // 允许访问的底层依赖库 如es6中set、map等方法 DOM的调用document等等
+    "skipLibCheck": true, // 对声明文件.d.ts不进行检查
+    "rootDir": "./src", // 指定TS要编译的TS文件源目录
+    "outDir": "./tsbuild", // 通tsc（命令）编译后的TS文件输出目录
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true, // 允许在文件中引入json文件
+    "isolatedModules": true, // ts的文件中没有一个export导出会报错, export导出ts中没有的interface（自己新增的）要加type
+    "esModuleInterop": true, // 允许依赖库中出export=这种兼容规范导出的格式，ts可以用import from导入
+
+    "allowJs": true, // 是否允许ts项目中导入js文件使用，并不报错
+    // "allowImportingTsExtensions": true, // 允许导入语句中使用.ts扩展名，需与noEmit或emitDeclarationOnly其中的一个配合使用，emitDeclarationOnly优先级比noEmit高
+    // "noEmit": true, // 不生成编译文件
+    // "emitDeclarationOnly": true, // 只生成声明文件（.d.ts文件）而不生成Javascript文件，同时配了noEmit的情况下，按emitDeclarationOnly处理, 需和搭配declaration使用
+    "declaration": true, // 如果设为true，在编译完成后生成相应的*.d.ts文件
+    "jsx": "preserve", // 在vue中使用react的jsx语法
+    "sourceMap": true, // tsc生成js的sourceMap文件(在outDir配置的目录下)，可以方便调试，看到ts源代码
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      // 解决 无法找到模块“vuex”的声明文件 报错问题
+      "vuex": ["./node_modules/vuex/types"]
+    },
+    /* Linting */
+    "strict": true, // 代码开启严格模式
+
+    // noUnusedLocals和noUnusedParameters都设为false
+    // 让定义了未使用的变量或参数不会报错，中止项目运行
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+
+    "noFallthroughCasesInSwitch": true,
+    "types": ["vite/client"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"], // "vite.config.ts"
+  "exclude": ["node_modules", "dist", "**/*.js"]
+  // "references": [{ "path": "./tsconfig.node.json" }]
+}

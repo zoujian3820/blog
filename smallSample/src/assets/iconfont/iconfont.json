@@ -1,0 +1,30 @@
+{
+  "id": "4570106",
+  "name": "加车抛物线动画demo",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1288623",
+      "name": "加",
+      "font_class": "jia",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "1288626",
+      "name": "减",
+      "font_class": "jian",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "1305",
+      "name": "购物车满",
+      "font_class": "gouwucheman",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}
