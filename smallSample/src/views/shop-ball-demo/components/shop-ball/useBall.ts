@@ -31,26 +31,30 @@ export default function useBall(args: useBallParams = {}) {
   let ballHeight = args.ballHeight || 0
   let ballLeft = args.ballLeft || 0
   let ballBottom = args.ballBottom || 0
+  let winHeight = 0
 
   function getBallInfo() {
-    if (args.ballEle) {
-      if (typeof args.ballEle === 'string') {
-        const ballEle = document.querySelector(args.ballEle) as HTMLBodyElement
-        if (ballEle) {
-          const rect = ballEle.getBoundingClientRect()
+    requestAnimationFrame(() => {
+      winHeight = window.innerHeight
+      if (args.ballEle) {
+        if (typeof args.ballEle === 'string') {
+          const ballEle = document.querySelector(args.ballEle) as HTMLBodyElement
+          if (ballEle) {
+            const rect = ballEle.getBoundingClientRect()
+            ballWidth = rect.width
+            ballHeight = rect.height
+            ballLeft = rect.left
+            ballBottom = winHeight - rect.bottom
+          }
+        } else if (args.ballEle.value instanceof Element) {
+          const rect = args.ballEle.value.getBoundingClientRect()
           ballWidth = rect.width
           ballHeight = rect.height
           ballLeft = rect.left
-          ballBottom = window.innerHeight - rect.bottom
+          ballBottom = winHeight - rect.bottom
         }
-      } else if (args.ballEle.value instanceof Element) {
-        const rect = args.ballEle.value.getBoundingClientRect()
-        ballWidth = rect.width
-        ballHeight = rect.height
-        ballLeft = rect.left
-        ballBottom = window.innerHeight - rect.bottom
       }
-    }
+    })
   }
 
   onMounted(() => {
@@ -77,7 +81,6 @@ export default function useBall(args: useBallParams = {}) {
     }
   }
   const beforeDrop = (el: Element) => {
-    console.log('aaaaa')
     const curBallEl = el as HTMLBodyElement
     const ball = dropBalls[dropBalls.length - 1]
     const clickElRect = ball.clickEl!.getBoundingClientRect()
@@ -85,7 +88,7 @@ export default function useBall(args: useBallParams = {}) {
     const diffX = clickElRect.width / 2 - ballWidth / 2
     const diffY = clickElRect.height / 2 - ballHeight / 2
     const x = clickElRect.left - ballLeft + diffX
-    const y = -(window.innerHeight - clickElRect.top - ballBottom + diffY)
+    const y = -(winHeight - clickElRect.top - ballBottom + diffY)
 
     curBallEl.style.display = ''
     curBallEl.style.transform =
@@ -96,7 +99,10 @@ export default function useBall(args: useBallParams = {}) {
   }
   const dropping = (el: Element, done: (...arg: any) => void) => {
     const curBallEl = el as HTMLBodyElement
-    document.body.offsetHeight // reflow
+    // 获取到当前body最新高度，导致浏览器reflow立即重排，不立即重排的话，动画无法展示
+    // 因为beforeDrop和dropping中的样式渲染，在Vue中因nextTick异步更新，会等到最后一起批量处理
+    // 此时将会立即先把beforeDrop中的变更渲染出来，下面的更新将在下一次浏览器更新时渲染出来
+    document.body.offsetHeight
 
     const trs3d = 'translate3d(0,0,0)'
     const inner = el.getElementsByClassName(innerCls)[0] as HTMLBodyElement
