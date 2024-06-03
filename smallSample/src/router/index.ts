@@ -3,6 +3,9 @@ const homeDemo = () => import('@/views/home/index.vue')
 const remDemo = () => import('@/views/rem-demo/index.vue')
 const sassDemo = () => import('@/views/sass-demo/index.vue')
 const shopBallDemo = () => import('@/views/shop-ball-demo/index.vue')
+const slideCaptchaDemo = () => import('@/views/slide-captcha-demo/index.vue')
+const slideCaptchaDemo2 = () => import('@/views/slide-captcha-demo/index2.vue')
+const slideCaptchaDemoHoutai = () => import('@/views/slide-captcha-demo/houtai.vue')
 
 const routes: RouteRecordRaw[] = [
   { name: 'homeDemo', path: '/home', component: homeDemo },
@@ -11,6 +14,21 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     /* redirect: '/home'*/
     component: homeDemo
+  },
+  {
+    name: 'slideCaptchaDemo',
+    path: '/slide-captcha-demo',
+    component: slideCaptchaDemo
+  },
+  {
+    name: 'slideCaptchaDemo2',
+    path: '/slide-captcha-demo2',
+    component: slideCaptchaDemo2
+  },
+  {
+    name: 'slideCaptchaDemoHoutai',
+    path: '/slide-captcha-demo3',
+    component: slideCaptchaDemoHoutai
   },
   { name: 'remDemo', path: '/rem-demo', component: remDemo },
   { name: 'sassDemo', path: '/sass-demo', component: sassDemo },

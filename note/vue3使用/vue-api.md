@@ -40,6 +40,7 @@
 
 |      vue3       |     vue2      |
 | :-------------: | :-----------: |
+|       -         |  beforeCreate |
 |     created     |    created    |
 |   beforeMount   |  beforeMount  |
 |     mounted     |    mounted    |
@@ -189,7 +190,7 @@ const app = Vue.createApp({
 });
 // 全局混⼊
 app.mixin({
-  beforeCreate() {},
+  created() {}
 });
 app.mount("#demo"); // 'hello from app!' 'hello from mixin!'
 ```
@@ -399,6 +400,8 @@ export default {
 export default {
   install: (app, options) => {
     app.mixin({});
+    // or
+    app.provide("xx", {});
   },
 };
 ```
@@ -554,6 +557,34 @@ console.log(instance);
   state.count = 1;
   console.log(count.value); // 1
   ```
+
+- toRef 用于创建一个指向源对象某个属性的 ref 对象。这个函数可以用于将对象的某个属性转换为响应式数据，方便在组件中使用。
+  ```js
+  import { ref, toRef } from 'vue';
+  
+  const myObject = {
+    firstName: 'John',
+    lastName: 'Doe'
+  };
+  
+  // 使用 toRef 将对象属性转为 ref 对象
+  const firstNameRef = toRef(myObject, 'firstName');
+  
+  // 创建一个独立的 ref
+  const age = ref(25);
+  
+  console.log(firstNameRef.value); // 输出: John
+  
+  // 修改原始对象的属性，会触发 ref 更新
+  myObject.firstName = 'Jane';
+  
+  console.log(firstNameRef.value); // 输出: Jane
+  
+  // 修改 ref 对象的值，不会影响原始对象
+  firstNameRef.value = 'Alice';
+  console.log(myObject.firstName); // 输出: Jane
+  ```
+
 - toRefs 把⼀个响应式对象转换成普通对象，该普通对象的每个属性都是⼀个 Ref。
 
   ```js
@@ -570,6 +601,124 @@ console.log(instance);
   */
   // return { ...Vue.toRefs(state) };
   return { ...stateAsRefs };
+  ```
+
+- isRef 是 Vue 3 提供的一个辅助函数，用于检查一个值是否为 ref 对象。这在编程时可能是有用的，特别是当你需要确定一个值是否已经被包装成响应式对象。
+  ```js
+  import { ref, isRef } from 'vue';
+  
+  const normalValue = 'Hello, Vue!';
+  const myRef = ref(normalValue);
+  
+  console.log(isRef(normalValue)); // 输出: false
+  console.log(isRef(myRef));       // 输出: true
+  ```
+
+- unref 也是 Vue 3 提供的一个辅助函数，用于获取 ref 对象的原始值。通常，在模板中使用 ref 对象时，Vue 3 会自动解包，但在某些情况下，你可能需要显式地获取 ref 对象的原始值。
+
+  其实它就是一个语法糖
+  ```js
+  val = isRef(val) ? val.value : val;
+  ```
+  示例
+  ```js
+  import { ref, unref } from 'vue';
+  
+  const myRef = ref('Hello, Vue!');
+  
+  // 在模板中，Vue 3 会自动解包 ref 对象
+  console.log(myRef.value); // 输出: Hello, Vue!
+  
+  // 使用 unref 获取 ref 对象的原始值
+  const originalValue = unref(myRef);
+  
+  console.log(originalValue); // 输出: Hello, Vue!
+  ```
+
+- shallowRef 用于创建一个 ref 对象，但与普通的 ref 不同，shallowRef 会对对象进行浅层的响应式处理。这意味着只有对象的第一层属性会变成响应式，而嵌套对象内部的属性不会成为响应式。
+  ```js
+  <template>
+      <div>
+          {{ shallowObj.a }}
+          <button @click="addCount"> +1</button>
+      </div>
+  </template>
+  
+  <script lang='ts' setup>
+  import { shallowRef } from "vue"
+  
+  const shallowObj = shallowRef({
+      a: 1
+  })
+  const addCount = () => {
+      //不会触发页面更新
+      shallowObj.value.a++
+  }
+  </script>
+  
+  ```
+  但是如果我们将 addCount 改为修改整个.value 就会触发响应式了
+  ```js
+  const addCount = () => {
+    let temp = shallowObj.value.a;
+    temp++;
+    shallowObj.value = {
+      a: temp,
+    };
+  };
+  ```
+  
+- triggerRef 它可以让浅层的 ref 即 shallowRef 深层属性发生改变的时候强制触发更改,比如上面触发不了响应式的代码示例加入triggerRef后
+
+  ```js
+  <template>
+      <div>
+          {{ shallowObj.a }}
+          <button @click="addCount"> +1</button>
+      </div>
+  </template>
+  
+  <script lang='ts' setup>
+  import { shallowRef, triggerRef } from "vue"
+  
+  const shallowObj = shallowRef({
+      a: 1
+  })
+  
+  const addCount = () => {
+      shallowObj.value.a++
+      //加入triggerRef强制触发更改
+      triggerRef(shallowObj)
+  }
+  </script>
+  ```
+
+- customRef 是 Vue 3 提供的一个函数，用于创建一个自定义的 ref 对象。通过 customRef，你可以定义自己的获取器和设置器来实现对 ref 对象的完全自定义控制。
+  ```js
+  import { customRef } from 'vue';
+  
+  // 创建一个自定义的 ref 对象
+  const myCustomRef = customRef((track, trigger) => {
+    let value = 'Hello, Vue!';
+  
+    return {
+      get() {
+        // 告诉 Vue 哪些依赖被追踪
+        track();
+        return value;
+      },
+      set(newValue) {
+        // 更新值，并触发更新
+        value = newValue;
+        trigger();
+      }
+    };
+  });
+  
+  console.log(myCustomRef.value); // 输出: Hello, Vue!
+  
+  myCustomRef.value = 'Updated Value';
+  console.log(myCustomRef.value); // 输出: Updated Value
   ```
 
 - computed ：计算属性

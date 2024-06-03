@@ -5,6 +5,9 @@
       <p><router-link to="/rem-demo">rem换算demo</router-link></p>
       <p><router-link to="/sass-demo">样式预处理器sass使用demo</router-link></p>
       <p><router-link to="/shop-ball-demo">购物车加车小球抛物线动画</router-link></p>
+      <p><router-link to="/slide-captcha-demo2">滑动验证码, 只支持pc电脑端</router-link></p>
+      <p><router-link to="/slide-captcha-demo">滑动验证码，支持电脑和移动端</router-link></p>
+      <p><router-link to="/slide-captcha-demo3">滑动验证码，支持电脑和移动端，后台校验</router-link></p>
     </div>
   </div>
 </template>
