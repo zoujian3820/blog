@@ -55,7 +55,13 @@ container 就是父容器 B1 B2 B3 就是子容器
   }
 }
 ```
-
+### flex 的3个属性值
+```css
+/* flex: 拉伸比例1 压缩比例1 初始宽度100px; */
+flex: 1 1 100px;
+/* flex: 0不拉伸 0不压缩 初始宽度100px; */
+flex: 0 0 100px;
+```
 ### flex-grow(default:0) 按比例分配父级剩余空间，默认为 0
 
 假如我们对 B1 设置 flex-grow:1

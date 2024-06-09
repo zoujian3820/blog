@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 const homeDemo = () => import('@/views/home/index.vue')
 const remDemo = () => import('@/views/rem-demo/index.vue')
 const sassDemo = () => import('@/views/sass-demo/index.vue')
+const css3Demo = () => import('@/views/css3-demo/index.vue')
 const shopBallDemo = () => import('@/views/shop-ball-demo/index.vue')
 const slideCaptchaDemo = () => import('@/views/slide-captcha-demo/index.vue')
 const slideCaptchaDemo2 = () => import('@/views/slide-captcha-demo/index2.vue')
@@ -31,6 +32,7 @@ const routes: RouteRecordRaw[] = [
     component: slideCaptchaDemoHoutai
   },
   { name: 'remDemo', path: '/rem-demo', component: remDemo },
+  { name: 'css3Demo', path: '/css3-demo', component: css3Demo },
   { name: 'sassDemo', path: '/sass-demo', component: sassDemo },
   { name: 'shopBallDemo', path: '/shop-ball-demo', component: shopBallDemo }
 ]
