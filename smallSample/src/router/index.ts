@@ -7,6 +7,19 @@ const shopBallDemo = () => import('@/views/shop-ball-demo/index.vue')
 const slideCaptchaDemo = () => import('@/views/slide-captcha-demo/index.vue')
 const slideCaptchaDemo2 = () => import('@/views/slide-captcha-demo/index2.vue')
 const slideCaptchaDemoHoutai = () => import('@/views/slide-captcha-demo/houtai.vue')
+const canvasApi = () => import('@/views/canvas-demo/canvas-api.vue')
+const canvasCompressDemo = () => import('@/views/canvas-demo/canvas-compress.vue')
+const antvG2 = () => import('@/views/canvas-demo/antv-demo/G2.vue')
+const antvG6 = () => import('@/views/canvas-demo/antv-demo/G6.vue')
+const antvL7 = () => import('@/views/canvas-demo/antv-demo/L7.vue')
+const echars1 = () =>
+  import(
+    /* webpackChunkName: "echars_demo_1" */ '@/views/canvas-demo/echars-demo/echars1.vue'
+  )
+const echarBaobiaoPage = () =>
+  import(
+    /* webpackChunkName: "echar_baobiao_page" */ '@/views/canvas-demo/echars-demo/baobiao-page.vue'
+  )
 
 const routes: RouteRecordRaw[] = [
   { name: 'homeDemo', path: '/home', component: homeDemo },
@@ -34,7 +47,22 @@ const routes: RouteRecordRaw[] = [
   { name: 'remDemo', path: '/rem-demo', component: remDemo },
   { name: 'css3Demo', path: '/css3-demo', component: css3Demo },
   { name: 'sassDemo', path: '/sass-demo', component: sassDemo },
-  { name: 'shopBallDemo', path: '/shop-ball-demo', component: shopBallDemo }
+  { name: 'shopBallDemo', path: '/shop-ball-demo', component: shopBallDemo },
+  { name: 'canvasApi', path: '/canvas-api', component: canvasApi },
+  {
+    name: 'canvasCompressDemo',
+    path: '/canvas-compress-demo',
+    component: canvasCompressDemo
+  },
+  { name: 'antvG2', path: '/antv-g2-demo', component: antvG2 },
+  { name: 'antvG6', path: '/antv-g6-demo', component: antvG6 },
+  { name: 'antvL7', path: '/antv-l7-demo', component: antvL7 },
+  { name: 'echars1', path: '/echars1-demo', component: echars1 },
+  {
+    name: 'echarBaobiaoPage',
+    path: '/echar-baobiao-page',
+    component: echarBaobiaoPage
+  }
 ]
 
 const router = createRouter({

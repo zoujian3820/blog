@@ -12,7 +12,13 @@
     "lint": "eslint --ext .ts --ext .vue --ext js src/"
   },
   "dependencies": {
+    "@antv/g2plot": "^2.4.31",
+    "@antv/g6": "^5.0.4",
+    "@antv/l7": "^2.22.0",
+    "@antv/l7-maps": "^2.22.0",
     "axios": "^1.7.2",
+    "echarts": "^5.5.1",
+    "element-plus": "^2.7.6",
     "highlight.js": "^11.9.0",
     "pinia": "^2.1.7",
     "utility-types": "^3.11.0",
@@ -35,5 +41,8 @@
     "vite": "^5.2.0",
     "vue-eslint-parser": "^9.4.2",
     "vue-tsc": "^2.0.6"
+  },
+  "volta": {
+    "node": "20.15.0"
   }
 }

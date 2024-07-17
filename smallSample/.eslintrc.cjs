@@ -7,7 +7,9 @@ module.exports = {
     defineProps: 'readonly',
     defineEmits: 'readonly',
     defineExpose: 'readonly',
-    withDefaults: 'readonly'
+    withDefaults: 'readonly',
+    G2Plot: 'readonly',
+    NodeJS: 'readonly'
   },
   env: {
     browser: true,

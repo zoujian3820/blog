@@ -205,6 +205,48 @@ mysql -uadmin -p books < /opt/books.sql
 mysqldump -u admin -p1234 books > /opt/books_db.sql
 ```
 
+### 设置mysql配置文件
+mysql报错Too many connections的处理参考：
+https://www.cnblogs.com/pejsidney/p/11138463.html
+
+需要配置`max_connections  wait_timeout  interactive_timeout`
+
+- window系统在安装目录下，找到my.ini文件，修改如下：
+- centOS系统，找到/etc/my.cnf文件，修改如下：
+- Ubuntu系统，找到/etc/mysql/mysql.conf.d/mysqld.cnf，修改如下：
+  ```
+  [mysql]
+  #设置mysql客户端默认字符集, utf8mb4是utf8的超集并完全兼容utf8, 能够用4个字节存储更多的字符，如表情符等
+  default-character-set=UTF8MB4
+
+  [mysqld]
+  #设置mysql的安装目录
+  basedir=D:\extract\MySQL\MySQL_Server_8.0
+  #设置mysql数据库的数据存储目录，必须是data，或者是\\xxx\\data
+  datadir=D:\extract\MySQL\MySQL_Server_8.0\data
+  #服务端使用的字符集默认为8比特编码的latin1字符集
+  character-set-server=UTF8MB4
+  #设置端口
+  port = 3306
+
+  group_concat_max_len = 10240
+
+  #允许最大连接数，默认200
+  max_connections=1000
+  # 最大睡眠时间
+  wait_timeout=300
+  # 超时时间设置
+  interactive_timeout = 500
+
+  #创建新表时将使用的默认存储引擎
+  default-storage-engine=INNODB
+
+  [client]
+  port=3306
+  default-character-set=UTF8MB4
+
+  ```
+
 ### 更多mysql使用方法，查看以下页面
 mysql作为系统服务，会自动添加环境变量，和开机启动，所以可以直接使用mysql命令
 

@@ -9,6 +9,15 @@
       <p><router-link to="/slide-captcha-demo2">滑动验证码, 只支持pc电脑端</router-link></p>
       <p><router-link to="/slide-captcha-demo">滑动验证码，支持电脑和移动端</router-link></p>
       <p><router-link to="/slide-captcha-demo3">滑动验证码，支持电脑和移动端，后台校验</router-link></p>
+      <p><router-link :to="{ name: 'canvasApi' }">canvas api练习</router-link></p>
+      <p><router-link :to="{ name: 'canvasCompressDemo' }">canvas画布图片压缩</router-link></p>
+      <p><router-link :to="{ name: 'antvG2' }">AntV之G2Plot统计图表使用</router-link></p>
+      <p><router-link :to="{ name: 'antvG6' }">AntV之G6图可视化引擎-矢量图绘制</router-link></p>
+      <p><router-link :to="{ name: 'antvL7' }">AntV之L7地理空间数据可视分析引擎</router-link></p>
+      <p><router-link :to="{ name: 'echars1' }">Echars入门之Echars多系列图</router-link></p>
+      <p><router-link :to="{ name: 'echarBaobiaoPage' }">Echars报表页面</router-link></p>
+
+
     </div>
   </div>
 </template>
