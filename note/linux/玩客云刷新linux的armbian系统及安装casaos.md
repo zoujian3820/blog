@@ -60,6 +60,8 @@ curl -fsSL https://get.casaos.io | sudo bash
 
 # 上面官方地址安装不了的可以试下这个，会快很多这个不用翻墙哈
 curl -fsSL https://get.icewhale.io | sudo bash
+
+curl -fsSL cn-get.casaos.io | bash
 ```
 卸载casaos
 ```
