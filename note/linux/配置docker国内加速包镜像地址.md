@@ -50,7 +50,7 @@ sudo vi /etc/docker/daemon.json
   如:
     {
       // "registry-mirrors": ["http://hub-mirror.c.163.com"]
-      // 最新镜像源配置-2024/11/02
+      // 以下为最新镜像源配置-2024/11/02
       "registry-mirrors": ["https://docker.m.daocloud.io", "https://docker.nju.edu.cn", "https://dockerproxy.com"]
     }
 
