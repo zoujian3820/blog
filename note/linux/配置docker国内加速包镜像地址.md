@@ -51,7 +51,15 @@ sudo vi /etc/docker/daemon.json
     {
       // "registry-mirrors": ["http://hub-mirror.c.163.com"]
       // 以下为最新镜像源配置-2024/11/02
-      "registry-mirrors": ["https://docker.m.daocloud.io", "https://docker.nju.edu.cn", "https://dockerproxy.com"]
+      "registry-mirrors": [
+         "https://docker.m.daocloud.io",
+         "https://huecker.io",
+         "https://dockerhub.timeweb.cloud",
+         "https://noohub.ru",
+         "https://gallery.ecr.aws",
+         "https://dh-mirror.gitverse.ru",
+         "https://jockerhub.com" 
+       ]
     }
 
 
