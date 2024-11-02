@@ -13,7 +13,7 @@
 `写入U盘包Armbian_23.05.0_需要解压一下`
 
 
-先用window上安装刷机工具, 安装好后，用管理员身份打开运行，然后导入Armbian镜像包以.img结尾的镜像文件，上面提供的是压缩文件要先解压出来
+先在window上安装刷机工具, 安装好后，用管理员身份打开运行，然后导入Armbian镜像包以.img结尾的镜像文件，上面提供的是压缩文件要先解压出来
 
 我的是买的二手，已刷过机的，所以不用去做主板短接了，
 
@@ -52,17 +52,20 @@ passwd 用户名  #然后按提示输入新的密码两次
 ```
 
 
-安装casaos速度会很慢，最好翻个墙
+安装casaos速度会很慢，可以翻个墙
 ```bash
+# 在安装Armbian时，选择地区为亚洲-中国，时区为-北京（选了又会变为上海了，没关系都可以），然后在执行以下命令时，会自动按地区时区选择国内的地址安装
 wget -qO- https://get.casaos.io | sudo bash
 # 或
 curl -fsSL https://get.casaos.io | sudo bash
 
-# 上面官方地址安装不了的可以试下这个，会快很多这个不用翻墙哈
+# 上面官方地址安装不了的可以试下这个
 curl -fsSL https://get.icewhale.io | sudo bash
-或
+这个包比较老，可能安装不了了，优先用最上面官方的
 curl -fsSL cn-get.casaos.io | bash
 ```
+安装修改文件参考
+- https://github.com/bfkjz/casaos
 卸载casaos
 ```
 casaos-uninstall
