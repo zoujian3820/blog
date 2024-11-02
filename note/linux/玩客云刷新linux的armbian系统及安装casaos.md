@@ -54,7 +54,8 @@ passwd 用户名  #然后按提示输入新的密码两次
 
 安装casaos速度会很慢，可以翻个墙
 ```bash
-# 在安装Armbian时，选择地区为亚洲-中国，时区为-北京（选了又会变为上海了，没关系都可以），然后在执行以下命令时，会自动按地区时区选择国内的地址安装
+# 在安装Armbian时，选择地区为亚洲-中国，时区为-北京（选了又会变为上海了，没关系都可以），
+然后在执行以下命令时，会自动按地区时区选择国内的地址安装
 wget -qO- https://get.casaos.io | sudo bash
 # 或
 curl -fsSL https://get.casaos.io | sudo bash
@@ -66,6 +67,7 @@ curl -fsSL cn-get.casaos.io | bash
 ```
 安装修改文件参考
 - https://github.com/bfkjz/casaos
+
 卸载casaos
 ```
 casaos-uninstall
