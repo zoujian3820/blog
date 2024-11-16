@@ -264,7 +264,7 @@ server {
     }
   
     location /dang {
-      # pass # 表示将请求转发到其他服务器，这里转发到 http://13.06.77.87:8080端口
+      # proxy_pass # 表示将请求转发到其他服务器，这里转发到 http://129.79.159.56:8002端口
       # 那在浏览器访问 http://129.79.159.56/dang 就会转发到 http://129.79.159.56:8002/dang 
       # 且在nginx中转发是没有跨域问题的
       proxy_pass http://129.79.159.56:8002;
@@ -309,7 +309,7 @@ nginx -s reload
 ```bash
 # 在nginx.conf的核心配置文件中的 http项配置中，
 # 方案一：添加多个 server 配置即可
-# 方案二：者引入多个配置文件
+# 方案二：或者引入多个配置文件
 # 如下
 http {
   # nginx默认的 server配置不动它
@@ -330,6 +330,7 @@ http {
       location = /50x.html {
     }
   }
+
   # 方案一：直接在先前的 server 后面 添加一个我们自己的配置，端口什么的都可以修改
   server {
     listen       81;
@@ -341,8 +342,32 @@ http {
       proxy_pass  http://xx.xx.xx.xx:8002;
     }
   }
+
   # 方案二： 引入配置文件的方式, 直接在 http 项配置中，添加 include 字段即可，如下
-  include /opt/booksFrontend/books.nginx.conf; # books.nginx.conf文件中的配置内容就是，方案一的配置
+  include /opt/booksFrontend/books.nginx.conf;
+
+  # books.nginx.conf文件中的配置内容如下，和方案一的配置一样 ==== books.nginx.conf 配置文件 start ====
+    server {
+      gzip on;
+      gzip_buffers 32 4K;
+      gzip_comp_level 6;
+      gzip_min_length 100; # 以k为单位
+      gzip_http_version 1.1; # 设置gzip压缩针对的HTTP协议版本
+      gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png application/vnd.ms-fontobject font/ttf font/opentype font/x-woff image/svg+xml;
+      gzip_disable "MSIE [1-6]\."; #配置禁用gzip条件，支持正则。此处表示ie6及以下不启用gzip（因为ie低版本不支持）
+      gzip_vary on;
+      gzip_proxied auth;
+  
+      listen       82;
+      listen       [::]:82;
+      server_name  _;
+      root         /opt/booksFrontend/dist;
+  
+      location /dang {
+        proxy_pass  http://129.79.159.56:8002/dang;
+      }
+    }
+  # ==== books.nginx.conf 配置文件 end ====
 }
 ```
 配完后先 `killall -9 nginx` 杀死nginx一次, 因会多跑出好多进程
